@@ -155,6 +155,7 @@ class TestHelpersInit:
             "navigate_dict_like",
             "deep_merge",
             "merge_toml",
+            "validate_strategy",
         }
 
         assert set(__all__) == expected_functions

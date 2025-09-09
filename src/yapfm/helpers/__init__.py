@@ -14,6 +14,7 @@ across different file formats and strategies. It includes:
 from .dict_utils import deep_merge, navigate_dict_like
 from .io import load_file, load_file_with_stream, save_file, save_file_with_stream
 from .toml_merger import merge_toml
+from .validation import validate_strategy
 
 __all__ = [
     # I/O functions
@@ -26,4 +27,6 @@ __all__ = [
     "deep_merge",
     # TOML utilities
     "merge_toml",
+    # Validation utilities
+    "validate_strategy",
 ]
