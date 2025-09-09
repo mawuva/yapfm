@@ -30,8 +30,10 @@ def merge_toml(
                 base[key] = table()
             merge_toml(base[key], value, overwrite)  # type: ignore[arg-type]
         else:
-            if overwrite or key not in base:
+            if value is None:
+                # TOML doesn't support None values, convert to empty table
+                if overwrite or key not in base:
+                    base[key] = table()
+            elif overwrite or key not in base:
                 base[key] = value
-            elif value is None and key in base:
-                base[key] = table()
     return base

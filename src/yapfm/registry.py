@@ -37,7 +37,7 @@ from pathlib import Path
 from threading import RLock
 from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
 
-from .strategies import BaseFileStrategy
+from yapfm.strategies.base import BaseFileStrategy
 
 T = TypeVar("T")
 
