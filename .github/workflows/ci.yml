@@ -13,7 +13,7 @@ jobs:
     steps:
       # Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Install Python (adjust the version if needed)
       - name: Set up Python
