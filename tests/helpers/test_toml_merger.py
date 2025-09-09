@@ -2,7 +2,9 @@
 Unit tests for toml_merger module.
 """
 
-from typing import Any, Dict, Mapping
+# mypy: disable-error-code=index
+
+from typing import Any, Dict, Mapping, cast
 
 from tomlkit import TOMLDocument, table
 from tomlkit.items import Table
@@ -62,7 +64,8 @@ class TestMergeToml:
         """
         base = TOMLDocument()
         base["level1"] = table()
-        base["level1"]["existing"] = "value"
+        level1_table = cast(Table, base["level1"])
+        level1_table["existing"] = "value"
 
         new = {
             "level1": {"existing": "new_value", "new_nested": "value"},
@@ -71,9 +74,10 @@ class TestMergeToml:
         result = merge_toml(base, new)
 
         assert result == base
-        assert base["level1"]["existing"] == "new_value"  # Overwritten
-        assert base["level1"]["new_nested"] == "value"  # Added
-        assert base["level2"]["nested"] == "value"  # Added
+        assert level1_table["existing"] == "new_value"  # Overwritten
+        assert level1_table["new_nested"] == "value"  # Added
+        level2_table = cast(Table, base["level2"])
+        assert level2_table["nested"] == "value"  # Added
 
     def test_merge_nested_dictionaries_into_table(self) -> None:
         """
@@ -86,14 +90,15 @@ class TestMergeToml:
         """
         base = table()
         base["level1"] = table()
-        base["level1"]["existing"] = "value"
+        level1_table = cast(Table, base["level1"])
+        level1_table["existing"] = "value"
 
         new = {"level1": {"existing": "new_value", "new_nested": "value"}}
         result = merge_toml(base, new)
 
         assert result == base
-        assert base["level1"]["existing"] == "new_value"  # Overwritten
-        assert base["level1"]["new_nested"] == "value"  # Added
+        assert level1_table["existing"] == "new_value"  # Overwritten
+        assert level1_table["new_nested"] == "value"  # Added
 
     def test_merge_with_overwrite_false(self) -> None:
         """
