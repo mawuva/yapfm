@@ -12,7 +12,7 @@ Example:
 """
 
 from json import dumps as json_dumps
-from json import load as json_load
+from json import loads as json_loads
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
@@ -29,7 +29,7 @@ class JsonStrategy:
         Args:
             file_path (Union[str, Path]): Path to the JSON file.
         """
-        return load_file(file_path, json_load)
+        return load_file(file_path, json_loads)
 
     def save(
         self, file_path: Union[Path, str], data: Union[Dict[str, Any], List[Any]]
