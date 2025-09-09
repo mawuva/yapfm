@@ -34,7 +34,7 @@ Example:
 
 from collections import defaultdict
 from pathlib import Path
-from threading import Lock
+from threading import RLock
 from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
 
 from .strategies import BaseFileStrategy
@@ -46,7 +46,7 @@ class FileStrategyRegistry:
     _strategy_map: Dict[str, Type[BaseFileStrategy]] = {}
     _counter: Dict[str, int] = defaultdict(int)
     _skipped: Dict[str, List[str]] = defaultdict(list)
-    _lock = Lock()
+    _lock = RLock()
 
     @classmethod
     def register_strategy(
@@ -79,6 +79,7 @@ class FileStrategyRegistry:
                 cls._strategy_map[ext] = strategy_cls
                 cls._counter.setdefault(ext, 0)
 
+    @classmethod
     def unregister_strategy(cls, file_ext: str) -> None:
         """
         Unregister a strategy for a file extension.
