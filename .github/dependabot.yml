@@ -1,0 +1,49 @@
+version: 2
+updates:
+  # ======================
+  # Dependencies PROD (Poetry)
+  # ======================
+  - package-ecosystem: "pip"
+    directory: "/"             
+    schedule:
+      interval: "weekly"       
+    allow:
+      - dependency-type: "production"
+    commit-message:
+      prefix: "deps(prod)"
+    labels:
+      - "dependencies"
+      - "python"
+      - "prod"
+    open-pull-requests-limit: 5
+
+  # ======================
+  # Dependencies DEV (Poetry)
+  # ======================
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"     
+    allow:
+      - dependency-type: "development"
+    commit-message:
+      prefix: "deps(dev)"
+    labels:
+      - "dependencies"
+      - "python"
+      - "dev"
+    open-pull-requests-limit: 5
+
+  # ======================
+  # GitHub Actions
+  # ======================
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(ci)"
+    labels:
+      - "ci"
+      - "dependencies"
+

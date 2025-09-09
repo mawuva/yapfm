@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install Python (adjust the version if needed)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Installer Poetry
+      - name: Install Poetry
+        run: pip install poetry
+
+      # Install dependencies
+      - name: Install dependencies
+        run: poetry install
+
+      # Run pre-commit
+      - name: Run pre-commit
+        run: poetry run pre-commit run --all-files
+
+      # Run pytest
+      - name: Run tests
+        run: poetry run pytest --maxfail=1 --disable-warnings -q
+
