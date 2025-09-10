@@ -156,6 +156,8 @@ class TestHelpersInit:
             "deep_merge",
             "merge_toml",
             "validate_strategy",
+            "split_dot_key",
+            "join_dot_key",
         }
 
         assert set(__all__) == expected_functions
