@@ -76,19 +76,6 @@ proxy = FileManagerProxy(
 - **Real-time Databases**: Use proper databases for high-frequency updates
 - **Simple One-off Scripts**: May be overkill for basic file operations
 
-### Comparison with Alternatives
-
-| Feature | YAPFM | json.load/dump | tomlkit | PyYAML | configparser |
-|---------|-------|----------------|---------|---------|--------------|
-| **Unified API** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Dot Notation** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Context Management** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Auto-creation** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Monitoring/Auditing** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Multi-format** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Type Safety** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Thread Safety** | ✅ | ❌ | ❌ | ❌ | ❌ |
-
 ## ✨ Features
 
 - **Multi-format Support**: JSON, TOML, and YAML files with automatic format detection
