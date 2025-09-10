@@ -14,6 +14,7 @@ across different file formats and strategies. It includes:
 from .dict_utils import deep_merge, navigate_dict_like
 from .io import load_file, load_file_with_stream, save_file, save_file_with_stream
 from .toml_merger import merge_toml
+from .utils import join_dot_key, split_dot_key
 from .validation import validate_strategy
 
 __all__ = [
@@ -29,4 +30,7 @@ __all__ = [
     "merge_toml",
     # Validation utilities
     "validate_strategy",
+    # Utility functions
+    "split_dot_key",
+    "join_dot_key",
 ]

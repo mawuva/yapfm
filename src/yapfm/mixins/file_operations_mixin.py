@@ -137,3 +137,8 @@ class FileOperationsMixin:
         self.path.write_text("", encoding="utf-8")
         self.mark_as_loaded()
         self.save()
+
+    def load_if_not_loaded(self) -> None:
+        """Load the file if it is not loaded."""
+        if not self.is_loaded():
+            self.load()
