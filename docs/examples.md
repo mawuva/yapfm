@@ -59,6 +59,8 @@ read_app_config()
 
 ### Working with Different File Formats
 
+#### Using YAPFileManager Directly
+
 ```python
 from yapfm import YAPFileManager
 
@@ -88,6 +90,58 @@ def yaml_example():
 json_example()
 toml_example()
 yaml_example()
+```
+
+#### Using the open_file Helper
+
+```python
+from yapfm.helpers import open_file
+
+# Open files with automatic format detection
+def open_file_examples():
+    # JSON file
+    json_fm = open_file("config.json", auto_create=True)
+    with json_fm:
+        json_fm.set_key("JSON Config", dot_key="format")
+        json_fm.set_key({"key1": "value1", "key2": "value2"}, dot_key="data")
+    
+    # TOML file
+    toml_fm = open_file("config.toml", auto_create=True)
+    with toml_fm:
+        toml_fm.set_key("TOML Config", dot_key="format")
+        toml_fm.set_key("localhost", dot_key="server.host")
+        toml_fm.set_key(8000, dot_key="server.port")
+    
+    # YAML file
+    yaml_fm = open_file("config.yaml", auto_create=True)
+    with yaml_fm:
+        yaml_fm.set_key("YAML Config", dot_key="format")
+        yaml_fm.set_key(["item1", "item2", "item3"], dot_key="items")
+    
+    print("All configurations created using open_file helper")
+
+# Format override examples
+def format_override_examples():
+    # Force JSON format regardless of file extension
+    json_fm = open_file("config.txt", format="json", auto_create=True)
+    with json_fm:
+        json_fm.set_key("Forced JSON", dot_key="format")
+    
+    # Force TOML format
+    toml_fm = open_file("settings.dat", format="toml", auto_create=True)
+    with toml_fm:
+        toml_fm.set_key("Forced TOML", dot_key="format")
+    
+    # Force YAML format
+    yaml_fm = open_file("data.log", format="yaml", auto_create=True)
+    with yaml_fm:
+        yaml_fm.set_key("Forced YAML", dot_key="format")
+    
+    print("Format override examples completed")
+
+# Run examples
+open_file_examples()
+format_override_examples()
 ```
 
 ## ⚙️ Configuration Management

@@ -111,6 +111,27 @@ toml_fm = YAPFileManager("config.toml")
 yaml_fm = YAPFileManager("config.yaml")
 ```
 
+### Using the open_file Helper
+
+For a more convenient way to open files:
+
+```python
+from yapfm.helpers import open_file
+
+# Automatic format detection
+fm = open_file("config.json")
+
+# Force a specific format regardless of extension
+fm = open_file("config.txt", format="toml")
+
+# Auto-create file if it doesn't exist
+fm = open_file("new_config.json", auto_create=True)
+
+# Use the file manager
+with fm:
+    fm.set_key("value", dot_key="key")
+```
+
 ## 🔧 Common Patterns
 
 ### 1. Configuration Management

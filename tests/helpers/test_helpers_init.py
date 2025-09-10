@@ -158,6 +158,7 @@ class TestHelpersInit:
             "validate_strategy",
             "split_dot_key",
             "join_dot_key",
+            "open_file",
         }
 
         assert set(__all__) == expected_functions

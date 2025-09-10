@@ -1254,6 +1254,38 @@ import json
 save_file("config.json", data, lambda x: json.dumps(x, indent=2))
 ```
 
+### open_file
+
+Open a configuration file with the appropriate strategy.
+
+```python
+from yapfm.helpers import open_file
+```
+
+**Parameters:**
+- `path` (Union[str, Path]): Path to the file
+- `format` (Optional[str]): Optional format override (e.g. "toml", "json", "yaml"). If provided, will select the strategy based on this format instead of the file extension
+- `auto_create` (bool): Whether to create the file if it doesn't exist. Default: False
+
+**Returns:**
+- `YAPFileManager`: File manager instance configured for the specified file
+
+**Example:**
+```python
+# Open file with automatic format detection
+fm = open_file("config.json")
+
+# Open file with format override
+fm = open_file("config.txt", format="toml")
+
+# Open file with auto-creation
+fm = open_file("new_config.json", auto_create=True)
+
+# Use the file manager
+with fm:
+    fm.set_key("value", dot_key="key")
+```
+
 ---
 
 *This API reference covers all public methods and classes in YAPFM. For more examples and usage patterns, see the [Examples Guide](examples.md).*

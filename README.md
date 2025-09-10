@@ -139,6 +139,28 @@ host = fm.get_key(dot_key="database.host", default="localhost")
 print(f"Database host: {host}")
 ```
 
+### Using the open_file Helper
+
+For a more convenient way to open files:
+
+```python
+from yapfm.helpers import open_file
+
+# Open file with automatic format detection
+fm = open_file("config.json")
+
+# Force a specific format regardless of extension
+fm = open_file("config.txt", format="toml")
+
+# Auto-create file if it doesn't exist
+fm = open_file("new_config.json", auto_create=True)
+
+# Use the file manager
+with fm:
+    fm.set_key("localhost", dot_key="database.host")
+    fm.set_key(5432, dot_key="database.port")
+```
+
 ### Context Manager Usage
 
 ```python
