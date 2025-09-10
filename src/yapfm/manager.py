@@ -1,16 +1,17 @@
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 from yapfm.strategies import BaseFileStrategy
 
 from .exceptions import StrategyError
 from .helpers import validate_strategy
-from .mixins.file_operations_mixin import FileOperationsMixin
+from .mixins import ContextMixin, FileOperationsMixin
 from .registry import FileStrategyRegistry
 
 
 class YAPFileManager(
     FileOperationsMixin,
+    ContextMixin,
 ):
     def __init__(
         self,
@@ -36,6 +37,7 @@ class YAPFileManager(
         self.strategy = strategy
         validate_strategy(strategy)
         self.auto_create = auto_create
+        self.document: Dict[str, Any] = {}
 
         super().__init__(**kwargs)
 

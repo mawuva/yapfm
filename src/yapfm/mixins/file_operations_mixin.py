@@ -4,8 +4,6 @@ Mixin for file operations.
 
 # mypy: ignore-errors
 
-from pathlib import Path
-
 from yapfm.exceptions import FileWriteError, LoadFileError
 
 
@@ -54,12 +52,12 @@ class FileOperationsMixin:
         if not self.exists():
             # Create empty document if file doesn't exist
             self.document = {}
-            self._loaded = True
+            self.mark_as_loaded()
             return
 
         try:
             self.document = self.strategy.load(self.path)
-            self._loaded = True
+            self.mark_as_loaded()
         except Exception as e:
             raise LoadFileError(f"Failed to load file {self.path}: {e}")
 
@@ -94,12 +92,12 @@ class FileOperationsMixin:
             ...     print("File has unsaved changes")
             ...     fm.save()
         """
-        if not self._loaded:
+        if not self.is_loaded():
             raise FileWriteError("No data to save. Load or set data first.", self.path)
 
         try:
             self.strategy.save(self.path, self.document)
-            self._dirty = False
+            self.mark_as_clean()
         except Exception as e:
             raise FileWriteError(f"Failed to save file: {e}", self.path)
 
@@ -107,12 +105,12 @@ class FileOperationsMixin:
         """
         Save the file only if it has been modified.
         """
-        if self._dirty:
+        if self.is_dirty():
             self.save()
 
     def reload(self) -> None:
         """Reload data from the file, discarding any unsaved changes."""
-        self._loaded = False
+        self.mark_as_clean()
         self.load()
 
     def mark_as_dirty(self) -> None:
@@ -123,11 +121,19 @@ class FileOperationsMixin:
         """Mark the file as clean."""
         self._dirty = False
 
-    def ensure_file_exists(self, content: str = "") -> Path:
-        """Ensure the file exists. If it doesn't, create it with the given content."""
-        if not self.exists():
-            self.path.parent.mkdir(parents=True, exist_ok=True)
-            self.path.write_text(content, encoding="utf-8")
-            self._loaded = True
-            self.save()
-        return self.path
+    def mark_as_loaded(self) -> None:
+        """Mark the file as loaded."""
+        self._loaded = True
+
+    def unload(self) -> None:
+        """Unload the file."""
+        self._loaded = False
+        self._dirty = False
+        self.document = {}
+
+    def create_empty_file(self) -> None:
+        """Create an empty file."""
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.path.write_text("", encoding="utf-8")
+        self.mark_as_loaded()
+        self.save()

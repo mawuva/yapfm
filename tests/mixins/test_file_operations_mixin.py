@@ -158,6 +158,7 @@ class TestFileOperationsMixin:
         Expected:
             - Document should be empty dict
             - _loaded should be True
+            - mark_as_loaded should be called internally
         """
         file_path = self.temp_path / "nonexistent.json"
 
@@ -334,66 +335,6 @@ class TestFileOperationsMixin:
 
         assert fm.is_dirty() is False
 
-    def test_file_operations_mixin_ensure_file_exists_file_exists(self) -> None:
-        """
-        Scenario: Ensure file exists when file already exists
-
-        Expected:
-            - File path should be returned
-            - File should not be modified
-        """
-        file_path = self.temp_path / "test.json"
-        file_path.write_text('{"existing": "data"}')
-
-        fm = self.MockFileManager(file_path)
-
-        result = fm.ensure_file_exists("new content")
-
-        assert result == file_path
-        assert file_path.read_text() == '{"existing": "data"}'
-
-    def test_file_operations_mixin_ensure_file_exists_file_not_exists(self) -> None:
-        """
-        Scenario: Ensure file exists when file doesn't exist
-
-        Expected:
-            - File should be created with content
-            - _loaded should be True
-            - Save should be called
-        """
-        file_path = self.temp_path / "new_file.json"
-
-        fm = self.MockFileManager(file_path)
-
-        with patch.object(fm, "save") as mock_save:
-            result = fm.ensure_file_exists("new content")
-
-        assert result == file_path
-        assert file_path.exists()
-        assert file_path.read_text() == "new content"
-        assert fm.is_loaded() is True
-        mock_save.assert_called_once()
-
-    def test_file_operations_mixin_ensure_file_exists_create_directory(self) -> None:
-        """
-        Scenario: Ensure file exists when parent directory doesn't exist
-
-        Expected:
-            - Parent directory should be created
-            - File should be created
-        """
-        file_path = self.temp_path / "subdir" / "test.json"
-
-        fm = self.MockFileManager(file_path)
-
-        with patch.object(fm, "save"):
-            result = fm.ensure_file_exists("content")
-
-        assert result == file_path
-        assert file_path.exists()
-        assert file_path.parent.exists()
-        assert file_path.read_text() == "content"
-
     def test_file_operations_mixin_state_transitions(self) -> None:
         """
         Scenario: Test various state transitions
@@ -473,3 +414,171 @@ class TestFileOperationsMixin:
         fm.reload()
         assert fm.is_loaded() is True
         fm.strategy.load.assert_called_once_with(file_path)
+
+    def test_file_operations_mixin_mark_as_loaded(self) -> None:
+        """
+        Scenario: Mark file as loaded
+
+        Expected:
+            - _loaded should be True
+        """
+        file_path = self.temp_path / "test.json"
+
+        fm = self.MockFileManager(file_path)
+
+        fm.mark_as_loaded()
+
+        assert fm.is_loaded() is True
+
+    def test_file_operations_mixin_unload(self) -> None:
+        """
+        Scenario: Unload file
+
+        Expected:
+            - _loaded should be False
+            - _dirty should be False
+            - document should be empty dict
+        """
+        file_path = self.temp_path / "test.json"
+
+        fm = self.MockFileManager(file_path)
+        fm._loaded = True
+        fm._dirty = True
+        fm.document = {"test": "data"}
+
+        fm.unload()
+
+        assert fm.is_loaded() is False
+        assert fm.is_dirty() is False
+        assert fm.document == {}
+
+    def test_file_operations_mixin_create_empty_file(self) -> None:
+        """
+        Scenario: Create empty file
+
+        Expected:
+            - File should be created
+            - Parent directory should be created if needed
+            - _loaded should be True
+            - Save should be called
+        """
+        file_path = self.temp_path / "subdir" / "empty.json"
+
+        fm = self.MockFileManager(file_path)
+
+        with patch.object(fm, "save") as mock_save:
+            fm.create_empty_file()
+
+        assert file_path.exists()
+        assert file_path.parent.exists()
+        assert file_path.read_text() == ""
+        assert fm.is_loaded() is True
+        mock_save.assert_called_once()
+
+    def test_file_operations_mixin_create_empty_file_existing_directory(self) -> None:
+        """
+        Scenario: Create empty file when parent directory already exists
+
+        Expected:
+            - File should be created
+            - _loaded should be True
+            - Save should be called
+        """
+        file_path = self.temp_path / "empty.json"
+
+        fm = self.MockFileManager(file_path)
+
+        with patch.object(fm, "save") as mock_save:
+            fm.create_empty_file()
+
+        assert file_path.exists()
+        assert file_path.read_text() == ""
+        assert fm.is_loaded() is True
+        mock_save.assert_called_once()
+
+    def test_file_operations_mixin_load_behavior_with_new_methods(self) -> None:
+        """
+        Scenario: Test load behavior with new mark_as_loaded method
+
+        Expected:
+            - Load should use mark_as_loaded internally
+            - State should be consistent
+        """
+        file_path = self.temp_path / "test.json"
+        file_path.write_text('{"test": "data"}')
+
+        fm = self.MockFileManager(file_path)
+        fm.strategy.load.return_value = {"test": "data"}
+
+        # Test load with existing file
+        fm.load()
+
+        assert fm.document == {"test": "data"}
+        assert fm.is_loaded() is True
+        fm.strategy.load.assert_called_once_with(file_path)
+
+        # Test load with non-existing file (should create empty document)
+        file_path2 = self.temp_path / "nonexistent.json"
+        fm2 = self.MockFileManager(file_path2)
+
+        fm2.load()
+
+        assert fm2.document == {}
+        assert fm2.is_loaded() is True
+        fm2.strategy.load.assert_not_called()
+
+    def test_file_operations_mixin_complete_lifecycle(self) -> None:
+        """
+        Scenario: Test complete file lifecycle with new methods
+
+        Expected:
+            - All methods should work together
+            - State transitions should be correct
+        """
+        file_path = self.temp_path / "lifecycle.json"
+
+        fm = self.MockFileManager(file_path)
+
+        # Initial state
+        assert fm.is_loaded() is False
+        assert fm.is_dirty() is False
+        assert fm.document == {}
+
+        # Create empty file
+        with patch.object(fm, "save") as mock_save:
+            fm.create_empty_file()
+
+        assert file_path.exists()
+        assert fm.is_loaded() is True
+        assert fm.is_dirty() is False
+        mock_save.assert_called_once()
+
+        # Load existing file
+        file_path.write_text('{"loaded": "data"}')
+        fm.strategy.load.return_value = {"loaded": "data"}
+        fm.load()
+
+        assert fm.document == {"loaded": "data"}
+        assert fm.is_loaded() is True
+        assert fm.is_dirty() is False
+
+        # Modify and mark as dirty
+        fm.document = {"modified": "data"}
+        fm.mark_as_dirty()
+        assert fm.is_dirty() is True
+
+        # Save
+        fm.save()
+        assert fm.is_dirty() is False
+
+        # Unload
+        fm.unload()
+        assert fm.is_loaded() is False
+        assert fm.is_dirty() is False
+        assert fm.document == {}
+
+        # Reload
+        fm.strategy.load.return_value = {"reloaded": "data"}
+        fm.reload()
+        assert fm.is_loaded() is True
+        assert fm.document == {"reloaded": "data"}
