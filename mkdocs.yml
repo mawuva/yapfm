@@ -1,0 +1,17 @@
+site_name: "yapfm"
+site_description: "Yet Another Python File Manager"
+site_url: "https://mawuva.github.io/yapfm/"
+docs_dir: docs
+theme:
+  name: material
+
+nav:
+  - Home: README.md
+  - Installation: installation.md
+  - Quick Start: quick_start.md
+  - User Guide: user_guide.md
+  - Advanced Features: advanced_features.md
+  - Examples: examples.md
+  - API Reference: api_reference.md
+  - Troubleshooting: troubleshooting.md
+  - Roadmap: roadmap.md

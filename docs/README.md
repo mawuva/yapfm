@@ -71,7 +71,7 @@ Wrapper that adds logging, metrics, and auditing to file operations without modi
 
 - [GitHub Repository](https://github.com/mawuva/yapfm) - Source code and issue tracking
 - [PyPI Package](https://pypi.org/project/yapfm/) - Package installation
-- [Changelog](CHANGELOG.md) - Version history and changes
+- [Changelog](../CHANGELOG.md) - Version history and changes
 
 ## 📝 Contributing to Documentation
 
