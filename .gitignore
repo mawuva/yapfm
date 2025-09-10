@@ -81,3 +81,5 @@ dmypy.json
 *.db
 
 .ruff_cache/
+
+examples/
