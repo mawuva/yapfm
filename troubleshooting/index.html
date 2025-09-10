@@ -1,0 +1,1927 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Yet Another Python File Manager">
+      
+      
+      
+        <link rel="canonical" href="https://mawuva.github.io/yapfm/troubleshooting/">
+      
+      
+        <link rel="prev" href="../api_reference/">
+      
+      
+        <link rel="next" href="../roadmap/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Troubleshooting - yapfm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            yapfm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    yapfm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Not Found Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Denied Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy Not Found Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-type-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Type Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loadfileerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoadFileError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filewriteerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileWriteError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategyerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      StrategyError
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow File Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-usage-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Usage Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-safety-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thread Safety Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuration Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invalid-configuration-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invalid Configuration Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment-Specific Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 File Format Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 File Format Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOML Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-and-resource-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Memory and Resource Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Memory and Resource Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-leaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Leaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Exhaustion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Debugging Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-debug-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Debug Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-file-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect File State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❓ Frequently Asked Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❓ Frequently Asked Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-large-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle large configuration files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-use-yapfm-with-multiple-file-formats-in-the-same-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: Can I use YAPFM with multiple file formats in the same application?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration validation?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-use-yapfm-in-a-multi-threaded-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: Can I use YAPFM in a multi-threaded environment?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-updates-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration updates in production?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-monitor-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I monitor configuration changes?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration encryption?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Not Found Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Denied Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy Not Found Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-type-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Type Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loadfileerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoadFileError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filewriteerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileWriteError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategyerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      StrategyError
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow File Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-usage-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Usage Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-safety-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thread Safety Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuration Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invalid-configuration-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invalid Configuration Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment-Specific Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 File Format Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 File Format Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOML Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML Format Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-and-resource-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Memory and Resource Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Memory and Resource Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-leaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Leaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Exhaustion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Debugging Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-debug-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Debug Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-file-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect File State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❓ Frequently Asked Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❓ Frequently Asked Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-large-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle large configuration files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-use-yapfm-with-multiple-file-formats-in-the-same-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: Can I use YAPFM with multiple file formats in the same application?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration validation?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-use-yapfm-in-a-multi-threaded-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: Can I use YAPFM in a multi-threaded environment?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-updates-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration updates in production?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-monitor-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I monitor configuration changes?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-handle-configuration-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: How do I handle configuration encryption?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting-guide">Troubleshooting Guide</h1>
+<p>This guide helps you diagnose and resolve common issues with YAPFM, including error messages, performance problems, and configuration issues.</p>
+<h2 id="table-of-contents">📚 Table of Contents</h2>
+<ol>
+<li><a href="#common-issues">Common Issues</a></li>
+<li><a href="#error-reference">Error Reference</a></li>
+<li><a href="#performance-issues">Performance Issues</a></li>
+<li><a href="#configuration-problems">Configuration Problems</a></li>
+<li><a href="#file-format-issues">File Format Issues</a></li>
+<li><a href="#memory-and-resource-issues">Memory and Resource Issues</a></li>
+<li><a href="#debugging-tips">Debugging Tips</a></li>
+<li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+</ol>
+<h2 id="common-issues">🚨 Common Issues</h2>
+<h3 id="file-not-found-errors">File Not Found Errors</h3>
+<p><strong>Problem</strong>: <code>FileNotFoundError</code> when trying to load a file.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Use auto_create=True
+fm = YAPFileManager(&quot;config.json&quot;, auto_create=True)
+
+# 2. Check if file exists first
+if fm.exists():
+    fm.load()
+else:
+    print(&quot;File does not exist&quot;)
+
+# 3. Create the file manually
+fm.create_empty_file()
+</code></pre>
+<h3 id="permission-denied-errors">Permission Denied Errors</h3>
+<p><strong>Problem</strong>: <code>PermissionError</code> when trying to save a file.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Check file permissions
+import os
+print(f&quot;File permissions: {oct(os.stat('config.json').st_mode)[-3:]}&quot;)
+
+# 2. Check directory permissions
+print(f&quot;Directory permissions: {oct(os.stat('.').st_mode)[-3:]}&quot;)
+
+# 3. Run with appropriate permissions
+# On Unix/Linux: chmod 644 config.json
+# On Windows: Check file properties
+</code></pre>
+<h3 id="strategy-not-found-errors">Strategy Not Found Errors</h3>
+<p><strong>Problem</strong>: <code>StrategyError</code> when trying to use an unsupported file format.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Check supported formats
+from yapfm.registry import FileStrategyRegistry
+print(f&quot;Supported formats: {FileStrategyRegistry.get_supported_formats()}&quot;)
+
+# 2. Register a custom strategy
+from yapfm.strategies import BaseFileStrategy
+from yapfm.registry import register_file_strategy
+
+@register_file_strategy(&quot;.xml&quot;)
+class XmlStrategy:
+    def load(self, file_path):
+        # Implementation
+        pass
+
+    def save(self, file_path, data):
+        # Implementation
+        pass
+
+    def navigate(self, document, path, create=False):
+        # Implementation
+        pass
+
+# 3. Use a supported format
+fm = YAPFileManager(&quot;config.json&quot;)  # Use .json instead of .xml
+</code></pre>
+<h3 id="data-type-errors">Data Type Errors</h3>
+<p><strong>Problem</strong>: <code>TypeError</code> when setting data that's not a dictionary.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Ensure data is a dictionary
+data = {&quot;key&quot;: &quot;value&quot;}  # Correct
+fm.data = data
+
+# 2. Convert other types to dictionary
+import json
+json_string = '{&quot;key&quot;: &quot;value&quot;}'
+data = json.loads(json_string)
+fm.data = data
+
+# 3. Use proper data structure
+# For lists, wrap in a dictionary
+fm.data = {&quot;items&quot;: [1, 2, 3]}  # Correct
+# fm.data = [1, 2, 3]  # Incorrect
+</code></pre>
+<h2 id="error-reference">⚠️ Error Reference</h2>
+<h3 id="loadfileerror">LoadFileError</h3>
+<p><strong>When it occurs</strong>: Error loading a file from disk.</p>
+<p><strong>Common causes</strong>:
+- File doesn't exist
+- Invalid file format
+- Corrupted file
+- Permission issues</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python">from yapfm.exceptions import LoadFileError
+
+try:
+    fm.load()
+except LoadFileError as e:
+    print(f&quot;Failed to load file: {e}&quot;)
+    # Handle the error appropriately
+</code></pre>
+<h3 id="filewriteerror">FileWriteError</h3>
+<p><strong>When it occurs</strong>: Error writing a file to disk.</p>
+<p><strong>Common causes</strong>:
+- Permission denied
+- Disk full
+- Invalid data format
+- File locked by another process</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python">from yapfm.exceptions import FileWriteError
+
+try:
+    fm.save()
+except FileWriteError as e:
+    print(f&quot;Failed to save file: {e}&quot;)
+    # Handle the error appropriately
+</code></pre>
+<h3 id="strategyerror">StrategyError</h3>
+<p><strong>When it occurs</strong>: Error with file strategy.</p>
+<p><strong>Common causes</strong>:
+- Unsupported file format
+- Strategy not registered
+- Invalid strategy implementation</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python">from yapfm.exceptions import StrategyError
+
+try:
+    fm = YAPFileManager(&quot;file.xyz&quot;)
+except StrategyError as e:
+    print(f&quot;Strategy error: {e}&quot;)
+    # Use a supported format or register a custom strategy
+</code></pre>
+<h2 id="performance-issues">⚡ Performance Issues</h2>
+<h3 id="slow-file-operations">Slow File Operations</h3>
+<p><strong>Problem</strong>: File operations are taking too long.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Use lazy loading
+fm = YAPFileManager(&quot;config.json&quot;)
+# File is only loaded when first accessed
+data = fm.data  # Loads here
+
+# 2. Use batch operations
+with fm.lazy_save():
+    fm.set_key(&quot;value1&quot;, dot_key=&quot;key1&quot;)
+    fm.set_key(&quot;value2&quot;, dot_key=&quot;key2&quot;)
+    fm.set_key(&quot;value3&quot;, dot_key=&quot;key3&quot;)
+    # Single save at the end
+
+# 3. Use caching
+from yapfm import FileManagerProxy
+import time
+
+class CachedFileManager:
+    def __init__(self, path, cache_ttl=300):
+        self.fm = YAPFileManager(path)
+        self.cache = {}
+        self.cache_ttl = cache_ttl
+        self.last_load = 0
+
+    def get_data(self):
+        if time.time() - self.last_load &gt; self.cache_ttl:
+            with self.fm:
+                self.cache = self.fm.data.copy()
+                self.last_load = time.time()
+        return self.cache
+</code></pre>
+<h3 id="memory-usage-issues">Memory Usage Issues</h3>
+<p><strong>Problem</strong>: High memory usage with large files.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Use streaming for large files
+def process_large_file(fm):
+    with fm:
+        data = fm.data
+        # Process data in chunks
+        for key, value in data.items():
+            # Process each item
+            process_item(key, value)
+
+# 2. Unload when not needed
+fm.unload()  # Free memory
+
+# 3. Use context managers
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    # Use file manager
+    pass
+# Automatically unloaded when exiting context
+</code></pre>
+<h3 id="thread-safety-issues">Thread Safety Issues</h3>
+<p><strong>Problem</strong>: Race conditions in multi-threaded environments.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python">import threading
+
+# 1. Use locks
+lock = threading.Lock()
+
+def thread_safe_operation():
+    with lock:
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+
+# 2. Use thread-safe file manager
+class ThreadSafeFileManager:
+    def __init__(self, path):
+        self.fm = YAPFileManager(path)
+        self.lock = threading.RLock()
+
+    def set_key(self, value, dot_key):
+        with self.lock:
+            self.fm.set_key(value, dot_key=dot_key)
+
+    def get_key(self, dot_key, default=None):
+        with self.lock:
+            return self.fm.get_key(dot_key=dot_key, default=default)
+</code></pre>
+<h2 id="configuration-problems">⚙️ Configuration Problems</h2>
+<h3 id="invalid-configuration-structure">Invalid Configuration Structure</h3>
+<p><strong>Problem</strong>: Configuration file has invalid structure.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Validate configuration
+def validate_config(data):
+    if not isinstance(data, dict):
+        raise ValueError(&quot;Configuration must be a dictionary&quot;)
+
+    required_keys = [&quot;app&quot;, &quot;database&quot;]
+    for key in required_keys:
+        if key not in data:
+            raise ValueError(f&quot;Missing required key: {key}&quot;)
+
+    return True
+
+# 2. Use configuration validator
+class ConfigValidator:
+    def __init__(self, fm):
+        self.fm = fm
+
+    def validate(self):
+        with self.fm:
+            return validate_config(self.fm.data)
+
+# 3. Fix common issues
+def fix_config_issues(fm):
+    with fm:
+        data = fm.data
+
+        # Ensure top-level is dictionary
+        if not isinstance(data, dict):
+            fm.data = {&quot;config&quot;: data}
+
+        # Add missing required keys
+        if &quot;app&quot; not in data:
+            data[&quot;app&quot;] = {&quot;name&quot;: &quot;My App&quot;, &quot;version&quot;: &quot;1.0.0&quot;}
+
+        if &quot;database&quot; not in data:
+            data[&quot;database&quot;] = {&quot;host&quot;: &quot;localhost&quot;, &quot;port&quot;: 5432}
+</code></pre>
+<h3 id="environment-specific-issues">Environment-Specific Issues</h3>
+<p><strong>Problem</strong>: Configuration not working in different environments.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python">import os
+
+# 1. Use environment variables
+def load_env_config():
+    env = os.getenv(&quot;ENVIRONMENT&quot;, &quot;development&quot;)
+    config_file = f&quot;config_{env}.json&quot;
+
+    fm = YAPFileManager(config_file, auto_create=True)
+    with fm:
+        # Set environment-specific defaults
+        if env == &quot;development&quot;:
+            fm.set_key(True, dot_key=&quot;debug&quot;)
+        elif env == &quot;production&quot;:
+            fm.set_key(False, dot_key=&quot;debug&quot;)
+
+    return fm
+
+# 2. Use configuration inheritance
+def load_merged_config():
+    base_fm = YAPFileManager(&quot;base_config.json&quot;)
+    env_fm = YAPFileManager(f&quot;config_{os.getenv('ENVIRONMENT', 'development')}.json&quot;)
+
+    with base_fm:
+        base_data = base_fm.data
+
+    with env_fm:
+        env_data = env_fm.data
+
+    # Merge configurations
+    merged_data = {**base_data, **env_data}
+
+    return merged_data
+</code></pre>
+<h2 id="file-format-issues">📄 File Format Issues</h2>
+<h3 id="json-format-issues">JSON Format Issues</h3>
+<p><strong>Problem</strong>: Invalid JSON format.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Validate JSON before loading
+import json
+
+def validate_json_file(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            json.load(f)
+        return True
+    except json.JSONDecodeError as e:
+        print(f&quot;Invalid JSON: {e}&quot;)
+        return False
+
+# 2. Fix common JSON issues
+def fix_json_file(file_path):
+    with open(file_path, 'r') as f:
+        content = f.read()
+
+    # Fix common issues
+    content = content.replace(&quot;'&quot;, '&quot;')  # Replace single quotes
+    content = content.replace(&quot;True&quot;, &quot;true&quot;)  # Fix boolean values
+    content = content.replace(&quot;False&quot;, &quot;false&quot;)
+    content = content.replace(&quot;None&quot;, &quot;null&quot;)
+
+    with open(file_path, 'w') as f:
+        f.write(content)
+
+# 3. Use proper JSON formatting
+def format_json_file(file_path):
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+</code></pre>
+<h3 id="toml-format-issues">TOML Format Issues</h3>
+<p><strong>Problem</strong>: Invalid TOML format.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Validate TOML
+import toml
+
+def validate_toml_file(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            toml.load(f)
+        return True
+    except toml.TomlDecodeError as e:
+        print(f&quot;Invalid TOML: {e}&quot;)
+        return False
+
+# 2. Fix common TOML issues
+def fix_toml_file(file_path):
+    with open(file_path, 'r') as f:
+        content = f.read()
+
+    # Fix common issues
+    content = content.replace(&quot;True&quot;, &quot;true&quot;)
+    content = content.replace(&quot;False&quot;, &quot;false&quot;)
+    content = content.replace(&quot;None&quot;, &quot;null&quot;)
+
+    with open(file_path, 'w') as f:
+        f.write(content)
+</code></pre>
+<h3 id="yaml-format-issues">YAML Format Issues</h3>
+<p><strong>Problem</strong>: Invalid YAML format.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Validate YAML
+import yaml
+
+def validate_yaml_file(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            yaml.safe_load(f)
+        return True
+    except yaml.YAMLError as e:
+        print(f&quot;Invalid YAML: {e}&quot;)
+        return False
+
+# 2. Fix common YAML issues
+def fix_yaml_file(file_path):
+    with open(file_path, 'r') as f:
+        content = f.read()
+
+    # Fix common issues
+    content = content.replace(&quot;True&quot;, &quot;true&quot;)
+    content = content.replace(&quot;False&quot;, &quot;false&quot;)
+    content = content.replace(&quot;None&quot;, &quot;null&quot;)
+
+    with open(file_path, 'w') as f:
+        f.write(content)
+</code></pre>
+<h2 id="memory-and-resource-issues">🧠 Memory and Resource Issues</h2>
+<h3 id="memory-leaks">Memory Leaks</h3>
+<p><strong>Problem</strong>: Memory usage keeps increasing.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Use context managers
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    # Use file manager
+    pass
+# Automatically cleaned up
+
+# 2. Explicitly unload
+fm.unload()  # Free memory
+
+# 3. Use weak references
+import weakref
+
+class MemoryEfficientManager:
+    def __init__(self, path):
+        self.fm = YAPFileManager(path)
+        self._cache = weakref.WeakValueDictionary()
+
+    def get_data(self):
+        if 'data' not in self._cache:
+            with self.fm:
+                self._cache['data'] = self.fm.data.copy()
+        return self._cache['data']
+</code></pre>
+<h3 id="resource-exhaustion">Resource Exhaustion</h3>
+<p><strong>Problem</strong>: Too many file handles or other resources.</p>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-python"># 1. Use context managers
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    # File is automatically closed
+    pass
+
+# 2. Limit concurrent operations
+import threading
+
+class ResourceLimitedManager:
+    def __init__(self, path, max_concurrent=5):
+        self.fm = YAPFileManager(path)
+        self.semaphore = threading.Semaphore(max_concurrent)
+
+    def operation(self):
+        with self.semaphore:
+            with self.fm:
+                # Perform operation
+                pass
+</code></pre>
+<h2 id="debugging-tips">🔍 Debugging Tips</h2>
+<h3 id="enable-debug-logging">Enable Debug Logging</h3>
+<pre><code class="language-python">import logging
+
+# Set up debug logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(&quot;yapfm&quot;)
+
+# Use proxy with logging
+from yapfm import FileManagerProxy
+
+fm = YAPFileManager(&quot;config.json&quot;)
+proxy = FileManagerProxy(fm, enable_logging=True, logger=logger)
+
+# All operations will be logged
+with proxy:
+    proxy.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+</code></pre>
+<h3 id="use-debug-mode">Use Debug Mode</h3>
+<pre><code class="language-python"># Enable debug mode for more verbose output
+import os
+os.environ[&quot;YAPFM_DEBUG&quot;] = &quot;1&quot;
+
+# Or set debug flag
+fm = YAPFileManager(&quot;config.json&quot;, debug=True)
+</code></pre>
+<h3 id="inspect-file-state">Inspect File State</h3>
+<pre><code class="language-python">def debug_file_state(fm):
+    print(f&quot;File exists: {fm.exists()}&quot;)
+    print(f&quot;File loaded: {fm.is_loaded()}&quot;)
+    print(f&quot;File dirty: {fm.is_dirty()}&quot;)
+    print(f&quot;File path: {fm.path}&quot;)
+    print(f&quot;File size: {fm.path.stat().st_size if fm.exists() else 'N/A'}&quot;)
+
+    if fm.is_loaded():
+        print(f&quot;Data keys: {list(fm.data.keys())}&quot;)
+        print(f&quot;Data type: {type(fm.data)}&quot;)
+</code></pre>
+<h3 id="trace-operations">Trace Operations</h3>
+<pre><code class="language-python">def trace_operations(fm):
+    original_set_key = fm.set_key
+    original_get_key = fm.get_key
+
+    def traced_set_key(value, dot_key=None, **kwargs):
+        print(f&quot;SET: {dot_key} = {value}&quot;)
+        return original_set_key(value, dot_key=dot_key, **kwargs)
+
+    def traced_get_key(dot_key=None, **kwargs):
+        result = original_get_key(dot_key=dot_key, **kwargs)
+        print(f&quot;GET: {dot_key} = {result}&quot;)
+        return result
+
+    fm.set_key = traced_set_key
+    fm.get_key = traced_get_key
+</code></pre>
+<h2 id="frequently-asked-questions">❓ Frequently Asked Questions</h2>
+<h3 id="q-how-do-i-handle-large-configuration-files">Q: How do I handle large configuration files?</h3>
+<p><strong>A</strong>: Use streaming and chunked processing:</p>
+<pre><code class="language-python"># For very large files, process in chunks
+def process_large_config(fm):
+    with fm:
+        data = fm.data
+
+        # Process in chunks
+        chunk_size = 1000
+        items = list(data.items())
+
+        for i in range(0, len(items), chunk_size):
+            chunk = dict(items[i:i + chunk_size])
+            process_chunk(chunk)
+</code></pre>
+<h3 id="q-can-i-use-yapfm-with-multiple-file-formats-in-the-same-application">Q: Can I use YAPFM with multiple file formats in the same application?</h3>
+<p><strong>A</strong>: Yes, you can use different file managers for different formats:</p>
+<pre><code class="language-python"># Different file managers for different formats
+json_fm = YAPFileManager(&quot;config.json&quot;)
+toml_fm = YAPFileManager(&quot;config.toml&quot;)
+yaml_fm = YAPFileManager(&quot;config.yaml&quot;)
+
+# Or use a single manager with different files
+configs = {
+    &quot;json&quot;: YAPFileManager(&quot;config.json&quot;),
+    &quot;toml&quot;: YAPFileManager(&quot;config.toml&quot;),
+    &quot;yaml&quot;: YAPFileManager(&quot;config.yaml&quot;)
+}
+</code></pre>
+<h3 id="q-how-do-i-handle-configuration-validation">Q: How do I handle configuration validation?</h3>
+<p><strong>A</strong>: Use a validation mixin or custom validation:</p>
+<pre><code class="language-python">class ConfigValidator:
+    def __init__(self, fm):
+        self.fm = fm
+        self.rules = {}
+
+    def add_rule(self, key, rule, message):
+        self.rules[key] = {&quot;rule&quot;: rule, &quot;message&quot;: message}
+
+    def validate(self):
+        errors = []
+        with self.fm:
+            data = self.fm.data
+
+            for key, rule_info in self.rules.items():
+                if not rule_info[&quot;rule&quot;](data.get(key)):
+                    errors.append(rule_info[&quot;message&quot;])
+
+        return errors
+</code></pre>
+<h3 id="q-can-i-use-yapfm-in-a-multi-threaded-environment">Q: Can I use YAPFM in a multi-threaded environment?</h3>
+<p><strong>A</strong>: Yes, but you need to handle thread safety:</p>
+<pre><code class="language-python">import threading
+
+# Use locks for thread safety
+lock = threading.Lock()
+
+def thread_safe_operation(fm):
+    with lock:
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+
+# Or use a thread-safe wrapper
+class ThreadSafeFileManager:
+    def __init__(self, path):
+        self.fm = YAPFileManager(path)
+        self.lock = threading.RLock()
+
+    def __getattr__(self, name):
+        attr = getattr(self.fm, name)
+        if callable(attr):
+            def wrapper(*args, **kwargs):
+                with self.lock:
+                    return attr(*args, **kwargs)
+            return wrapper
+        return attr
+</code></pre>
+<h3 id="q-how-do-i-handle-configuration-updates-in-production">Q: How do I handle configuration updates in production?</h3>
+<p><strong>A</strong>: Use safe update patterns:</p>
+<pre><code class="language-python">def safe_config_update(fm, updates):
+    # Create backup
+    backup_file = f&quot;{fm.path}.backup&quot;
+    if fm.exists():
+        import shutil
+        shutil.copy2(fm.path, backup_file)
+
+    try:
+        # Apply updates
+        with fm:
+            for key, value in updates.items():
+                fm.set_key(value, dot_key=key)
+
+        # Validate configuration
+        if validate_config(fm.data):
+            fm.save()
+        else:
+            raise ValueError(&quot;Configuration validation failed&quot;)
+
+    except Exception as e:
+        # Restore from backup
+        if os.path.exists(backup_file):
+            import shutil
+            shutil.copy2(backup_file, fm.path)
+        raise e
+</code></pre>
+<h3 id="q-how-do-i-monitor-configuration-changes">Q: How do I monitor configuration changes?</h3>
+<p><strong>A</strong>: Use the proxy pattern with audit hooks:</p>
+<pre><code class="language-python">def audit_hook(method, args, kwargs, result):
+    print(f&quot;Configuration changed: {method} with {args}&quot;)
+
+    # Log to file
+    with open(&quot;config_changes.log&quot;, &quot;a&quot;) as f:
+        f.write(f&quot;{datetime.now()}: {method} - {args}\n&quot;)
+
+proxy = FileManagerProxy(
+    fm,
+    enable_audit=True,
+    audit_hook=audit_hook
+)
+</code></pre>
+<h3 id="q-how-do-i-handle-configuration-encryption">Q: How do I handle configuration encryption?</h3>
+<p><strong>A</strong>: Use a custom mixin or wrapper:</p>
+<pre><code class="language-python">from cryptography.fernet import Fernet
+
+class EncryptedFileManager:
+    def __init__(self, path, key):
+        self.fm = YAPFileManager(path)
+        self.cipher = Fernet(key)
+
+    def set_encrypted_key(self, value, dot_key):
+        encrypted = self.cipher.encrypt(value.encode())
+        self.fm.set_key(encrypted.decode(), dot_key=dot_key)
+
+    def get_encrypted_key(self, dot_key, default=None):
+        encrypted = self.fm.get_key(dot_key=dot_key, default=default)
+        if encrypted:
+            return self.cipher.decrypt(encrypted.encode()).decode()
+        return default
+</code></pre>
+<hr />
+<p><em>If you're still experiencing issues, please check the <a href="https://github.com/mawuva/yapfm/issues">GitHub Issues</a> or create a new issue with detailed information about your problem.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

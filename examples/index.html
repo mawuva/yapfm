@@ -1,0 +1,2216 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Yet Another Python File Manager">
+      
+      
+      
+        <link rel="canonical" href="https://mawuva.github.io/yapfm/examples/">
+      
+      
+        <link rel="prev" href="../advanced_features/">
+      
+      
+        <link rel="next" href="../api_reference/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Examples - yapfm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#examples-and-usage-patterns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            yapfm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Examples
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    yapfm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Basic Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Basic Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Configuration File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-different-file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Different File Formats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Different File Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-yapfilemanager-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using YAPFileManager Directly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-open_file-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the open_file Helper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuration Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-configuration-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Configuration Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-configuration-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Configuration Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Multi-Environment Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 Multi-Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment-Specific Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Inheritance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Advanced Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Advanced Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-validation-and-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Validation and Schema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-caching-and-hot-reloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Caching and Hot Reloading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Logging and Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Logging and Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-with-proxy-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration with Proxy and Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Handling Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Handling Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#robust-configuration-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Robust Configuration Loading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Integration Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Integration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flask-application-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flask Application Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django-settings-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Settings Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Basic Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Basic Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Configuration File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-different-file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Different File Formats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Different File Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-yapfilemanager-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using YAPFileManager Directly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-open_file-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the open_file Helper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuration Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-configuration-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Configuration Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-configuration-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Configuration Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Multi-Environment Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 Multi-Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment-Specific Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Inheritance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Advanced Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Advanced Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-validation-and-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Validation and Schema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-caching-and-hot-reloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Caching and Hot Reloading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Logging and Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Logging and Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-with-proxy-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration with Proxy and Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Handling Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Handling Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#robust-configuration-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Robust Configuration Loading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Integration Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Integration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flask-application-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flask Application Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django-settings-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Settings Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="examples-and-usage-patterns">Examples and Usage Patterns</h1>
+<p>This guide provides comprehensive examples and real-world usage patterns for YAPFM, covering everything from basic operations to advanced scenarios.</p>
+<h2 id="table-of-contents">📚 Table of Contents</h2>
+<ol>
+<li><a href="#basic-examples">Basic Examples</a></li>
+<li><a href="#configuration-management">Configuration Management</a></li>
+<li><a href="#multi-environment-setup">Multi-Environment Setup</a></li>
+<li><a href="#advanced-patterns">Advanced Patterns</a></li>
+<li><a href="#logging-and-monitoring">Logging and Monitoring</a></li>
+<li><a href="#error-handling-patterns">Error Handling Patterns</a></li>
+<li><a href="#performance-optimization">Performance Optimization</a></li>
+<li><a href="#integration-examples">Integration Examples</a></li>
+</ol>
+<h2 id="basic-examples">🚀 Basic Examples</h2>
+<h3 id="simple-configuration-file">Simple Configuration File</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# Create a basic configuration file
+def create_app_config():
+    with YAPFileManager(&quot;app_config.json&quot;, auto_create=True) as fm:
+        # Application settings
+        fm.set_key(&quot;My Application&quot;, dot_key=&quot;app.name&quot;)
+        fm.set_key(&quot;1.0.0&quot;, dot_key=&quot;app.version&quot;)
+        fm.set_key(&quot;production&quot;, dot_key=&quot;app.environment&quot;)
+
+        # Database configuration
+        fm.set_key(&quot;localhost&quot;, dot_key=&quot;database.host&quot;)
+        fm.set_key(5432, dot_key=&quot;database.port&quot;)
+        fm.set_key(&quot;myapp&quot;, dot_key=&quot;database.name&quot;)
+        fm.set_key(True, dot_key=&quot;database.ssl&quot;)
+
+        # API settings
+        fm.set_key(&quot;v1&quot;, dot_key=&quot;api.version&quot;)
+        fm.set_key(30, dot_key=&quot;api.timeout&quot;)
+        fm.set_key(3, dot_key=&quot;api.retries&quot;)
+
+        print(&quot;Configuration created successfully!&quot;)
+
+# Read configuration
+def read_app_config():
+    with YAPFileManager(&quot;app_config.json&quot;) as fm:
+        app_name = fm.get_key(dot_key=&quot;app.name&quot;)
+        db_host = fm.get_key(dot_key=&quot;database.host&quot;)
+        api_timeout = fm.get_key(dot_key=&quot;api.timeout&quot;)
+
+        print(f&quot;App: {app_name}&quot;)
+        print(f&quot;Database: {db_host}&quot;)
+        print(f&quot;API Timeout: {api_timeout}s&quot;)
+
+# Run the examples
+create_app_config()
+read_app_config()
+</code></pre>
+<h3 id="working-with-different-file-formats">Working with Different File Formats</h3>
+<h4 id="using-yapfilemanager-directly">Using YAPFileManager Directly</h4>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# JSON configuration
+def json_example():
+    with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+        fm.set_key(&quot;JSON Config&quot;, dot_key=&quot;format&quot;)
+        fm.set_key({&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: &quot;value2&quot;}, dot_key=&quot;data&quot;)
+        print(&quot;JSON configuration created&quot;)
+
+# TOML configuration
+def toml_example():
+    with YAPFileManager(&quot;config.toml&quot;, auto_create=True) as fm:
+        fm.set_key(&quot;TOML Config&quot;, dot_key=&quot;format&quot;)
+        fm.set_key(&quot;localhost&quot;, dot_key=&quot;server.host&quot;)
+        fm.set_key(8000, dot_key=&quot;server.port&quot;)
+        print(&quot;TOML configuration created&quot;)
+
+# YAML configuration
+def yaml_example():
+    with YAPFileManager(&quot;config.yaml&quot;, auto_create=True) as fm:
+        fm.set_key(&quot;YAML Config&quot;, dot_key=&quot;format&quot;)
+        fm.set_key([&quot;item1&quot;, &quot;item2&quot;, &quot;item3&quot;], dot_key=&quot;items&quot;)
+        print(&quot;YAML configuration created&quot;)
+
+# Run all examples
+json_example()
+toml_example()
+yaml_example()
+</code></pre>
+<h4 id="using-the-open_file-helper">Using the open_file Helper</h4>
+<pre><code class="language-python">from yapfm.helpers import open_file
+
+# Open files with automatic format detection
+def open_file_examples():
+    # JSON file
+    json_fm = open_file(&quot;config.json&quot;, auto_create=True)
+    with json_fm:
+        json_fm.set_key(&quot;JSON Config&quot;, dot_key=&quot;format&quot;)
+        json_fm.set_key({&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: &quot;value2&quot;}, dot_key=&quot;data&quot;)
+
+    # TOML file
+    toml_fm = open_file(&quot;config.toml&quot;, auto_create=True)
+    with toml_fm:
+        toml_fm.set_key(&quot;TOML Config&quot;, dot_key=&quot;format&quot;)
+        toml_fm.set_key(&quot;localhost&quot;, dot_key=&quot;server.host&quot;)
+        toml_fm.set_key(8000, dot_key=&quot;server.port&quot;)
+
+    # YAML file
+    yaml_fm = open_file(&quot;config.yaml&quot;, auto_create=True)
+    with yaml_fm:
+        yaml_fm.set_key(&quot;YAML Config&quot;, dot_key=&quot;format&quot;)
+        yaml_fm.set_key([&quot;item1&quot;, &quot;item2&quot;, &quot;item3&quot;], dot_key=&quot;items&quot;)
+
+    print(&quot;All configurations created using open_file helper&quot;)
+
+# Format override examples
+def format_override_examples():
+    # Force JSON format regardless of file extension
+    json_fm = open_file(&quot;config.txt&quot;, format=&quot;json&quot;, auto_create=True)
+    with json_fm:
+        json_fm.set_key(&quot;Forced JSON&quot;, dot_key=&quot;format&quot;)
+
+    # Force TOML format
+    toml_fm = open_file(&quot;settings.dat&quot;, format=&quot;toml&quot;, auto_create=True)
+    with toml_fm:
+        toml_fm.set_key(&quot;Forced TOML&quot;, dot_key=&quot;format&quot;)
+
+    # Force YAML format
+    yaml_fm = open_file(&quot;data.log&quot;, format=&quot;yaml&quot;, auto_create=True)
+    with yaml_fm:
+        yaml_fm.set_key(&quot;Forced YAML&quot;, dot_key=&quot;format&quot;)
+
+    print(&quot;Format override examples completed&quot;)
+
+# Run examples
+open_file_examples()
+format_override_examples()
+</code></pre>
+<h2 id="configuration-management">⚙️ Configuration Management</h2>
+<h3 id="application-configuration-manager">Application Configuration Manager</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+from typing import Dict, Any, Optional
+import os
+
+class AppConfig:
+    def __init__(self, config_file: str = &quot;app_config.json&quot;):
+        self.config_file = config_file
+        self.fm = YAPFileManager(config_file, auto_create=True)
+
+    def load(self) -&gt; None:
+        &quot;&quot;&quot;Load configuration with defaults.&quot;&quot;&quot;
+        with self.fm:
+            # Set application defaults
+            defaults = {
+                &quot;app.name&quot;: &quot;My Application&quot;,
+                &quot;app.version&quot;: &quot;1.0.0&quot;,
+                &quot;app.environment&quot;: &quot;development&quot;,
+                &quot;app.debug&quot;: False,
+                &quot;database.host&quot;: &quot;localhost&quot;,
+                &quot;database.port&quot;: 5432,
+                &quot;database.name&quot;: &quot;myapp&quot;,
+                &quot;database.ssl&quot;: False,
+                &quot;api.version&quot;: &quot;v1&quot;,
+                &quot;api.timeout&quot;: 30,
+                &quot;api.retries&quot;: 3,
+                &quot;logging.level&quot;: &quot;INFO&quot;,
+                &quot;logging.file&quot;: &quot;app.log&quot;
+            }
+
+            # Set defaults for missing keys
+            for key, value in defaults.items():
+                if not self.fm.has_key(dot_key=key):
+                    self.fm.set_key(value, dot_key=key)
+
+    def get(self, key: str, default: Any = None) -&gt; Any:
+        &quot;&quot;&quot;Get a configuration value.&quot;&quot;&quot;
+        return self.fm.get_key(dot_key=key, default=default)
+
+    def set(self, key: str, value: Any) -&gt; None:
+        &quot;&quot;&quot;Set a configuration value.&quot;&quot;&quot;
+        self.fm.set_key(value, dot_key=key)
+        self.fm.save()
+
+    def get_section(self, section: str) -&gt; Optional[Dict[str, Any]]:
+        &quot;&quot;&quot;Get an entire configuration section.&quot;&quot;&quot;
+        return self.fm.get_section(dot_key=section)
+
+    def set_section(self, section: str, data: Dict[str, Any]) -&gt; None:
+        &quot;&quot;&quot;Set an entire configuration section.&quot;&quot;&quot;
+        self.fm.set_section(data, dot_key=section)
+        self.fm.save()
+
+    def validate(self) -&gt; bool:
+        &quot;&quot;&quot;Validate required configuration keys.&quot;&quot;&quot;
+        required_keys = [
+            &quot;app.name&quot;,
+            &quot;app.version&quot;,
+            &quot;database.host&quot;,
+            &quot;database.port&quot;
+        ]
+
+        for key in required_keys:
+            if not self.fm.has_key(dot_key=key):
+                print(f&quot;Missing required configuration key: {key}&quot;)
+                return False
+
+        return True
+
+# Usage example
+def main():
+    config = AppConfig(&quot;my_app_config.json&quot;)
+    config.load()
+
+    if config.validate():
+        print(&quot;Configuration is valid&quot;)
+        print(f&quot;App: {config.get('app.name')}&quot;)
+        print(f&quot;Database: {config.get('database.host')}:{config.get('database.port')}&quot;)
+    else:
+        print(&quot;Configuration validation failed&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="dynamic-configuration-updates">Dynamic Configuration Updates</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+import time
+from typing import Dict, Any
+
+class DynamicConfig:
+    def __init__(self, config_file: str):
+        self.config_file = config_file
+        self.fm = YAPFileManager(config_file, auto_create=True)
+        self.last_modified = 0
+
+    def load(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load configuration and track modifications.&quot;&quot;&quot;
+        with self.fm:
+            self.last_modified = time.time()
+            return self.fm.data
+
+    def update_feature_flag(self, feature: str, enabled: bool) -&gt; None:
+        &quot;&quot;&quot;Update a feature flag.&quot;&quot;&quot;
+        with self.fm:
+            self.fm.set_key(enabled, dot_key=f&quot;features.{feature}&quot;)
+            self.fm.set_key(time.time(), dot_key=&quot;last_updated&quot;)
+
+    def update_limits(self, limits: Dict[str, int]) -&gt; None:
+        &quot;&quot;&quot;Update application limits.&quot;&quot;&quot;
+        with self.fm:
+            for key, value in limits.items():
+                self.fm.set_key(value, dot_key=f&quot;limits.{key}&quot;)
+            self.fm.set_key(time.time(), dot_key=&quot;last_updated&quot;)
+
+    def get_feature_flags(self) -&gt; Dict[str, bool]:
+        &quot;&quot;&quot;Get all feature flags.&quot;&quot;&quot;
+        return self.fm.get_section(dot_key=&quot;features&quot;) or {}
+
+    def get_limits(self) -&gt; Dict[str, int]:
+        &quot;&quot;&quot;Get all limits.&quot;&quot;&quot;
+        return self.fm.get_section(dot_key=&quot;limits&quot;) or {}
+
+# Usage example
+def main():
+    config = DynamicConfig(&quot;dynamic_config.json&quot;)
+
+    # Load initial configuration
+    config.load()
+
+    # Update feature flags
+    config.update_feature_flag(&quot;new_ui&quot;, True)
+    config.update_feature_flag(&quot;beta_features&quot;, False)
+
+    # Update limits
+    config.update_limits({
+        &quot;max_users&quot;: 1000,
+        &quot;max_requests_per_hour&quot;: 10000,
+        &quot;max_file_size_mb&quot;: 10
+    })
+
+    # Check current settings
+    features = config.get_feature_flags()
+    limits = config.get_limits()
+
+    print(&quot;Feature Flags:&quot;, features)
+    print(&quot;Limits:&quot;, limits)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="multi-environment-setup">🌍 Multi-Environment Setup</h2>
+<h3 id="environment-specific-configuration">Environment-Specific Configuration</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+import os
+from typing import Dict, Any
+
+class EnvironmentConfig:
+    def __init__(self, base_config: str = &quot;config.json&quot;):
+        self.environment = os.getenv(&quot;ENVIRONMENT&quot;, &quot;development&quot;)
+        self.config_file = f&quot;config_{self.environment}.json&quot;
+        self.fm = YAPFileManager(self.config_file, auto_create=True)
+
+    def load(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load environment-specific configuration.&quot;&quot;&quot;
+        with self.fm:
+            # Set environment
+            self.fm.set_key(self.environment, dot_key=&quot;environment&quot;)
+
+            # Set environment-specific defaults
+            if self.environment == &quot;development&quot;:
+                self._set_development_defaults()
+            elif self.environment == &quot;staging&quot;:
+                self._set_staging_defaults()
+            elif self.environment == &quot;production&quot;:
+                self._set_production_defaults()
+
+            return self.fm.data
+
+    def _set_development_defaults(self) -&gt; None:
+        &quot;&quot;&quot;Set development environment defaults.&quot;&quot;&quot;
+        defaults = {
+            &quot;debug&quot;: True,
+            &quot;database.host&quot;: &quot;localhost&quot;,
+            &quot;database.port&quot;: 5432,
+            &quot;database.ssl&quot;: False,
+            &quot;api.timeout&quot;: 60,
+            &quot;api.debug&quot;: True,
+            &quot;logging.level&quot;: &quot;DEBUG&quot;,
+            &quot;logging.console&quot;: True,
+            &quot;cors.origins&quot;: [&quot;http://localhost:3000&quot;, &quot;http://localhost:8080&quot;]
+        }
+
+        for key, value in defaults.items():
+            if not self.fm.has_key(dot_key=key):
+                self.fm.set_key(value, dot_key=key)
+
+    def _set_staging_defaults(self) -&gt; None:
+        &quot;&quot;&quot;Set staging environment defaults.&quot;&quot;&quot;
+        defaults = {
+            &quot;debug&quot;: False,
+            &quot;database.host&quot;: &quot;staging-db.example.com&quot;,
+            &quot;database.port&quot;: 5432,
+            &quot;database.ssl&quot;: True,
+            &quot;api.timeout&quot;: 30,
+            &quot;api.debug&quot;: False,
+            &quot;logging.level&quot;: &quot;INFO&quot;,
+            &quot;logging.console&quot;: False,
+            &quot;cors.origins&quot;: [&quot;https://staging.demo.example.com&quot;]
+        }
+
+        for key, value in defaults.items():
+            if not self.fm.has_key(dot_key=key):
+                self.fm.set_key(value, dot_key=key)
+
+    def _set_production_defaults(self) -&gt; None:
+        &quot;&quot;&quot;Set production environment defaults.&quot;&quot;&quot;
+        defaults = {
+            &quot;debug&quot;: False,
+            &quot;database.host&quot;: &quot;prod-db.example.com&quot;,
+            &quot;database.port&quot;: 3306,
+            &quot;database.ssl&quot;: True,
+            &quot;api.timeout&quot;: 15,
+            &quot;api.debug&quot;: False,
+            &quot;logging.level&quot;: &quot;WARNING&quot;,
+            &quot;logging.console&quot;: False,
+            &quot;cors.origins&quot;: [&quot;https://demo.example.com&quot;]
+        }
+
+        for key, value in defaults.items():
+            if not self.fm.has_key(dot_key=key):
+                self.fm.set_key(value, dot_key=key)
+
+    def get_database_url(self) -&gt; str:
+        &quot;&quot;&quot;Get database URL for current environment.&quot;&quot;&quot;
+        host = self.fm.get_key(dot_key=&quot;database.host&quot;)
+        port = self.fm.get_key(dot_key=&quot;database.port&quot;)
+        name = self.fm.get_key(dot_key=&quot;database.name&quot;, default=&quot;myapp&quot;)
+        ssl = self.fm.get_key(dot_key=&quot;database.ssl&quot;, default=False)
+
+        protocol = &quot;postgresql+ssl&quot; if ssl else &quot;postgresql&quot;
+        return f&quot;{protocol}://{host}:{port}/{name}&quot;
+
+    def get_api_config(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Get API configuration for current environment.&quot;&quot;&quot;
+        return {
+            &quot;version&quot;: self.fm.get_key(dot_key=&quot;api.version&quot;, default=&quot;v1&quot;),
+            &quot;timeout&quot;: self.fm.get_key(dot_key=&quot;api.timeout&quot;, default=30),
+            &quot;debug&quot;: self.fm.get_key(dot_key=&quot;api.debug&quot;, default=False),
+            &quot;cors&quot;: {
+                &quot;origins&quot;: self.fm.get_key(dot_key=&quot;cors.origins&quot;, default=[])
+            }
+        }
+
+# Usage example
+def main():
+    # Set environment (usually done via environment variable)
+    os.environ[&quot;ENVIRONMENT&quot;] = &quot;development&quot;
+
+    config = EnvironmentConfig()
+    config.load()
+
+    print(f&quot;Environment: {config.environment}&quot;)
+    print(f&quot;Database URL: {config.get_database_url()}&quot;)
+    print(f&quot;API Config: {config.get_api_config()}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="configuration-inheritance">Configuration Inheritance</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+from typing import Dict, Any, Optional
+
+class ConfigInheritance:
+    def __init__(self, base_config: str = &quot;base_config.json&quot;):
+        self.base_config = base_config
+        self.environment = os.getenv(&quot;ENVIRONMENT&quot;, &quot;development&quot;)
+        self.env_config = f&quot;config_{self.environment}.json&quot;
+
+    def load_merged_config(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load and merge base and environment-specific configuration.&quot;&quot;&quot;
+        # Load base configuration
+        base_fm = YAPFileManager(self.base_config, auto_create=True)
+        with base_fm:
+            base_data = base_fm.data.copy()
+
+        # Load environment-specific configuration
+        env_fm = YAPFileManager(self.env_config, auto_create=True)
+        with env_fm:
+            env_data = env_fm.data
+
+        # Merge configurations (environment overrides base)
+        merged_config = self._deep_merge(base_data, env_data)
+
+        # Save merged configuration
+        merged_fm = YAPFileManager(&quot;merged_config.json&quot;, auto_create=True)
+        with merged_fm:
+            merged_fm.data = merged_config
+
+        return merged_config
+
+    def _deep_merge(self, base: Dict[str, Any], override: Dict[str, Any]) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Deep merge two dictionaries.&quot;&quot;&quot;
+        result = base.copy()
+
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._deep_merge(result[key], value)
+            else:
+                result[key] = value
+
+        return result
+
+# Usage example
+def main():
+    config_manager = ConfigInheritance()
+    merged_config = config_manager.load_merged_config()
+
+    print(&quot;Merged Configuration:&quot;)
+    print(f&quot;Environment: {merged_config.get('environment')}&quot;)
+    print(f&quot;Database: {merged_config.get('database', {}).get('host')}&quot;)
+    print(f&quot;API: {merged_config.get('api', {}).get('timeout')}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="advanced-patterns">🎨 Advanced Patterns</h2>
+<h3 id="configuration-validation-and-schema">Configuration Validation and Schema</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+from typing import Dict, Any, List, Optional, Union
+import re
+
+class ConfigValidator:
+    def __init__(self, config_file: str):
+        self.config_file = config_file
+        self.fm = YAPFileManager(config_file, auto_create=True)
+        self.errors: List[str] = []
+        self.warnings: List[str] = []
+
+    def validate(self) -&gt; bool:
+        &quot;&quot;&quot;Validate configuration against schema.&quot;&quot;&quot;
+        self.errors.clear()
+        self.warnings.clear()
+
+        with self.fm:
+            # Validate required keys
+            self._validate_required_keys()
+
+            # Validate data types
+            self._validate_data_types()
+
+            # Validate value ranges
+            self._validate_value_ranges()
+
+            # Validate string formats
+            self._validate_string_formats()
+
+        return len(self.errors) == 0
+
+    def _validate_required_keys(self) -&gt; None:
+        &quot;&quot;&quot;Validate that all required keys are present.&quot;&quot;&quot;
+        required_keys = [
+            &quot;app.name&quot;,
+            &quot;app.version&quot;,
+            &quot;database.host&quot;,
+            &quot;database.port&quot;,
+            &quot;api.timeout&quot;
+        ]
+
+        for key in required_keys:
+            if not self.fm.has_key(dot_key=key):
+                self.errors.append(f&quot;Missing required key: {key}&quot;)
+
+    def _validate_data_types(self) -&gt; None:
+        &quot;&quot;&quot;Validate data types of configuration values.&quot;&quot;&quot;
+        type_validations = {
+            &quot;app.name&quot;: str,
+            &quot;app.version&quot;: str,
+            &quot;database.port&quot;: int,
+            &quot;api.timeout&quot;: int,
+            &quot;api.retries&quot;: int,
+            &quot;debug&quot;: bool
+        }
+
+        for key, expected_type in type_validations.items():
+            if self.fm.has_key(dot_key=key):
+                value = self.fm.get_key(dot_key=key)
+                if not isinstance(value, expected_type):
+                    self.errors.append(f&quot;Key '{key}' should be {expected_type.__name__}, got {type(value).__name__}&quot;)
+
+    def _validate_value_ranges(self) -&gt; None:
+        &quot;&quot;&quot;Validate value ranges for numeric configuration.&quot;&quot;&quot;
+        range_validations = {
+            &quot;database.port&quot;: (1, 65535),
+            &quot;api.timeout&quot;: (1, 300),
+            &quot;api.retries&quot;: (0, 10)
+        }
+
+        for key, (min_val, max_val) in range_validations.items():
+            if self.fm.has_key(dot_key=key):
+                value = self.fm.get_key(dot_key=key)
+                if isinstance(value, (int, float)):
+                    if not (min_val &lt;= value &lt;= max_val):
+                        self.errors.append(f&quot;Key '{key}' value {value} is out of range [{min_val}, {max_val}]&quot;)
+
+    def _validate_string_formats(self) -&gt; None:
+        &quot;&quot;&quot;Validate string formats for configuration values.&quot;&quot;&quot;
+        format_validations = {
+            &quot;app.version&quot;: r&quot;^\d+\.\d+\.\d+$&quot;,  # Semantic versioning
+            &quot;database.host&quot;: r&quot;^[a-zA-Z0-9.-]+$&quot;,  # Hostname format
+            &quot;api.version&quot;: r&quot;^v\d+$&quot;  # API version format
+        }
+
+        for key, pattern in format_validations.items():
+            if self.fm.has_key(dot_key=key):
+                value = self.fm.get_key(dot_key=key)
+                if isinstance(value, str):
+                    if not re.match(pattern, value):
+                        self.errors.append(f&quot;Key '{key}' value '{value}' does not match expected format&quot;)
+
+    def get_errors(self) -&gt; List[str]:
+        &quot;&quot;&quot;Get validation errors.&quot;&quot;&quot;
+        return self.errors
+
+    def get_warnings(self) -&gt; List[str]:
+        &quot;&quot;&quot;Get validation warnings.&quot;&quot;&quot;
+        return self.warnings
+
+    def fix_common_issues(self) -&gt; bool:
+        &quot;&quot;&quot;Attempt to fix common configuration issues.&quot;&quot;&quot;
+        fixed = False
+
+        with self.fm:
+            # Fix missing required keys with defaults
+            defaults = {
+                &quot;app.name&quot;: &quot;My Application&quot;,
+                &quot;app.version&quot;: &quot;1.0.0&quot;,
+                &quot;database.host&quot;: &quot;localhost&quot;,
+                &quot;database.port&quot;: 5432,
+                &quot;api.timeout&quot;: 30
+            }
+
+            for key, default_value in defaults.items():
+                if not self.fm.has_key(dot_key=key):
+                    self.fm.set_key(default_value, dot_key=key)
+                    fixed = True
+
+        return fixed
+
+# Usage example
+def main():
+    validator = ConfigValidator(&quot;app_config.json&quot;)
+
+    # Try to fix common issues
+    if validator.fix_common_issues():
+        print(&quot;Fixed some common configuration issues&quot;)
+
+    # Validate configuration
+    if validator.validate():
+        print(&quot;Configuration is valid!&quot;)
+    else:
+        print(&quot;Configuration validation failed:&quot;)
+        for error in validator.get_errors():
+            print(f&quot;  - {error}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="configuration-caching-and-hot-reloading">Configuration Caching and Hot Reloading</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+import time
+import threading
+from typing import Dict, Any, Callable, Optional
+
+class ConfigCache:
+    def __init__(self, config_file: str, reload_interval: int = 30):
+        self.config_file = config_file
+        self.reload_interval = reload_interval
+        self.fm = YAPFileManager(config_file, auto_create=True)
+        self.cache: Dict[str, Any] = {}
+        self.last_reload = 0
+        self.callbacks: List[Callable[[Dict[str, Any]], None]] = []
+        self._stop_reload = False
+        self._reload_thread: Optional[threading.Thread] = None
+
+    def start_auto_reload(self) -&gt; None:
+        &quot;&quot;&quot;Start automatic configuration reloading.&quot;&quot;&quot;
+        if self._reload_thread is None or not self._reload_thread.is_alive():
+            self._stop_reload = False
+            self._reload_thread = threading.Thread(target=self._auto_reload_loop)
+            self._reload_thread.daemon = True
+            self._reload_thread.start()
+
+    def stop_auto_reload(self) -&gt; None:
+        &quot;&quot;&quot;Stop automatic configuration reloading.&quot;&quot;&quot;
+        self._stop_reload = True
+        if self._reload_thread and self._reload_thread.is_alive():
+            self._reload_thread.join()
+
+    def _auto_reload_loop(self) -&gt; None:
+        &quot;&quot;&quot;Background thread for automatic reloading.&quot;&quot;&quot;
+        while not self._stop_reload:
+            time.sleep(self.reload_interval)
+            if self._should_reload():
+                self.reload()
+
+    def _should_reload(self) -&gt; bool:
+        &quot;&quot;&quot;Check if configuration should be reloaded.&quot;&quot;&quot;
+        if not self.fm.exists():
+            return False
+
+        try:
+            stat = self.fm.path.stat()
+            return stat.st_mtime &gt; self.last_reload
+        except OSError:
+            return False
+
+    def load(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load configuration into cache.&quot;&quot;&quot;
+        with self.fm:
+            self.cache = self.fm.data.copy()
+            self.last_reload = time.time()
+            return self.cache
+
+    def reload(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Reload configuration from file.&quot;&quot;&quot;
+        old_cache = self.cache.copy()
+        new_cache = self.load()
+
+        # Notify callbacks if configuration changed
+        if old_cache != new_cache:
+            for callback in self.callbacks:
+                try:
+                    callback(new_cache)
+                except Exception as e:
+                    print(f&quot;Error in configuration callback: {e}&quot;)
+
+        return new_cache
+
+    def get(self, key: str, default: Any = None) -&gt; Any:
+        &quot;&quot;&quot;Get a configuration value from cache.&quot;&quot;&quot;
+        if not self.cache:
+            self.load()
+
+        # Navigate through nested keys
+        keys = key.split('.')
+        value = self.cache
+
+        for k in keys:
+            if isinstance(value, dict) and k in value:
+                value = value[k]
+            else:
+                return default
+
+        return value
+
+    def add_callback(self, callback: Callable[[Dict[str, Any]], None]) -&gt; None:
+        &quot;&quot;&quot;Add a callback for configuration changes.&quot;&quot;&quot;
+        self.callbacks.append(callback)
+
+    def remove_callback(self, callback: Callable[[Dict[str, Any]], None]) -&gt; None:
+        &quot;&quot;&quot;Remove a configuration change callback.&quot;&quot;&quot;
+        if callback in self.callbacks:
+            self.callbacks.remove(callback)
+
+# Usage example
+def config_change_handler(new_config: Dict[str, Any]) -&gt; None:
+    &quot;&quot;&quot;Handle configuration changes.&quot;&quot;&quot;
+    print(&quot;Configuration updated!&quot;)
+    print(f&quot;New app name: {new_config.get('app', {}).get('name')}&quot;)
+
+def main():
+    cache = ConfigCache(&quot;app_config.json&quot;, reload_interval=10)
+
+    # Add change handler
+    cache.add_callback(config_change_handler)
+
+    # Load initial configuration
+    cache.load()
+
+    # Start auto-reload
+    cache.start_auto_reload()
+
+    try:
+        # Use configuration
+        for i in range(5):
+            app_name = cache.get(&quot;app.name&quot;, &quot;Unknown&quot;)
+            print(f&quot;App name: {app_name}&quot;)
+            time.sleep(5)
+    finally:
+        # Stop auto-reload
+        cache.stop_auto_reload()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="logging-and-monitoring">📊 Logging and Monitoring</h2>
+<h3 id="configuration-with-proxy-and-logging">Configuration with Proxy and Logging</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager, FileManagerProxy
+import logging
+import time
+from typing import Dict, Any
+
+class MonitoredConfig:
+    def __init__(self, config_file: str):
+        self.config_file = config_file
+        self.fm = YAPFileManager(config_file, auto_create=True)
+
+        # Set up logging
+        self.logger = logging.getLogger(&quot;config_monitor&quot;)
+        self.logger.setLevel(logging.INFO)
+
+        # Create file handler
+        handler = logging.FileHandler(&quot;config_operations.log&quot;)
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
+
+        # Create proxy with monitoring
+        self.proxy = FileManagerProxy(
+            self.fm,
+            enable_logging=True,
+            enable_metrics=True,
+            enable_audit=True,
+            logger=self.logger,
+            audit_hook=self._audit_hook
+        )
+
+        # Metrics storage
+        self.metrics: Dict[str, Any] = {
+            &quot;operations&quot;: 0,
+            &quot;loads&quot;: 0,
+            &quot;saves&quot;: 0,
+            &quot;errors&quot;: 0
+        }
+
+    def _audit_hook(self, method: str, args: tuple, kwargs: dict, result: Any) -&gt; None:
+        &quot;&quot;&quot;Custom audit hook for tracking operations.&quot;&quot;&quot;
+        self.metrics[&quot;operations&quot;] += 1
+
+        if method == &quot;load&quot;:
+            self.metrics[&quot;loads&quot;] += 1
+        elif method == &quot;save&quot;:
+            self.metrics[&quot;saves&quot;] += 1
+
+        # Log significant operations
+        if method in [&quot;set_key&quot;, &quot;set_section&quot;, &quot;delete_key&quot;]:
+            self.logger.info(f&quot;Configuration modified: {method} with args {args}&quot;)
+
+    def load(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load configuration with monitoring.&quot;&quot;&quot;
+        try:
+            with self.proxy:
+                return self.proxy.data
+        except Exception as e:
+            self.metrics[&quot;errors&quot;] += 1
+            self.logger.error(f&quot;Failed to load configuration: {e}&quot;)
+            raise
+
+    def set_key(self, key: str, value: Any) -&gt; None:
+        &quot;&quot;&quot;Set configuration key with monitoring.&quot;&quot;&quot;
+        try:
+            with self.proxy:
+                self.proxy.set_key(value, dot_key=key)
+        except Exception as e:
+            self.metrics[&quot;errors&quot;] += 1
+            self.logger.error(f&quot;Failed to set key {key}: {e}&quot;)
+            raise
+
+    def get_metrics(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Get operation metrics.&quot;&quot;&quot;
+        return self.metrics.copy()
+
+    def reset_metrics(self) -&gt; None:
+        &quot;&quot;&quot;Reset operation metrics.&quot;&quot;&quot;
+        self.metrics = {
+            &quot;operations&quot;: 0,
+            &quot;loads&quot;: 0,
+            &quot;saves&quot;: 0,
+            &quot;errors&quot;: 0
+        }
+
+# Usage example
+def main():
+    config = MonitoredConfig(&quot;monitored_config.json&quot;)
+
+    # Load configuration
+    config.load()
+
+    # Make some changes
+    config.set_key(&quot;app.name&quot;, &quot;Monitored App&quot;)
+    config.set_key(&quot;app.version&quot;, &quot;2.0.0&quot;)
+    config.set_key(&quot;database.host&quot;, &quot;monitored-db.example.com&quot;)
+
+    # Check metrics
+    metrics = config.get_metrics()
+    print(&quot;Configuration Metrics:&quot;)
+    for key, value in metrics.items():
+        print(f&quot;  {key}: {value}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="error-handling-patterns">⚠️ Error Handling Patterns</h2>
+<h3 id="robust-configuration-loading">Robust Configuration Loading</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+from yapfm.exceptions import LoadFileError, FileWriteError, StrategyError
+import logging
+from typing import Dict, Any, Optional
+
+class RobustConfig:
+    def __init__(self, config_file: str, fallback_config: Optional[Dict[str, Any]] = None):
+        self.config_file = config_file
+        self.fallback_config = fallback_config or {}
+        self.logger = logging.getLogger(&quot;robust_config&quot;)
+
+    def load_with_fallback(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Load configuration with fallback to defaults.&quot;&quot;&quot;
+        try:
+            # Try to load from file
+            fm = YAPFileManager(self.config_file)
+            with fm:
+                return fm.data
+        except LoadFileError as e:
+            self.logger.warning(f&quot;Failed to load config file: {e}&quot;)
+            return self._create_fallback_config()
+        except StrategyError as e:
+            self.logger.error(f&quot;Unsupported file format: {e}&quot;)
+            return self._create_fallback_config()
+        except Exception as e:
+            self.logger.error(f&quot;Unexpected error loading config: {e}&quot;)
+            return self._create_fallback_config()
+
+    def _create_fallback_config(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Create fallback configuration.&quot;&quot;&quot;
+        self.logger.info(&quot;Creating fallback configuration&quot;)
+
+        fallback = {
+            &quot;app&quot;: {
+                &quot;name&quot;: &quot;Fallback App&quot;,
+                &quot;version&quot;: &quot;1.0.0&quot;,
+                &quot;environment&quot;: &quot;fallback&quot;
+            },
+            &quot;database&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;port&quot;: 5432,
+                &quot;name&quot;: &quot;fallback_db&quot;
+            },
+            &quot;api&quot;: {
+                &quot;timeout&quot;: 30,
+                &quot;retries&quot;: 3
+            }
+        }
+
+        # Merge with provided fallback
+        fallback.update(self.fallback_config)
+
+        # Save fallback config
+        try:
+            fm = YAPFileManager(self.config_file, auto_create=True)
+            with fm:
+                fm.data = fallback
+        except Exception as e:
+            self.logger.error(f&quot;Failed to save fallback config: {e}&quot;)
+
+        return fallback
+
+    def safe_save(self, data: Dict[str, Any]) -&gt; bool:
+        &quot;&quot;&quot;Safely save configuration with backup.&quot;&quot;&quot;
+        try:
+            # Create backup
+            backup_file = f&quot;{self.config_file}.backup&quot;
+            if self.fm.exists():
+                import shutil
+                shutil.copy2(self.config_file, backup_file)
+
+            # Save new configuration
+            fm = YAPFileManager(self.config_file)
+            with fm:
+                fm.data = data
+
+            self.logger.info(&quot;Configuration saved successfully&quot;)
+            return True
+
+        except FileWriteError as e:
+            self.logger.error(f&quot;Failed to save configuration: {e}&quot;)
+
+            # Try to restore from backup
+            try:
+                if backup_file and os.path.exists(backup_file):
+                    import shutil
+                    shutil.copy2(backup_file, self.config_file)
+                    self.logger.info(&quot;Restored configuration from backup&quot;)
+            except Exception as restore_error:
+                self.logger.error(f&quot;Failed to restore from backup: {restore_error}&quot;)
+
+            return False
+        except Exception as e:
+            self.logger.error(f&quot;Unexpected error saving configuration: {e}&quot;)
+            return False
+
+# Usage example
+def main():
+    # Set up logging
+    logging.basicConfig(level=logging.INFO)
+
+    # Create robust config with fallback
+    fallback_config = {
+        &quot;app&quot;: {&quot;name&quot;: &quot;My App&quot;, &quot;version&quot;: &quot;1.0.0&quot;},
+        &quot;database&quot;: {&quot;host&quot;: &quot;localhost&quot;, &quot;port&quot;: 5432}
+    }
+
+    config = RobustConfig(&quot;app_config.json&quot;, fallback_config)
+
+    # Load configuration (will use fallback if file doesn't exist)
+    data = config.load_with_fallback()
+    print(&quot;Loaded configuration:&quot;, data)
+
+    # Safely save configuration
+    data[&quot;app&quot;][&quot;version&quot;] = &quot;1.1.0&quot;
+    if config.safe_save(data):
+        print(&quot;Configuration saved successfully&quot;)
+    else:
+        print(&quot;Failed to save configuration&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="performance-optimization">⚡ Performance Optimization</h2>
+<h3 id="batch-operations">Batch Operations</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+from typing import Dict, Any, List
+import time
+
+class BatchConfig:
+    def __init__(self, config_file: str):
+        self.config_file = config_file
+        self.fm = YAPFileManager(config_file, auto_create=True)
+        self.pending_changes: Dict[str, Any] = {}
+
+    def batch_set(self, changes: Dict[str, Any]) -&gt; None:
+        &quot;&quot;&quot;Set multiple configuration values in a single operation.&quot;&quot;&quot;
+        with self.fm:
+            with self.fm.lazy_save():
+                for key, value in changes.items():
+                    self.fm.set_key(value, dot_key=key)
+
+    def batch_set_sections(self, sections: Dict[str, Dict[str, Any]]) -&gt; None:
+        &quot;&quot;&quot;Set multiple sections in a single operation.&quot;&quot;&quot;
+        with self.fm:
+            with self.fm.lazy_save():
+                for section_key, section_data in sections.items():
+                    self.fm.set_section(section_data, dot_key=section_key)
+
+    def batch_update(self, updates: Dict[str, Any]) -&gt; None:
+        &quot;&quot;&quot;Update multiple configuration values efficiently.&quot;&quot;&quot;
+        with self.fm:
+            # Get current data
+            current_data = self.fm.data.copy()
+
+            # Apply updates
+            for key, value in updates.items():
+                keys = key.split('.')
+                target = current_data
+
+                # Navigate to the target location
+                for k in keys[:-1]:
+                    if k not in target:
+                        target[k] = {}
+                    target = target[k]
+
+                # Set the value
+                target[keys[-1]] = value
+
+            # Save updated data
+            self.fm.data = current_data
+
+# Performance comparison example
+def performance_comparison():
+    config_file = &quot;performance_test.json&quot;
+
+    # Individual operations
+    start_time = time.time()
+    fm = YAPFileManager(config_file, auto_create=True)
+
+    with fm:
+        for i in range(100):
+            fm.set_key(f&quot;value_{i}&quot;, dot_key=f&quot;key_{i}&quot;)
+
+    individual_time = time.time() - start_time
+    print(f&quot;Individual operations: {individual_time:.4f} seconds&quot;)
+
+    # Batch operations
+    start_time = time.time()
+    batch_config = BatchConfig(&quot;performance_test_batch.json&quot;)
+
+    changes = {f&quot;key_{i}&quot;: f&quot;value_{i}&quot; for i in range(100)}
+    batch_config.batch_set(changes)
+
+    batch_time = time.time() - start_time
+    print(f&quot;Batch operations: {batch_time:.4f} seconds&quot;)
+
+    print(f&quot;Speedup: {individual_time / batch_time:.2f}x&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    performance_comparison()
+</code></pre>
+<h2 id="integration-examples">🔗 Integration Examples</h2>
+<h3 id="flask-application-integration">Flask Application Integration</h3>
+<pre><code class="language-python">from flask import Flask, request, jsonify
+from yapfm import YAPFileManager, FileManagerProxy
+import logging
+
+app = Flask(__name__)
+
+# Set up configuration
+config_fm = YAPFileManager(&quot;flask_config.json&quot;, auto_create=True)
+config_proxy = FileManagerProxy(
+    config_fm,
+    enable_logging=True,
+    enable_metrics=True,
+    logger=logging.getLogger(&quot;flask_config&quot;)
+)
+
+@app.route('/config', methods=['GET'])
+def get_config():
+    &quot;&quot;&quot;Get application configuration.&quot;&quot;&quot;
+    try:
+        with config_proxy:
+            return jsonify(config_proxy.data)
+    except Exception as e:
+        return jsonify({&quot;error&quot;: str(e)}), 500
+
+@app.route('/config/&lt;path:key&gt;', methods=['GET'])
+def get_config_key(key):
+    &quot;&quot;&quot;Get a specific configuration key.&quot;&quot;&quot;
+    try:
+        with config_proxy:
+            value = config_proxy.get_key(dot_key=key)
+            if value is None:
+                return jsonify({&quot;error&quot;: &quot;Key not found&quot;}), 404
+            return jsonify({&quot;key&quot;: key, &quot;value&quot;: value})
+    except Exception as e:
+        return jsonify({&quot;error&quot;: str(e)}), 500
+
+@app.route('/config/&lt;path:key&gt;', methods=['POST'])
+def set_config_key(key):
+    &quot;&quot;&quot;Set a specific configuration key.&quot;&quot;&quot;
+    try:
+        data = request.get_json()
+        if not data or 'value' not in data:
+            return jsonify({&quot;error&quot;: &quot;Value required&quot;}), 400
+
+        with config_proxy:
+            config_proxy.set_key(data['value'], dot_key=key)
+            return jsonify({&quot;key&quot;: key, &quot;value&quot;: data['value']})
+    except Exception as e:
+        return jsonify({&quot;error&quot;: str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+<h3 id="django-settings-integration">Django Settings Integration</h3>
+<pre><code class="language-python"># settings.py
+from yapfm import YAPFileManager
+import os
+
+# Load configuration from file
+config_fm = YAPFileManager(&quot;django_config.json&quot;, auto_create=True)
+
+with config_fm:
+    # Database configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': config_fm.get_key(dot_key=&quot;database.engine&quot;, default=&quot;django.db.backends.postgresql&quot;),
+            'NAME': config_fm.get_key(dot_key=&quot;database.name&quot;, default=&quot;myapp&quot;),
+            'USER': config_fm.get_key(dot_key=&quot;database.user&quot;, default=&quot;postgres&quot;),
+            'PASSWORD': config_fm.get_key(dot_key=&quot;database.password&quot;, default=&quot;&quot;),
+            'HOST': config_fm.get_key(dot_key=&quot;database.host&quot;, default=&quot;localhost&quot;),
+            'PORT': config_fm.get_key(dot_key=&quot;database.port&quot;, default=&quot;5432&quot;),
+        }
+    }
+
+    # Debug setting
+    DEBUG = config_fm.get_key(dot_key=&quot;debug&quot;, default=False)
+
+    # Secret key
+    SECRET_KEY = config_fm.get_key(dot_key=&quot;secret_key&quot;, default=&quot;your-secret-key-here&quot;)
+
+    # Allowed hosts
+    ALLOWED_HOSTS = config_fm.get_key(dot_key=&quot;allowed_hosts&quot;, default=[&quot;localhost&quot;])
+
+    # Logging configuration
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': config_fm.get_key(dot_key=&quot;logging.level&quot;, default=&quot;INFO&quot;),
+                'class': 'logging.FileHandler',
+                'filename': config_fm.get_key(dot_key=&quot;logging.file&quot;, default=&quot;django.log&quot;),
+            },
+        },
+        'root': {
+            'handlers': ['file'],
+        },
+    }
+</code></pre>
+<hr />
+<p><em>These examples demonstrate the flexibility and power of YAPFM in real-world scenarios. For more advanced features, see the <a href="../advanced_features/">Advanced Features Guide</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

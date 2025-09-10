@@ -1,0 +1,2089 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Yet Another Python File Manager">
+      
+      
+      
+        <link rel="canonical" href="https://mawuva.github.io/yapfm/user_guide/">
+      
+      
+        <link rel="prev" href="../quick_start/">
+      
+      
+        <link rel="next" href="../advanced_features/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>User Guide - yapfm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#user-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            yapfm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    yapfm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-open_file-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the open_file Helper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-context-manager-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Context Manager (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dot-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dot Notation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 File Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 File Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-access-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Data Access Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Data Access Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Existence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deleting Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Sections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Sections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-section-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Section Existence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-data-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Data Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Context Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Context Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-context-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Context Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazy-save-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Save Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-save-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto Save Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-manager-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Context Manager with Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graceful Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-and-error-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation and Error Prevention
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-use-context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Use Context Managers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Set Defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-validate-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validate Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-handle-errors-gracefully" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Handle Errors Gracefully
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-use-meaningful-key-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Use Meaningful Key Names
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Common Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Environment-Specific Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-open_file-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the open_file Helper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-context-manager-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Context Manager (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dot-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dot Notation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 File Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 File Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-access-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Data Access Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Data Access Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Existence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deleting Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Sections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Sections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-section-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Section Existence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-data-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Data Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Context Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Context Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-context-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Context Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazy-save-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Save Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-save-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto Save Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-manager-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Context Manager with Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graceful Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-and-error-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation and Error Prevention
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-use-context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Use Context Managers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Set Defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-validate-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validate Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-handle-errors-gracefully" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Handle Errors Gracefully
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-use-meaningful-key-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Use Meaningful Key Names
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Common Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-environment-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Environment-Specific Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="user-guide">User Guide</h1>
+<p>This comprehensive guide covers all aspects of using YAPFM in your projects, from basic operations to advanced patterns and best practices.</p>
+<h2 id="table-of-contents">📖 Table of Contents</h2>
+<ol>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#core-concepts">Core Concepts</a></li>
+<li><a href="#file-operations">File Operations</a></li>
+<li><a href="#data-access-patterns">Data Access Patterns</a></li>
+<li><a href="#context-management">Context Management</a></li>
+<li><a href="#error-handling">Error Handling</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-patterns">Common Patterns</a></li>
+</ol>
+<h2 id="getting-started">🚀 Getting Started</h2>
+<h3 id="basic-setup">Basic Setup</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# Create a file manager
+fm = YAPFileManager(&quot;config.json&quot;)
+
+# Load the file
+fm.load()
+
+# Your file is now ready to use!
+</code></pre>
+<h3 id="using-the-open_file-helper">Using the open_file Helper</h3>
+<p>For a more convenient approach:</p>
+<pre><code class="language-python">from yapfm.helpers import open_file
+
+# Open file with automatic format detection
+fm = open_file(&quot;config.json&quot;)
+
+# Force a specific format
+fm = open_file(&quot;config.txt&quot;, format=&quot;toml&quot;)
+
+# Auto-create if file doesn't exist
+fm = open_file(&quot;new_config.json&quot;, auto_create=True)
+
+# Use the file manager
+with fm:
+    fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+</code></pre>
+<h3 id="with-context-manager-recommended">With Context Manager (Recommended)</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# Automatic loading and saving
+with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+    # Work with your configuration
+    fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+    # File is automatically saved when exiting the context
+</code></pre>
+<h2 id="core-concepts">🧠 Core Concepts</h2>
+<h3 id="file-manager">File Manager</h3>
+<p>The <code>YAPFileManager</code> is the main class that combines all functionality through mixins:</p>
+<ul>
+<li><strong>FileOperationsMixin</strong>: Basic file operations (load, save, exists)</li>
+<li><strong>KeyOperationsMixin</strong>: Key-based data access with dot notation</li>
+<li><strong>SectionOperationsMixin</strong>: Section-based data management</li>
+<li><strong>ContextMixin</strong>: Context manager support</li>
+</ul>
+<h3 id="strategies">Strategies</h3>
+<p>YAPFM uses the Strategy pattern to handle different file formats:</p>
+<ul>
+<li><strong>JsonStrategy</strong>: Handles JSON files</li>
+<li><strong>TomlStrategy</strong>: Handles TOML files with comment preservation</li>
+<li><strong>YamlStrategy</strong>: Handles YAML files with safe loading</li>
+</ul>
+<h3 id="dot-notation">Dot Notation</h3>
+<p>YAPFM uses dot notation to access nested data:</p>
+<pre><code class="language-python"># Instead of: data[&quot;section&quot;][&quot;subsection&quot;][&quot;key&quot;]
+fm.get_key(dot_key=&quot;section.subsection.key&quot;)
+
+# Instead of: data[&quot;section&quot;][&quot;subsection&quot;][&quot;key&quot;] = &quot;value&quot;
+fm.set_key(&quot;value&quot;, dot_key=&quot;section.subsection.key&quot;)
+</code></pre>
+<h2 id="file-operations">📁 File Operations</h2>
+<h3 id="loading-files">Loading Files</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# Basic loading
+fm = YAPFileManager(&quot;config.json&quot;)
+fm.load()
+
+# Auto-create if file doesn't exist
+fm = YAPFileManager(&quot;config.json&quot;, auto_create=True)
+fm.load()  # Creates empty file if it doesn't exist
+
+# Check if file exists before loading
+if fm.exists():
+    fm.load()
+else:
+    print(&quot;File doesn't exist&quot;)
+</code></pre>
+<h3 id="saving-files">Saving Files</h3>
+<pre><code class="language-python"># Basic saving
+fm.save()
+
+# Save only if file has been modified
+fm.save_if_dirty()
+
+# Check if file needs saving
+if fm.is_dirty():
+    fm.save()
+</code></pre>
+<h3 id="file-status">File Status</h3>
+<pre><code class="language-python"># Check various file states
+print(f&quot;File exists: {fm.exists()}&quot;)
+print(f&quot;File loaded: {fm.is_loaded()}&quot;)
+print(f&quot;File dirty: {fm.is_dirty()}&quot;)
+
+# Manual state management
+fm.mark_as_dirty()    # Mark as modified
+fm.mark_as_clean()    # Mark as clean
+fm.mark_as_loaded()   # Mark as loaded
+</code></pre>
+<h3 id="file-lifecycle">File Lifecycle</h3>
+<pre><code class="language-python"># Complete file lifecycle
+fm = YAPFileManager(&quot;config.json&quot;)
+
+# 1. Load file
+fm.load()
+
+# 2. Make changes
+fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+
+# 3. Save changes
+fm.save()
+
+# 4. Reload if needed (discards unsaved changes)
+fm.reload()
+
+# 5. Unload from memory
+fm.unload()
+</code></pre>
+<h2 id="data-access-patterns">🔑 Data Access Patterns</h2>
+<h3 id="key-operations">Key Operations</h3>
+<h4 id="setting-values">Setting Values</h4>
+<pre><code class="language-python"># Set single values
+fm.set_key(&quot;localhost&quot;, dot_key=&quot;database.host&quot;)
+fm.set_key(5432, dot_key=&quot;database.port&quot;)
+fm.set_key(True, dot_key=&quot;database.ssl&quot;)
+
+# Set with path and key name
+fm.set_key(&quot;localhost&quot;, path=[&quot;database&quot;], key_name=&quot;host&quot;)
+
+# Set with overwrite control
+fm.set_key(&quot;new_value&quot;, dot_key=&quot;key&quot;, overwrite=True)   # Default
+fm.set_key(&quot;new_value&quot;, dot_key=&quot;key&quot;, overwrite=False)  # Only if key doesn't exist
+</code></pre>
+<h4 id="getting-values">Getting Values</h4>
+<pre><code class="language-python"># Get values with defaults
+host = fm.get_key(dot_key=&quot;database.host&quot;, default=&quot;localhost&quot;)
+port = fm.get_key(dot_key=&quot;database.port&quot;, default=5432)
+
+# Get with path and key name
+host = fm.get_key(path=[&quot;database&quot;], key_name=&quot;host&quot;, default=&quot;localhost&quot;)
+
+# Get without default (returns None if not found)
+host = fm.get_key(dot_key=&quot;database.host&quot;)
+</code></pre>
+<h4 id="checking-existence">Checking Existence</h4>
+<pre><code class="language-python"># Check if key exists
+if fm.has_key(dot_key=&quot;database.host&quot;):
+    print(&quot;Database host is configured&quot;)
+
+# Check with path and key name
+if fm.has_key(path=[&quot;database&quot;], key_name=&quot;host&quot;):
+    print(&quot;Database host is configured&quot;)
+</code></pre>
+<h4 id="deleting-keys">Deleting Keys</h4>
+<pre><code class="language-python"># Delete single keys
+deleted = fm.delete_key(dot_key=&quot;database.host&quot;)
+if deleted:
+    print(&quot;Database host removed&quot;)
+
+# Delete with path and key name
+deleted = fm.delete_key(path=[&quot;database&quot;], key_name=&quot;host&quot;)
+</code></pre>
+<h3 id="section-operations">Section Operations</h3>
+<h4 id="setting-sections">Setting Sections</h4>
+<pre><code class="language-python"># Set entire sections
+database_config = {
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;port&quot;: 5432,
+    &quot;name&quot;: &quot;myapp&quot;,
+    &quot;ssl&quot;: True
+}
+fm.set_section(database_config, dot_key=&quot;database&quot;)
+
+# Set nested sections
+api_config = {
+    &quot;version&quot;: &quot;v1&quot;,
+    &quot;timeout&quot;: 30,
+    &quot;cors&quot;: {
+        &quot;enabled&quot;: True,
+        &quot;origins&quot;: [&quot;http://localhost:3000&quot;]
+    }
+}
+fm.set_section(api_config, dot_key=&quot;api&quot;)
+</code></pre>
+<h4 id="getting-sections">Getting Sections</h4>
+<pre><code class="language-python"># Get entire sections
+database_config = fm.get_section(dot_key=&quot;database&quot;)
+if database_config:
+    print(f&quot;Database: {database_config['host']}:{database_config['port']}&quot;)
+
+# Get nested sections
+cors_config = fm.get_section(dot_key=&quot;api.cors&quot;)
+if cors_config:
+    print(f&quot;CORS origins: {cors_config['origins']}&quot;)
+</code></pre>
+<h4 id="checking-section-existence">Checking Section Existence</h4>
+<pre><code class="language-python"># Check if section exists
+if fm.has_section(dot_key=&quot;database&quot;):
+    print(&quot;Database configuration exists&quot;)
+
+# Check nested sections
+if fm.has_section(dot_key=&quot;api.cors&quot;):
+    print(&quot;CORS configuration exists&quot;)
+</code></pre>
+<h3 id="direct-data-access">Direct Data Access</h3>
+<pre><code class="language-python"># Access data directly (auto-loads if not loaded)
+data = fm.data
+print(f&quot;All data: {data}&quot;)
+
+# Set data directly
+fm.data = {
+    &quot;app&quot;: {&quot;name&quot;: &quot;My App&quot;, &quot;version&quot;: &quot;1.0.0&quot;},
+    &quot;database&quot;: {&quot;host&quot;: &quot;localhost&quot;, &quot;port&quot;: 5432}
+}
+
+# Modify data directly
+fm.data[&quot;app&quot;][&quot;version&quot;] = &quot;1.1.0&quot;
+fm.mark_as_dirty()  # Remember to mark as dirty
+</code></pre>
+<h2 id="context-management">🔄 Context Management</h2>
+<h3 id="basic-context-manager">Basic Context Manager</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+# Automatic loading and saving
+with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+    fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+    # File is automatically saved when exiting the context
+</code></pre>
+<h3 id="lazy-save-context">Lazy Save Context</h3>
+<pre><code class="language-python"># Save only when exiting the lazy_save context
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    with fm.lazy_save():
+        fm.set_key(&quot;value1&quot;, dot_key=&quot;key1&quot;)
+        fm.set_key(&quot;value2&quot;, dot_key=&quot;key2&quot;)
+        fm.set_key(&quot;value3&quot;, dot_key=&quot;key3&quot;)
+        # Save happens here when exiting lazy_save context
+</code></pre>
+<h3 id="auto-save-context">Auto Save Context</h3>
+<pre><code class="language-python"># Auto-save context (similar to lazy_save)
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    with fm.auto_save():
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+        # Save happens here when exiting auto_save context
+</code></pre>
+<h3 id="context-manager-with-error-handling">Context Manager with Error Handling</h3>
+<pre><code class="language-python">try:
+    with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+        # Some operation that might fail
+        risky_operation()
+except Exception as e:
+    print(f&quot;Error occurred: {e}&quot;)
+    # File is still saved if no exception occurred
+</code></pre>
+<h2 id="error-handling">⚠️ Error Handling</h2>
+<h3 id="common-exceptions">Common Exceptions</h3>
+<pre><code class="language-python">from yapfm.exceptions import LoadFileError, FileWriteError, StrategyError
+
+try:
+    with YAPFileManager(&quot;config.json&quot;) as fm:
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+        fm.save()
+except LoadFileError as e:
+    print(f&quot;Failed to load file: {e}&quot;)
+except FileWriteError as e:
+    print(f&quot;Failed to save file: {e}&quot;)
+except StrategyError as e:
+    print(f&quot;Strategy error: {e}&quot;)
+except Exception as e:
+    print(f&quot;Unexpected error: {e}&quot;)
+</code></pre>
+<h3 id="graceful-error-handling">Graceful Error Handling</h3>
+<pre><code class="language-python">def safe_config_operation(config_file, key, value):
+    &quot;&quot;&quot;Safely set a configuration value with error handling.&quot;&quot;&quot;
+    try:
+        with YAPFileManager(config_file, auto_create=True) as fm:
+            fm.set_key(value, dot_key=key)
+            return True
+    except LoadFileError:
+        print(f&quot;Could not load configuration file: {config_file}&quot;)
+        return False
+    except FileWriteError:
+        print(f&quot;Could not save configuration file: {config_file}&quot;)
+        return False
+    except Exception as e:
+        print(f&quot;Unexpected error: {e}&quot;)
+        return False
+
+# Use the safe function
+success = safe_config_operation(&quot;config.json&quot;, &quot;database.host&quot;, &quot;localhost&quot;)
+if success:
+    print(&quot;Configuration updated successfully&quot;)
+</code></pre>
+<h3 id="validation-and-error-prevention">Validation and Error Prevention</h3>
+<pre><code class="language-python">def validate_config_file(config_file):
+    &quot;&quot;&quot;Validate that a configuration file is usable.&quot;&quot;&quot;
+    try:
+        fm = YAPFileManager(config_file)
+
+        # Check if file exists
+        if not fm.exists():
+            print(f&quot;Configuration file does not exist: {config_file}&quot;)
+            return False
+
+        # Try to load the file
+        fm.load()
+
+        # Check if file is valid
+        if not isinstance(fm.data, dict):
+            print(f&quot;Configuration file is not a valid dictionary: {config_file}&quot;)
+            return False
+
+        return True
+
+    except Exception as e:
+        print(f&quot;Configuration file validation failed: {e}&quot;)
+        return False
+
+# Use validation
+if validate_config_file(&quot;config.json&quot;):
+    print(&quot;Configuration file is valid&quot;)
+else:
+    print(&quot;Configuration file has issues&quot;)
+</code></pre>
+<h2 id="performance-considerations">⚡ Performance Considerations</h2>
+<h3 id="lazy-loading">Lazy Loading</h3>
+<pre><code class="language-python"># File is only loaded when first accessed
+fm = YAPFileManager(&quot;config.json&quot;)
+# File is not loaded yet
+
+# Access data (triggers loading)
+data = fm.data  # File is loaded here
+
+# Or explicitly load
+fm.load()  # File is loaded here
+</code></pre>
+<h3 id="memory-management">Memory Management</h3>
+<pre><code class="language-python"># Unload file from memory when done
+fm = YAPFileManager(&quot;config.json&quot;)
+fm.load()
+# ... use the file ...
+fm.unload()  # Free memory
+
+# Or use context manager for automatic cleanup
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    # ... use the file ...
+    # File is automatically unloaded when exiting context
+</code></pre>
+<h3 id="batch-operations">Batch Operations</h3>
+<pre><code class="language-python"># Batch multiple operations to reduce I/O
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    with fm.lazy_save():
+        # Multiple operations, single save
+        fm.set_key(&quot;value1&quot;, dot_key=&quot;key1&quot;)
+        fm.set_key(&quot;value2&quot;, dot_key=&quot;key2&quot;)
+        fm.set_key(&quot;value3&quot;, dot_key=&quot;key3&quot;)
+        # Single save at the end
+</code></pre>
+<h2 id="best-practices">🎯 Best Practices</h2>
+<h3 id="1-use-context-managers">1. Use Context Managers</h3>
+<pre><code class="language-python"># ✅ Good: Automatic cleanup
+with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+    fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+
+# ❌ Avoid: Manual cleanup
+fm = YAPFileManager(&quot;config.json&quot;)
+fm.load()
+fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+fm.save()
+</code></pre>
+<h3 id="2-set-defaults">2. Set Defaults</h3>
+<pre><code class="language-python"># ✅ Good: Always provide defaults
+host = fm.get_key(dot_key=&quot;database.host&quot;, default=&quot;localhost&quot;)
+
+# ❌ Avoid: No defaults
+host = fm.get_key(dot_key=&quot;database.host&quot;)  # Could be None
+</code></pre>
+<h3 id="3-validate-configuration">3. Validate Configuration</h3>
+<pre><code class="language-python"># ✅ Good: Validate before use
+def load_config():
+    with YAPFileManager(&quot;config.json&quot;, auto_create=True) as fm:
+        # Set required defaults
+        if not fm.has_key(dot_key=&quot;database.host&quot;):
+            fm.set_key(&quot;localhost&quot;, dot_key=&quot;database.host&quot;)
+
+        return fm.data
+
+# ❌ Avoid: No validation
+def load_config():
+    with YAPFileManager(&quot;config.json&quot;) as fm:
+        return fm.data  # Could be missing required keys
+</code></pre>
+<h3 id="4-handle-errors-gracefully">4. Handle Errors Gracefully</h3>
+<pre><code class="language-python"># ✅ Good: Comprehensive error handling
+try:
+    with YAPFileManager(&quot;config.json&quot;) as fm:
+        fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)
+except LoadFileError as e:
+    logger.error(f&quot;Failed to load config: {e}&quot;)
+    # Fallback to default config
+except FileWriteError as e:
+    logger.error(f&quot;Failed to save config: {e}&quot;)
+    # Handle save failure
+except Exception as e:
+    logger.error(f&quot;Unexpected error: {e}&quot;)
+    # Handle unexpected errors
+
+# ❌ Avoid: No error handling
+with YAPFileManager(&quot;config.json&quot;) as fm:
+    fm.set_key(&quot;value&quot;, dot_key=&quot;key&quot;)  # Could fail silently
+</code></pre>
+<h3 id="5-use-meaningful-key-names">5. Use Meaningful Key Names</h3>
+<pre><code class="language-python"># ✅ Good: Clear, descriptive keys
+fm.set_key(&quot;localhost&quot;, dot_key=&quot;database.host&quot;)
+fm.set_key(5432, dot_key=&quot;database.port&quot;)
+fm.set_key(&quot;myapp&quot;, dot_key=&quot;database.name&quot;)
+
+# ❌ Avoid: Unclear keys
+fm.set_key(&quot;localhost&quot;, dot_key=&quot;db.h&quot;)
+fm.set_key(5432, dot_key=&quot;db.p&quot;)
+fm.set_key(&quot;myapp&quot;, dot_key=&quot;db.n&quot;)
+</code></pre>
+<h2 id="common-patterns">🎨 Common Patterns</h2>
+<h3 id="1-configuration-management">1. Configuration Management</h3>
+<pre><code class="language-python">class AppConfig:
+    def __init__(self, config_file=&quot;config.json&quot;):
+        self.fm = YAPFileManager(config_file, auto_create=True)
+
+    def load(self):
+        &quot;&quot;&quot;Load configuration with defaults.&quot;&quot;&quot;
+        with self.fm:
+            # Set defaults if not present
+            defaults = {
+                &quot;app.name&quot;: &quot;My App&quot;,
+                &quot;app.version&quot;: &quot;1.0.0&quot;,
+                &quot;database.host&quot;: &quot;localhost&quot;,
+                &quot;database.port&quot;: 5432,
+                &quot;debug&quot;: False
+            }
+
+            for key, value in defaults.items():
+                if not self.fm.has_key(dot_key=key):
+                    self.fm.set_key(value, dot_key=key)
+
+    def get(self, key, default=None):
+        &quot;&quot;&quot;Get configuration value.&quot;&quot;&quot;
+        return self.fm.get_key(dot_key=key, default=default)
+
+    def set(self, key, value):
+        &quot;&quot;&quot;Set configuration value.&quot;&quot;&quot;
+        self.fm.set_key(value, dot_key=key)
+        self.fm.save()
+
+# Use the configuration manager
+config = AppConfig(&quot;my_app_config.json&quot;)
+config.load()
+app_name = config.get(&quot;app.name&quot;)
+config.set(&quot;debug&quot;, True)
+</code></pre>
+<h3 id="2-environment-specific-configuration">2. Environment-Specific Configuration</h3>
+<pre><code class="language-python">import os
+from yapfm import YAPFileManager
+
+class EnvironmentConfig:
+    def __init__(self, base_config=&quot;config.json&quot;):
+        self.env = os.getenv(&quot;ENVIRONMENT&quot;, &quot;development&quot;)
+        self.config_file = f&quot;config_{self.env}.json&quot;
+        self.fm = YAPFileManager(self.config_file, auto_create=True)
+
+    def load(self):
+        &quot;&quot;&quot;Load environment-specific configuration.&quot;&quot;&quot;
+        with self.fm:
+            # Set environment
+            self.fm.set_key(self.env, dot_key=&quot;environment&quot;)
+
+            # Set environment-specific defaults
+            if self.env == &quot;development&quot;:
+                self.fm.set_key(True, dot_key=&quot;debug&quot;)
+                self.fm.set_key(&quot;localhost&quot;, dot_key=&quot;database.host&quot;)
+            elif self.env == &quot;production&quot;:
+                self.fm.set_key(False, dot_key=&quot;debug&quot;)
+                self.fm.set_key(&quot;prod-db.example.com&quot;, dot_key=&quot;database.host&quot;)
+
+    def get_database_url(self):
+        &quot;&quot;&quot;Get database URL for current environment.&quot;&quot;&quot;
+        host = self.fm.get_key(dot_key=&quot;database.host&quot;)
+        port = self.fm.get_key(dot_key=&quot;database.port&quot;)
+        name = self.fm.get_key(dot_key=&quot;database.name&quot;)
+        return f&quot;postgresql://{host}:{port}/{name}&quot;
+
+# Use environment-specific configuration
+config = EnvironmentConfig()
+config.load()
+db_url = config.get_database_url()
+</code></pre>
+<h3 id="3-configuration-validation">3. Configuration Validation</h3>
+<pre><code class="language-python">from yapfm import YAPFileManager
+
+class ConfigValidator:
+    def __init__(self, config_file):
+        self.fm = YAPFileManager(config_file)
+
+    def validate(self):
+        &quot;&quot;&quot;Validate configuration file.&quot;&quot;&quot;
+        errors = []
+
+        # Required keys
+        required_keys = [
+            &quot;app.name&quot;,
+            &quot;app.version&quot;,
+            &quot;database.host&quot;,
+            &quot;database.port&quot;
+        ]
+
+        for key in required_keys:
+            if not self.fm.has_key(dot_key=key):
+                errors.append(f&quot;Missing required key: {key}&quot;)
+
+        # Validate specific values
+        if self.fm.has_key(dot_key=&quot;database.port&quot;):
+            port = self.fm.get_key(dot_key=&quot;database.port&quot;)
+            if not isinstance(port, int) or port &lt; 1 or port &gt; 65535:
+                errors.append(&quot;Invalid database port&quot;)
+
+        if self.fm.has_key(dot_key=&quot;debug&quot;):
+            debug = self.fm.get_key(dot_key=&quot;debug&quot;)
+            if not isinstance(debug, bool):
+                errors.append(&quot;Debug flag must be boolean&quot;)
+
+        return errors
+
+    def is_valid(self):
+        &quot;&quot;&quot;Check if configuration is valid.&quot;&quot;&quot;
+        return len(self.validate()) == 0
+
+# Use configuration validator
+validator = ConfigValidator(&quot;config.json&quot;)
+if validator.is_valid():
+    print(&quot;Configuration is valid&quot;)
+else:
+    errors = validator.validate()
+    print(f&quot;Configuration errors: {errors}&quot;)
+</code></pre>
+<hr />
+<p><em>Ready to explore more advanced features? Check out the <a href="../advanced_features/">Advanced Features Guide</a> for proxy patterns, custom strategies, and performance optimization.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

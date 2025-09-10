@@ -1,0 +1,1604 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Yet Another Python File Manager">
+      
+      
+      
+        <link rel="canonical" href="https://mawuva.github.io/yapfm/installation/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../quick_start/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Installation - yapfm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            yapfm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    yapfm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Installation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-pip-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1: pip (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 2: Poetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 3: From Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-specific-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Platform-Specific Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Platform-Specific Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (Ubuntu/Debian)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-centosrhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (CentOS/RHEL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Docker Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐳 Docker Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Development Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone and Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-permission-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Permission Denied
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-toml-dependencies-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. TOML Dependencies Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-yaml-dependencies-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. YAML Dependencies Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-python-version-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Python Version Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform-Specific Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform-Specific Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-microsoft-visual-c-140-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows: Microsoft Visual C++ 14.0 Required
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-xcode-command-line-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS: Xcode Command Line Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-missing-development-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux: Missing Development Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Virtual Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Virtual Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using venv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using conda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Upgrading
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Upgrading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-to-latest-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade to Latest Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-current-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Current Version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Installation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-pip-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1: pip (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 2: Poetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 3: From Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-specific-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Platform-Specific Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Platform-Specific Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (Ubuntu/Debian)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-centosrhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (CentOS/RHEL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Docker Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐳 Docker Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Development Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone and Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-permission-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Permission Denied
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-toml-dependencies-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. TOML Dependencies Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-yaml-dependencies-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. YAML Dependencies Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-python-version-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Python Version Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform-Specific Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform-Specific Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-microsoft-visual-c-140-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows: Microsoft Visual C++ 14.0 Required
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-xcode-command-line-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS: Xcode Command Line Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-missing-development-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux: Missing Development Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Virtual Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Virtual Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using venv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using conda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Upgrading
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Upgrading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-to-latest-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade to Latest Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-current-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Current Version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="installation-guide">Installation Guide</h1>
+<p>This guide covers how to install YAPFM and its dependencies on different platforms.</p>
+<h2 id="requirements">📋 Requirements</h2>
+<h3 id="python-version">Python Version</h3>
+<ul>
+<li><strong>Python 3.10+</strong> (tested up to Python 3.13)</li>
+<li><strong>pip</strong> or <strong>Poetry</strong> for package management</li>
+</ul>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li><code>tomlkit</code> (&gt;=0.13.3,&lt;0.14.0) - TOML file handling</li>
+<li><code>pyyaml</code> (&gt;=6.0.2,&lt;7.0.0) - YAML file handling</li>
+</ul>
+<p><em>Note: JSON support uses Python's built-in <code>json</code> module, so no additional dependencies are required.</em></p>
+<h2 id="installation-methods">🚀 Installation Methods</h2>
+<h3 id="method-1-pip-recommended">Method 1: pip (Recommended)</h3>
+<pre><code class="language-bash"># Install the latest version
+pip install yapfm
+
+# Install a specific version
+pip install yapfm==1.0.0
+
+# Install with development dependencies
+pip install yapfm[dev]
+</code></pre>
+<h3 id="method-2-poetry">Method 2: Poetry</h3>
+<pre><code class="language-bash"># Add to your project
+poetry add yapfm
+
+# Add development dependencies
+poetry add --group dev yapfm
+</code></pre>
+<h3 id="method-3-from-source">Method 3: From Source</h3>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/mawuva/yapfm.git
+cd yapfm
+
+# Install in development mode
+pip install -e .
+
+# Or with Poetry
+poetry install
+</code></pre>
+<h2 id="platform-specific-instructions">🔧 Platform-Specific Instructions</h2>
+<h3 id="windows">Windows</h3>
+<pre><code class="language-powershell"># Using PowerShell
+pip install yapfm
+
+# Verify installation
+python -c &quot;import yapfm; print(yapfm.__version__)&quot;
+</code></pre>
+<h3 id="macos">macOS</h3>
+<pre><code class="language-bash"># Using Homebrew Python
+brew install python
+pip3 install yapfm
+
+# Or using system Python
+python3 -m pip install yapfm
+</code></pre>
+<h3 id="linux-ubuntudebian">Linux (Ubuntu/Debian)</h3>
+<pre><code class="language-bash"># Update package list
+sudo apt update
+
+# Install Python and pip if not already installed
+sudo apt install python3 python3-pip
+
+# Install YAPFM
+pip3 install yapfm
+</code></pre>
+<h3 id="linux-centosrhel">Linux (CentOS/RHEL)</h3>
+<pre><code class="language-bash"># Install Python and pip
+sudo yum install python3 python3-pip
+
+# Install YAPFM
+pip3 install yapfm
+</code></pre>
+<h2 id="docker-installation">🐳 Docker Installation</h2>
+<h3 id="using-dockerfile">Using Dockerfile</h3>
+<pre><code class="language-dockerfile">FROM python:3.11-slim
+
+# Install YAPFM
+RUN pip install yapfm
+
+# Your application code here
+COPY . /app
+WORKDIR /app
+</code></pre>
+<h3 id="using-docker-compose">Using Docker Compose</h3>
+<pre><code class="language-yaml">version: '3.8'
+services:
+  app:
+    build: .
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./config:/app/config
+</code></pre>
+<h2 id="verification">🔍 Verification</h2>
+<p>After installation, verify that YAPFM is working correctly:</p>
+<pre><code class="language-python"># test_installation.py
+from yapfm import YAPFileManager, FileManagerProxy, FileStrategyRegistry
+
+# Test basic functionality
+fm = YAPFileManager(&quot;test.json&quot;)
+print(&quot;✅ YAPFileManager imported successfully&quot;)
+
+# Test proxy
+proxy = FileManagerProxy(fm)
+print(&quot;✅ FileManagerProxy imported successfully&quot;)
+
+# Test registry
+strategies = FileStrategyRegistry.get_supported_formats()
+print(f&quot;✅ Supported formats: {strategies}&quot;)
+
+print(&quot;🎉 YAPFM installation verified!&quot;)
+</code></pre>
+<p>Run the test:</p>
+<pre><code class="language-bash">python test_installation.py
+</code></pre>
+<h2 id="development-setup">🛠️ Development Setup</h2>
+<p>If you're contributing to YAPFM or want to run the tests:</p>
+<h3 id="clone-and-setup">Clone and Setup</h3>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/mawuva/yapfm.git
+cd yapfm
+
+# Install in development mode with all dependencies
+pip install -e &quot;.[dev]&quot;
+
+# Or with Poetry
+poetry install --with dev
+</code></pre>
+<h3 id="development-dependencies">Development Dependencies</h3>
+<p>The development dependencies include:</p>
+<ul>
+<li><code>pytest</code> - Testing framework</li>
+<li><code>pytest-cov</code> - Coverage reporting</li>
+<li><code>ruff</code> - Linting and formatting</li>
+<li><code>black</code> - Code formatting</li>
+<li><code>isort</code> - Import sorting</li>
+<li><code>mypy</code> - Type checking</li>
+<li><code>pre-commit</code> - Git hooks</li>
+</ul>
+<h3 id="running-tests">Running Tests</h3>
+<pre><code class="language-bash"># Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=yapfm
+
+# Run specific test file
+pytest tests/test_manager.py
+</code></pre>
+<h3 id="code-quality">Code Quality</h3>
+<pre><code class="language-bash"># Format code
+black src/ tests/
+
+# Sort imports
+isort src/ tests/
+
+# Lint code
+ruff check src/ tests/
+
+# Type check
+mypy src/
+</code></pre>
+<h2 id="troubleshooting">🚨 Troubleshooting</h2>
+<h3 id="common-installation-issues">Common Installation Issues</h3>
+<h4 id="1-permission-denied">1. Permission Denied</h4>
+<pre><code class="language-bash"># Use --user flag
+pip install --user yapfm
+
+# Or use virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install yapfm
+</code></pre>
+<h4 id="2-toml-dependencies-issues">2. TOML Dependencies Issues</h4>
+<pre><code class="language-bash"># Update pip first
+pip install --upgrade pip
+
+# Install with specific TOML version
+pip install tomlkit==0.13.3
+pip install yapfm
+</code></pre>
+<h4 id="3-yaml-dependencies-issues">3. YAML Dependencies Issues</h4>
+<pre><code class="language-bash"># Install PyYAML separately
+pip install pyyaml&gt;=6.0.2
+pip install yapfm
+</code></pre>
+<h4 id="4-python-version-issues">4. Python Version Issues</h4>
+<pre><code class="language-bash"># Check Python version
+python --version
+
+# Use specific Python version
+python3.10 -m pip install yapfm
+</code></pre>
+<h3 id="platform-specific-issues">Platform-Specific Issues</h3>
+<h4 id="windows-microsoft-visual-c-140-required">Windows: Microsoft Visual C++ 14.0 Required</h4>
+<p>If you encounter this error, install Visual Studio Build Tools:</p>
+<ol>
+<li>Download from <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft's website</a></li>
+<li>Install "C++ build tools"</li>
+<li>Restart your terminal</li>
+<li>Try installing again</li>
+</ol>
+<h4 id="macos-xcode-command-line-tools">macOS: Xcode Command Line Tools</h4>
+<pre><code class="language-bash"># Install Xcode command line tools
+xcode-select --install
+
+# Then install YAPFM
+pip install yapfm
+</code></pre>
+<h4 id="linux-missing-development-headers">Linux: Missing Development Headers</h4>
+<pre><code class="language-bash"># Ubuntu/Debian
+sudo apt install python3-dev build-essential
+
+# CentOS/RHEL
+sudo yum install python3-devel gcc
+</code></pre>
+<h2 id="virtual-environments">📦 Virtual Environments</h2>
+<h3 id="using-venv">Using venv</h3>
+<pre><code class="language-bash"># Create virtual environment
+python -m venv yapfm-env
+
+# Activate (Linux/macOS)
+source yapfm-env/bin/activate
+
+# Activate (Windows)
+yapfm-env\Scripts\activate
+
+# Install YAPFM
+pip install yapfm
+
+# Deactivate when done
+deactivate
+</code></pre>
+<h3 id="using-conda">Using conda</h3>
+<pre><code class="language-bash"># Create conda environment
+conda create -n yapfm-env python=3.11
+
+# Activate environment
+conda activate yapfm-env
+
+# Install YAPFM
+pip install yapfm
+</code></pre>
+<h2 id="upgrading">🔄 Upgrading</h2>
+<h3 id="upgrade-to-latest-version">Upgrade to Latest Version</h3>
+<pre><code class="language-bash"># Using pip
+pip install --upgrade yapfm
+
+# Using Poetry
+poetry update yapfm
+</code></pre>
+<h3 id="check-current-version">Check Current Version</h3>
+<pre><code class="language-python">import yapfm
+print(yapfm.__version__)
+</code></pre>
+<h2 id="next-steps">📝 Next Steps</h2>
+<p>After successful installation:</p>
+<ol>
+<li>Read the <a href="../quick_start/">Quick Start Guide</a></li>
+<li>Follow the <a href="../user_guide/">User Guide</a></li>
+<li>Explore <a href="../examples/">Examples</a></li>
+<li>Check the <a href="../api_reference/">API Reference</a></li>
+</ol>
+<hr />
+<p><em>Having trouble with installation? Check our <a href="../troubleshooting/">Troubleshooting Guide</a> or open an issue on GitHub.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
