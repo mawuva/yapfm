@@ -323,10 +323,10 @@ except Exception as e:
 
 Now that you've got the basics down:
 
-1. **Read the [User Guide](user_guide.md)** for comprehensive usage patterns
-2. **Explore [Examples](examples.md)** for real-world scenarios
-3. **Check the [API Reference](api_reference.md)** for complete documentation
-4. **Learn [Advanced Features](advanced_features.md)** for power users
+1. **Read the [User Guide](user_guide/index.md)** for comprehensive usage patterns
+2. **Explore [Examples](usage_examples/index.md)** for real-world scenarios
+3. **Check the [API Reference](api/index.md)** for complete documentation
+4. **Learn [Advanced Features](advanced/index.md)** for power users
 
 ## 💡 Tips and Best Practices
 
@@ -339,4 +339,4 @@ Now that you've got the basics down:
 
 ---
 
-*Ready to dive deeper? Check out the [User Guide](user_guide.md) for comprehensive usage patterns and advanced features.*
+*Ready to dive deeper? Check out the [User Guide](user_guide/index.md) for comprehensive usage patterns and advanced features.*

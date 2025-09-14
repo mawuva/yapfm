@@ -349,10 +349,10 @@ print(yapfm.__version__)
 After successful installation:
 
 1. Read the [Quick Start Guide](quick_start.md)
-2. Follow the [User Guide](user_guide.md)
-3. Explore [Examples](examples.md)
-4. Check the [API Reference](api_reference.md)
+2. Follow the [User Guide](user_guide/index.md)
+3. Explore [Examples](usage_examples/index.md)
+4. Check the [API Reference](api/index.md)
 
 ---
 
-*Having trouble with installation? Check our [Troubleshooting Guide](troubleshooting.md) or open an issue on GitHub.*
+*Having trouble with installation? Check our [Troubleshooting Guide](troubleshooting/index.md) or open an issue on GitHub.*

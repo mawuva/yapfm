@@ -2,16 +2,100 @@ site_name: "yapfm"
 site_description: "Yet Another Python File Manager"
 site_url: "https://mawuva.github.io/yapfm/"
 docs_dir: docs
+
 theme:
   name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+      pygments_style: dracula
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.superfences
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
 
 nav:
-  - Home: README.md
+  - Home: index.md
   - Installation: installation.md
   - Quick Start: quick_start.md
-  - User Guide: user_guide.md
-  - Advanced Features: advanced_features.md
-  - Examples: examples.md
-  - API Reference: api_reference.md
-  - Troubleshooting: troubleshooting.md
-  - Roadmap: roadmap.md
+  - User Guide:
+    - Overview: user_guide/index.md
+    - Getting Started: user_guide/getting_started.md
+    - Core Concepts: user_guide/core_concepts.md
+    - File Operations: user_guide/file_operations.md
+    - Data Access Patterns: user_guide/data_access_patterns.md
+    - Context Management: user_guide/context_management.md
+    - Error Handling: user_guide/error_handling.md
+    - Performance Considerations: user_guide/performance_considerations.md
+    - Best Practices: user_guide/best_practices.md
+    - Common Patterns: user_guide/common_patterns.md
+  - Advanced Features:
+      - Overview: advanced/index.md
+      - Proxy Pattern: advanced/proxy_pattern.md
+      - Custom Strategies: advanced/custom_strategies.md
+      - Mixins Deep Dive: advanced/mixins_deep_dive.md
+      - Performance Optimization: advanced/performance_optimization.md
+      - Thread Safety: advanced/thread_safety.md
+      - Memory Management: advanced/memory_management.md
+      - Advanced Context Management: advanced/advanced_context_management.md
+      - Plugin Architecture: advanced/plugin_architecture.md
+  - Examples:
+      - Overview: usage_examples/index.md
+      - Basic Examples: usage_examples/basic_examples.md
+      - Configuration Management: usage_examples/configuration_management.md
+      - Multi-Environment Setup: usage_examples/multi_environment_setup.md
+      - Advanced Patterns: usage_examples/advanced_patterns.md
+      - Logging and Monitoring: usage_examples/logging_monitoring.md
+      - Error Handling Patterns: usage_examples/error_handling_patterns.md
+      - Performance Optimization: usage_examples/performance_optimization.md
+      - Integration Examples: usage_examples/integration_examples.md
+  - API Reference:
+      - Overview: api/index.md
+      - Core Classes: api/core_classes.md
+      - Strategies: api/strategies.md
+      - Mixins: api/mixins.md
+      - Registry: api/registry.md
+      - Proxy: api/proxy.md
+      - Exceptions: api/exceptions.md
+      - Helpers: api/helpers.md
+  - Troubleshooting:
+      - Overview: troubleshooting/index.md
+      - Common Issues: troubleshooting/common_issues.md
+      - Error Reference: troubleshooting/error_reference.md
+      - Performance Issues: troubleshooting/performance_issues.md
+      - Configuration Problems: troubleshooting/configuration_problems.md
+      - File Format Issues: troubleshooting/file_format_issues.md
+      - Memory and Resource Issues: troubleshooting/memory_resource_issues.md
+      - Debugging Tips: troubleshooting/debugging_tips.md
+      - Frequently Asked Questions: troubleshooting/frequently_asked_questions.md
+  - Roadmap:
+      - Overview: roadmap/index.md
+      - Phase 1 - Core Enhancements: roadmap/phase1_core_enhancements.md
+      - Phase 2 - Advanced Features: roadmap/phase2_advanced_features.md
+      - Phase 3 - Enterprise Features: roadmap/phase3_enterprise_features.md
+      - Phase 4 - Ecosystem Integration: roadmap/phase4_ecosystem_integration.md
+      - Contributing to Development: roadmap/contributing_to_development.md
+  - Changelog: CHANGELOG.md
+  - Contributing: CONTRIBUTING.md

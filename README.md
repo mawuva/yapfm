@@ -3,7 +3,8 @@
 [![CI](https://github.com/mawuva/yapfm/actions/workflows/ci.yml/badge.svg)](https://github.com/mawuva/yapfm/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/yapfm.svg)](https://pypi.org/project/yapfm/)
 [![Python Version](https://img.shields.io/pypi/pyversions/yapfm.svg)](https://pypi.org/project/yapfm/)
-[![License](https://img.shields.io/pypi/l/yapfm.svg)](https://pypi.org/project/yapfm/)
+![GitHub License](https://img.shields.io/github/license/mawuva/yapfm)
+
 
 A flexible and powerful Python file manager library for handling various file formats (JSON, TOML, YAML) with support for strategies, mixins, and advanced features like context management, proxy patterns, and automatic file operations.
 
@@ -196,12 +197,12 @@ with proxy:
 
 Comprehensive documentation is available in the `docs/` directory:
 
-- [**API Reference**](docs/api_reference.md) - Complete API documentation
-- [**User Guide**](docs/user_guide.md) - Step-by-step usage guide
-- [**Examples**](docs/examples.md) - Code examples and patterns
-- [**Advanced Features**](docs/advanced_features.md) - Proxy, mixins, and strategies
-- [**Troubleshooting**](docs/troubleshooting.md) - Common issues and solutions
-- [**Roadmap**](docs/roadmap.md) - Future enhancements and planned features
+- [**User Guide**](docs/user_guide/index.md) - Step-by-step usage guide
+- [**API Reference**](docs/api/index.md) - Complete API documentation
+- [**Examples**](docs/usage_examples/index.md) - Code examples and patterns
+- [**Advanced Features**](docs/advanced/index.md) - Proxy, mixins, and strategies
+- [**Troubleshooting**](docs/troubleshooting/index.md) - Common issues and solutions
+- [**Roadmap**](docs/roadmap/index.md) - Future enhancements and planned features
 
 ## 🎯 Supported File Formats
 
@@ -283,5 +284,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with modern Python features and type hints
 - Inspired by configuration management best practices
-- Uses excellent libraries like `tomlkit` and `PyYAML`
+- Uses excellent libraries like [https://tomlkit.readthedocs.io/en/latest/](tomlkit) and [https://pyyaml.org/](PyYAML)
 
