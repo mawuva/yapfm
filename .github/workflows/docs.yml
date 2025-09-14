@@ -14,5 +14,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install mkdocs mkdocs-material
-      - run: mkdocs gh-deploy --force
+          
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material pymdown-extensions
+
+      - name: Deploy
+        run: mkdocs gh-deploy --force
