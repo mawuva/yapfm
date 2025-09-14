@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://mawuva.github.io/yapfm/">
+        <link rel="canonical" href="https://mawuva.github.io/yapfm/troubleshooting/file_format_issues/">
       
       
+        <link rel="prev" href="../configuration_problems/">
       
-        <link rel="next" href="installation/">
+      
+        <link rel="next" href="../memory_resource_issues/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
-        <title>yapfm</title>
+        <title>File Format Issues - yapfm</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#yapfm-documentation" class="md-skip">
+        <a href="#file-format-issues" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
+    <a href="../.." title="yapfm" class="md-header__button md-logo" aria-label="yapfm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              File Format Issues
             
           </span>
         </div>
@@ -214,7 +216,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
+    <a href="../.." title="yapfm" class="md-nav__button md-logo" aria-label="yapfm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -229,32 +231,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -265,197 +245,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      📚 Documentation Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📚 Documentation Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Reference
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples-and-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples and Patterns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advanced-topics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advanced Topics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#development-future" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development &amp; Future
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Quick Navigation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Quick Navigation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#by-use-case" class="md-nav__link">
-    <span class="md-ellipsis">
-      By Use Case
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#by-experience-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      By Experience Level
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Key Concepts
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Key Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#file-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      File Manager
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mixins" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mixins
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxy-pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      Proxy Pattern
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#external-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔗 External Resources
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing-to-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      📝 Contributing to Documentation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -467,7 +256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -489,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quick_start/" class="md-nav__link">
+      <a href="../../quick_start/" class="md-nav__link">
         
   
   
@@ -549,7 +338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/" class="md-nav__link">
+      <a href="../../user_guide/" class="md-nav__link">
         
   
   
@@ -572,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/getting_started/" class="md-nav__link">
+      <a href="../../user_guide/getting_started/" class="md-nav__link">
         
   
   
@@ -595,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/core_concepts/" class="md-nav__link">
+      <a href="../../user_guide/core_concepts/" class="md-nav__link">
         
   
   
@@ -618,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/file_operations/" class="md-nav__link">
+      <a href="../../user_guide/file_operations/" class="md-nav__link">
         
   
   
@@ -641,7 +430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/data_access_patterns/" class="md-nav__link">
+      <a href="../../user_guide/data_access_patterns/" class="md-nav__link">
         
   
   
@@ -664,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/context_management/" class="md-nav__link">
+      <a href="../../user_guide/context_management/" class="md-nav__link">
         
   
   
@@ -687,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/error_handling/" class="md-nav__link">
+      <a href="../../user_guide/error_handling/" class="md-nav__link">
         
   
   
@@ -710,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/performance_considerations/" class="md-nav__link">
+      <a href="../../user_guide/performance_considerations/" class="md-nav__link">
         
   
   
@@ -733,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/best_practices/" class="md-nav__link">
+      <a href="../../user_guide/best_practices/" class="md-nav__link">
         
   
   
@@ -756,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/common_patterns/" class="md-nav__link">
+      <a href="../../user_guide/common_patterns/" class="md-nav__link">
         
   
   
@@ -824,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/" class="md-nav__link">
+      <a href="../../advanced/" class="md-nav__link">
         
   
   
@@ -847,7 +636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/proxy_pattern/" class="md-nav__link">
+      <a href="../../advanced/proxy_pattern/" class="md-nav__link">
         
   
   
@@ -870,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/custom_strategies/" class="md-nav__link">
+      <a href="../../advanced/custom_strategies/" class="md-nav__link">
         
   
   
@@ -893,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/mixins_deep_dive/" class="md-nav__link">
+      <a href="../../advanced/mixins_deep_dive/" class="md-nav__link">
         
   
   
@@ -916,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/performance_optimization/" class="md-nav__link">
+      <a href="../../advanced/performance_optimization/" class="md-nav__link">
         
   
   
@@ -939,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/thread_safety/" class="md-nav__link">
+      <a href="../../advanced/thread_safety/" class="md-nav__link">
         
   
   
@@ -962,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/memory_management/" class="md-nav__link">
+      <a href="../../advanced/memory_management/" class="md-nav__link">
         
   
   
@@ -985,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/advanced_context_management/" class="md-nav__link">
+      <a href="../../advanced/advanced_context_management/" class="md-nav__link">
         
   
   
@@ -1008,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced/plugin_architecture/" class="md-nav__link">
+      <a href="../../advanced/plugin_architecture/" class="md-nav__link">
         
   
   
@@ -1076,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/" class="md-nav__link">
+      <a href="../../usage_examples/" class="md-nav__link">
         
   
   
@@ -1099,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/basic_examples/" class="md-nav__link">
+      <a href="../../usage_examples/basic_examples/" class="md-nav__link">
         
   
   
@@ -1122,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/configuration_management/" class="md-nav__link">
+      <a href="../../usage_examples/configuration_management/" class="md-nav__link">
         
   
   
@@ -1145,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/multi_environment_setup/" class="md-nav__link">
+      <a href="../../usage_examples/multi_environment_setup/" class="md-nav__link">
         
   
   
@@ -1168,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/advanced_patterns/" class="md-nav__link">
+      <a href="../../usage_examples/advanced_patterns/" class="md-nav__link">
         
   
   
@@ -1191,7 +980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/logging_monitoring/" class="md-nav__link">
+      <a href="../../usage_examples/logging_monitoring/" class="md-nav__link">
         
   
   
@@ -1214,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/error_handling_patterns/" class="md-nav__link">
+      <a href="../../usage_examples/error_handling_patterns/" class="md-nav__link">
         
   
   
@@ -1237,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/performance_optimization/" class="md-nav__link">
+      <a href="../../usage_examples/performance_optimization/" class="md-nav__link">
         
   
   
@@ -1260,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage_examples/integration_examples/" class="md-nav__link">
+      <a href="../../usage_examples/integration_examples/" class="md-nav__link">
         
   
   
@@ -1328,7 +1117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         
   
   
@@ -1351,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/core_classes/" class="md-nav__link">
+      <a href="../../api/core_classes/" class="md-nav__link">
         
   
   
@@ -1374,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/strategies/" class="md-nav__link">
+      <a href="../../api/strategies/" class="md-nav__link">
         
   
   
@@ -1397,7 +1186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/mixins/" class="md-nav__link">
+      <a href="../../api/mixins/" class="md-nav__link">
         
   
   
@@ -1420,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/registry/" class="md-nav__link">
+      <a href="../../api/registry/" class="md-nav__link">
         
   
   
@@ -1443,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/proxy/" class="md-nav__link">
+      <a href="../../api/proxy/" class="md-nav__link">
         
   
   
@@ -1466,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/exceptions/" class="md-nav__link">
+      <a href="../../api/exceptions/" class="md-nav__link">
         
   
   
@@ -1489,7 +1278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/helpers/" class="md-nav__link">
+      <a href="../../api/helpers/" class="md-nav__link">
         
   
   
@@ -1516,18 +1305,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1543,7 +1334,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
@@ -1557,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1580,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/common_issues/" class="md-nav__link">
+      <a href="../common_issues/" class="md-nav__link">
         
   
   
@@ -1603,7 +1394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/error_reference/" class="md-nav__link">
+      <a href="../error_reference/" class="md-nav__link">
         
   
   
@@ -1626,7 +1417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/performance_issues/" class="md-nav__link">
+      <a href="../performance_issues/" class="md-nav__link">
         
   
   
@@ -1649,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/configuration_problems/" class="md-nav__link">
+      <a href="../configuration_problems/" class="md-nav__link">
         
   
   
@@ -1669,10 +1460,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="troubleshooting/file_format_issues/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    File Format Issues
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1683,6 +1496,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON Format Issues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOML Format Issues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML Format Issues
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1695,7 +1555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/memory_resource_issues/" class="md-nav__link">
+      <a href="../memory_resource_issues/" class="md-nav__link">
         
   
   
@@ -1718,7 +1578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/debugging_tips/" class="md-nav__link">
+      <a href="../debugging_tips/" class="md-nav__link">
         
   
   
@@ -1741,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="troubleshooting/frequently_asked_questions/" class="md-nav__link">
+      <a href="../frequently_asked_questions/" class="md-nav__link">
         
   
   
@@ -1809,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/" class="md-nav__link">
+      <a href="../../roadmap/" class="md-nav__link">
         
   
   
@@ -1832,7 +1692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/phase1_core_enhancements/" class="md-nav__link">
+      <a href="../../roadmap/phase1_core_enhancements/" class="md-nav__link">
         
   
   
@@ -1855,7 +1715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/phase2_advanced_features/" class="md-nav__link">
+      <a href="../../roadmap/phase2_advanced_features/" class="md-nav__link">
         
   
   
@@ -1878,7 +1738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/phase3_enterprise_features/" class="md-nav__link">
+      <a href="../../roadmap/phase3_enterprise_features/" class="md-nav__link">
         
   
   
@@ -1901,7 +1761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/phase4_ecosystem_integration/" class="md-nav__link">
+      <a href="../../roadmap/phase4_ecosystem_integration/" class="md-nav__link">
         
   
   
@@ -1924,7 +1784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/contributing_to_development/" class="md-nav__link">
+      <a href="../../roadmap/contributing_to_development/" class="md-nav__link">
         
   
   
@@ -1954,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CHANGELOG/" class="md-nav__link">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -1976,7 +1836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CONTRIBUTING/" class="md-nav__link">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
         
   
   
@@ -2018,171 +1878,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#documentation-structure" class="md-nav__link">
+  <a href="#json-format-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      📚 Documentation Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📚 Documentation Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Reference
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples-and-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples and Patterns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advanced-topics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advanced Topics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#development-future" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development &amp; Future
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Quick Navigation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Quick Navigation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#by-use-case" class="md-nav__link">
-    <span class="md-ellipsis">
-      By Use Case
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#by-experience-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      By Experience Level
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Key Concepts
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Key Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#file-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      File Manager
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mixins" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mixins
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxy-pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      Proxy Pattern
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#external-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔗 External Resources
+      JSON Format Issues
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributing-to-documentation" class="md-nav__link">
+  <a href="#toml-format-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      📝 Contributing to Documentation
+      TOML Format Issues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-format-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML Format Issues
     </span>
   </a>
   
@@ -2204,89 +1920,100 @@
 
 
 
-<h1 id="yapfm-documentation">YAPFM Documentation<a class="headerlink" href="#yapfm-documentation" title="Permanent link">&para;</a></h1>
-<p>Welcome to the comprehensive documentation for YAPFM (Yet Another Python File Manager). This documentation covers all aspects of the library, from basic usage to advanced features.</p>
-<h2 id="documentation-structure">📚 Documentation Structure<a class="headerlink" href="#documentation-structure" title="Permanent link">&para;</a></h2>
-<h3 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="installation/"><strong>Installation Guide</strong></a> - How to install and set up YAPFM</li>
-<li><a href="quick_start/"><strong>Quick Start</strong></a> - Get up and running in minutes</li>
-<li><a href="user_guide/"><strong>User Guide</strong></a> - Comprehensive step-by-step guide</li>
-</ul>
-<h3 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="api/"><strong>API Reference</strong></a> - Complete API documentation with examples</li>
-<li><a href="api/core_classes/"><strong>Core Classes</strong></a> - YAPFileManager, FileManagerProxy</li>
-<li><a href="api/strategies/"><strong>Strategies</strong></a> - File format handlers</li>
-<li><a href="api/mixins/"><strong>Mixins</strong></a> - Modular functionality components</li>
-</ul>
-<h3 id="examples-and-patterns">Examples and Patterns<a class="headerlink" href="#examples-and-patterns" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="usage_examples/"><strong>Examples</strong></a> - Code examples and common patterns</li>
-<li><a href="usage_examples/configuration_management/"><strong>Configuration Management</strong></a> - Real-world config examples</li>
-<li><a href="usage_examples/multi_environment_setup/"><strong>Multi-Environment Setup</strong></a> - Managing different environments</li>
-<li><a href="usage_examples/advanced_patterns/"><strong>Advanced Patterns</strong></a> - Complex usage scenarios</li>
-</ul>
-<h3 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="advanced/"><strong>Advanced Features</strong></a> - Proxy, mixins, and strategies</li>
-<li><a href="advanced/custom_strategies/"><strong>Custom Strategies</strong></a> - Creating your own file format handlers</li>
-<li><a href="advanced/performance_optimization/"><strong>Performance Optimization</strong></a> - Tips for better performance</li>
-<li><a href="advanced/thread_safety/"><strong>Thread Safety</strong></a> - Using YAPFM in multi-threaded environments</li>
-</ul>
-<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="troubleshooting/"><strong>Troubleshooting</strong></a> - Common issues and solutions</li>
-<li><a href="troubleshooting/frequently_asked_questions/"><strong>FAQ</strong></a> - Frequently asked questions</li>
-<li><a href="troubleshooting/error_reference/"><strong>Error Reference</strong></a> - Complete error reference</li>
-</ul>
-<h3 id="development-future">Development &amp; Future<a class="headerlink" href="#development-future" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="roadmap/"><strong>Roadmap</strong></a> - Future enhancements and planned features</li>
-<li><a href="roadmap/contributing_to_development/"><strong>Contributing</strong></a> - How to contribute to YAPFM</li>
-</ul>
-<h2 id="quick-navigation">🚀 Quick Navigation<a class="headerlink" href="#quick-navigation" title="Permanent link">&para;</a></h2>
-<h3 id="by-use-case">By Use Case<a class="headerlink" href="#by-use-case" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Configuration Files</strong>: Start with <a href="user_guide/">User Guide</a> → <a href="usage_examples/configuration_management/">Configuration Management</a></li>
-<li><strong>Multi-Format Support</strong>: <a href="api/strategies/">API Reference</a> → <a href="advanced/custom_strategies/">Custom Strategies</a></li>
-<li><strong>Logging &amp; Monitoring</strong>: <a href="advanced/proxy_pattern/">Advanced Features</a> → <a href="usage_examples/logging_monitoring/">Examples</a></li>
-<li><strong>Performance</strong>: <a href="advanced/performance_optimization/">Advanced Features</a> → <a href="troubleshooting/performance_issues/">Troubleshooting</a></li>
-</ul>
-<h3 id="by-experience-level">By Experience Level<a class="headerlink" href="#by-experience-level" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Beginner</strong>: <a href="installation/">Installation</a> → <a href="quick_start/">Quick Start</a> → <a href="user_guide/">User Guide</a></li>
-<li><strong>Intermediate</strong>: <a href="usage_examples/">Examples</a> → <a href="api/">API Reference</a> → <a href="advanced/">Advanced Features</a></li>
-<li><strong>Advanced</strong>: <a href="advanced/custom_strategies/">Custom Strategies</a> → <a href="advanced/performance_optimization/">Performance</a> → <a href="troubleshooting/">Troubleshooting</a></li>
-</ul>
-<h2 id="key-concepts">💡 Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="file-manager">File Manager<a class="headerlink" href="#file-manager" title="Permanent link">&para;</a></h3>
-<p>The core class that combines all functionality through mixins. Handles file operations, data access, and persistence.</p>
-<h3 id="strategies">Strategies<a class="headerlink" href="#strategies" title="Permanent link">&para;</a></h3>
-<p>Format-specific handlers that know how to read and write different file types (JSON, TOML, YAML).</p>
-<h3 id="mixins">Mixins<a class="headerlink" href="#mixins" title="Permanent link">&para;</a></h3>
-<p>Modular components that provide specific functionality:
-- <strong>FileOperationsMixin</strong>: Basic file operations (load, save, exists)
-- <strong>KeyOperationsMixin</strong>: Key-based data access with dot notation
-- <strong>SectionOperationsMixin</strong>: Section-based data management
-- <strong>ContextMixin</strong>: Context manager support</p>
-<h3 id="proxy-pattern">Proxy Pattern<a class="headerlink" href="#proxy-pattern" title="Permanent link">&para;</a></h3>
-<p>Wrapper that adds logging, metrics, and auditing to file operations without modifying the core functionality.</p>
-<h2 id="external-resources">🔗 External Resources<a class="headerlink" href="#external-resources" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://github.com/mawuva/yapfm">GitHub Repository</a> - Source code and issue tracking</li>
-<li><a href="https://pypi.org/project/yapfm/">PyPI Package</a> - Package installation</li>
-<li><a href="CHANGELOG/">Changelog</a> - Version history and changes</li>
-</ul>
-<h2 id="contributing-to-documentation">📝 Contributing to Documentation<a class="headerlink" href="#contributing-to-documentation" title="Permanent link">&para;</a></h2>
-<p>Found an error or want to improve the documentation? Please:</p>
-<ol>
-<li>Check the <a href="CONTRIBUTING/">Contributing Guide</a></li>
-<li>Open an issue or pull request</li>
-<li>Follow the documentation style guide</li>
-</ol>
-<hr />
-<p><em>This documentation is automatically generated and updated with each release.</em></p>
+<h1 id="file-format-issues">File Format Issues<a class="headerlink" href="#file-format-issues" title="Permanent link">&para;</a></h1>
+<h2 id="json-format-issues">JSON Format Issues<a class="headerlink" href="#json-format-issues" title="Permanent link">&para;</a></h2>
+<p><strong>Problem</strong>: Invalid JSON format.</p>
+<p><strong>Solutions</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Validate JSON before loading</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_json_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># 2. Fix common JSON issues</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">fix_json_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="c1"># Fix common issues</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>  <span class="c1"># Replace single quotes</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>  <span class="c1"># Fix boolean values</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="c1"># 3. Use proper JSON formatting</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">def</span><span class="w"> </span><span class="nf">format_json_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="toml-format-issues">TOML Format Issues<a class="headerlink" href="#toml-format-issues" title="Permanent link">&para;</a></h2>
+<p><strong>Problem</strong>: Invalid TOML format.</p>
+<p><strong>Solutions</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Validate TOML</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">toml</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_toml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">except</span> <span class="n">toml</span><span class="o">.</span><span class="n">TomlDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid TOML: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># 2. Fix common TOML issues</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">fix_toml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="c1"># Fix common issues</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="yaml-format-issues">YAML Format Issues<a class="headerlink" href="#yaml-format-issues" title="Permanent link">&para;</a></h2>
+<p><strong>Problem</strong>: Invalid YAML format.</p>
+<p><strong>Solutions</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Validate YAML</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_yaml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">except</span> <span class="n">yaml</span><span class="o">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid YAML: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># 2. Fix common YAML issues</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">fix_yaml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="c1"># Fix common issues</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></p>
 
 
 
@@ -2341,10 +2068,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.top", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
