@@ -19,7 +19,7 @@ packages = [{include = "yapfm", from = "src"}]
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
 pytest-cov = "^7.0.0"
-ruff = "^0.12.12"
+ruff = "^0.13.0"
 black = "^25.1.0"
 isort = "^6.0.1"
 mypy = "^1.17.1"
