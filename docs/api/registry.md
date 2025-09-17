@@ -100,41 +100,6 @@ strategies = FileStrategyRegistry.list_strategies()
 print(strategies)  # {'.json': <class 'JsonStrategy'>, '.toml': <class 'TomlStrategy'>}
 ```
 
-#### get_counters
-
-```python
-@classmethod
-def get_counters(cls) -> Dict[str, int]
-```
-
-Get the counters for all registered strategies.
-
-**Returns:**
-- `Dict[str, int]`: Dictionary mapping extensions to usage counts
-
-**Example:**
-```python
-counters = FileStrategyRegistry.get_counters()
-print(counters)  # {'.json': 5, '.toml': 3}
-```
-
-#### get_skipped
-
-```python
-@classmethod
-def get_skipped(cls) -> Dict[str, List[str]]
-```
-
-Get the skipped files for all registered strategies.
-
-**Returns:**
-- `Dict[str, List[str]]`: Dictionary mapping extensions to lists of skipped files
-
-**Example:**
-```python
-skipped = FileStrategyRegistry.get_skipped()
-print(skipped)  # {'unknown': ['file.xyz']}
-```
 
 #### get_supported_formats
 
@@ -175,42 +140,6 @@ if FileStrategyRegistry.is_format_supported(".json"):
     print("JSON format is supported")
 ```
 
-#### get_registry_stats
-
-```python
-@classmethod
-def get_registry_stats(cls) -> Dict[str, Any]
-```
-
-Get registry statistics.
-
-**Returns:**
-- `Dict[str, Any]`: Registry statistics including counters and skipped files
-
-**Example:**
-```python
-stats = FileStrategyRegistry.get_registry_stats()
-print(stats)  # {'counters': {...}, 'skipped': {...}, 'supported_formats': [...]}
-```
-
-#### display_summary
-
-```python
-@classmethod
-def display_summary(cls) -> None
-```
-
-Print a styled summary of counters and skipped files.
-
-**Example:**
-```python
-FileStrategyRegistry.display_summary()
-# Output:
-# 🎯 Registered Strategies & Usage Summary
-# ----------------------------------------
-# .json      -> JsonStrategy         | Used: 5
-# .toml      -> TomlStrategy         | Used: 3
-```
 
 ## register_file_strategy
 
