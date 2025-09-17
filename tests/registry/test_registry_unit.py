@@ -17,9 +17,7 @@ def clean_registry() -> Generator[None, None, None]:
     - Registry should be cleaned up after each test
     - No state should persist between tests
     """
-    FileStrategyRegistry._strategy_map.clear()
-    FileStrategyRegistry._counter.clear()
-    FileStrategyRegistry._skipped.clear()
+    FileStrategyRegistry._registry.clear()
     yield
 
 
@@ -34,7 +32,6 @@ def test_register_single_extension_strategy() -> None:
 
     Expected:
     - Strategy should be present in the registry
-    - Counter for this extension should be initialized to 0
     - Strategy should be retrievable by extension
     """
 
@@ -55,7 +52,6 @@ def test_register_single_extension_strategy() -> None:
     strategies = FileStrategyRegistry.list_strategies()
     assert ".json" in strategies
     assert strategies[".json"] == DummyStrategy
-    assert FileStrategyRegistry.get_counters()[".json"] == 0
 
 
 def test_register_multiple_extensions_strategy() -> None:
@@ -64,7 +60,6 @@ def test_register_multiple_extensions_strategy() -> None:
 
     Expected:
     - All extensions should be present in the registry
-    - Each extension should have a counter initialized to 0
     - All extensions should point to the same strategy class
     """
 
@@ -85,8 +80,6 @@ def test_register_multiple_extensions_strategy() -> None:
     strategies = FileStrategyRegistry.list_strategies()
     assert ".yaml" in strategies
     assert ".yml" in strategies
-    assert FileStrategyRegistry.get_counters()[".yaml"] == 0
-    assert FileStrategyRegistry.get_counters()[".yml"] == 0
 
 
 # ============================
@@ -94,13 +87,12 @@ def test_register_multiple_extensions_strategy() -> None:
 # ============================
 
 
-def test_get_strategy_by_extension_increments_counter() -> None:
+def test_get_strategy_by_extension() -> None:
     """
     Scenario: Retrieve a strategy using direct file extension
 
     Expected:
     - Strategy instance should be returned
-    - Usage counter should be incremented
     - Strategy should be properly instantiated
     """
 
@@ -124,16 +116,14 @@ def test_get_strategy_by_extension_increments_counter() -> None:
     instance = FileStrategyRegistry.get_strategy(".txt")
 
     assert isinstance(instance, DummyStrategy)
-    assert FileStrategyRegistry.get_counters()[".txt"] == 1
 
 
-def test_get_strategy_by_filepath_increments_counter(tmp_path: Path) -> None:
+def test_get_strategy_by_filepath(tmp_path: Path) -> None:
     """
     Scenario: Retrieve a strategy using file path
 
     Expected:
     - Strategy instance should be returned
-    - Counter should be incremented
     - Extension should be extracted from file path correctly
     """
 
@@ -160,24 +150,19 @@ def test_get_strategy_by_filepath_increments_counter(tmp_path: Path) -> None:
     instance = FileStrategyRegistry.get_strategy(str(file_path))
 
     assert isinstance(instance, DummyStrategy)
-    assert FileStrategyRegistry.get_counters()[".cfg"] == 1
 
 
-def test_get_strategy_unknown_extension_skips() -> None:
+def test_get_strategy_unknown_extension() -> None:
     """
     Scenario: Try to retrieve a strategy for an unregistered extension
 
     Expected:
     - No strategy object should be returned (None)
-    - File/extension should be added to the skipped list
     - Registry state should remain consistent
     """
     result = FileStrategyRegistry.get_strategy("unknown.ext")
 
     assert result is None
-    skipped = FileStrategyRegistry.get_skipped()
-    assert "unknown" in skipped
-    assert "unknown.ext" in skipped["unknown"]
 
 
 # ============================
@@ -191,7 +176,6 @@ def test_unregister_strategy_removes_entries() -> None:
 
     Expected:
     - Extension should be removed from registry
-    - Counter and related skipped entries should be removed
     - Strategy should no longer be retrievable
     """
 
@@ -211,8 +195,6 @@ def test_unregister_strategy_removes_entries() -> None:
     FileStrategyRegistry.unregister_strategy(".ini")
 
     assert ".ini" not in FileStrategyRegistry.list_strategies()
-    assert ".ini" not in FileStrategyRegistry.get_counters()
-    assert ".ini" not in FileStrategyRegistry.get_skipped()
 
 
 # ============================
@@ -275,41 +257,6 @@ def test_is_format_supported_true_and_false() -> None:
 
     assert FileStrategyRegistry.is_format_supported("csv") is True
     assert FileStrategyRegistry.is_format_supported("xml") is False
-
-
-def test_get_registry_stats_returns_all_data() -> None:
-    """
-    Scenario: Get comprehensive registry statistics
-
-    Expected:
-    - Should return counters, skipped files and supported formats
-    - Returned structures should match internal registry state
-    - Statistics should be consistent and accurate
-    """
-
-    class DummyStrategy(BaseFileStrategy):
-        def load(self, file_path: Path | str) -> Any:
-            return {"dummy": "data"}
-
-        def save(self, file_path: Path | str, data: Any) -> None:
-            pass
-
-        def navigate(
-            self, document: Any, path: list[str], create: bool = False
-        ) -> Any | None:
-            return document.get(path[0]) if path else None
-
-    FileStrategyRegistry.register_strategy(".json", DummyStrategy)
-    FileStrategyRegistry.get_strategy("file.json")
-    FileStrategyRegistry.get_strategy("file.unknown")
-
-    stats = FileStrategyRegistry.get_registry_stats()
-
-    assert "counters" in stats
-    assert "skipped" in stats
-    assert "supported_formats" in stats
-    assert stats["counters"][".json"] == 1
-    assert "unknown" in stats["skipped"]
 
 
 # ============================

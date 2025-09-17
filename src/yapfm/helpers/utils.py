@@ -50,3 +50,27 @@ def open_file(  # type: ignore
 
     # FileManager detects the strategy automatically via FileStrategyRegistry
     return YAPFileManager(path, strategy=None, auto_create=auto_create)
+
+
+def resolve_file_extension(file_ext_or_path: str) -> str:
+    """
+    Resolve the file extension from a file path or extension.
+
+    Args:
+        file_ext_or_path: File path (e.g., "config.json") or extension (e.g., ".json", "json")
+
+    Returns:
+        str: Normalized extension with leading dot (e.g., ".json")
+    """
+    # Handle direct extension input
+    if file_ext_or_path.startswith("."):
+        return file_ext_or_path.lower()
+
+    # Handle file path - extract extension
+    ext = Path(file_ext_or_path).suffix.lower()
+
+    # If no extension found, treat as extension without dot
+    if not ext:
+        ext = f".{file_ext_or_path.lower()}"
+
+    return ext

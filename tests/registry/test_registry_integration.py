@@ -51,13 +51,9 @@ def clean_registry() -> Generator[None, None, None]:
     - Registry should be cleaned up after each test
     - No state should persist between integration tests
     """
-    FileStrategyRegistry._strategy_map.clear()
-    FileStrategyRegistry._counter.clear()
-    FileStrategyRegistry._skipped.clear()
+    FileStrategyRegistry._registry.clear()
     yield
-    FileStrategyRegistry._strategy_map.clear()
-    FileStrategyRegistry._counter.clear()
-    FileStrategyRegistry._skipped.clear()
+    FileStrategyRegistry._registry.clear()
 
 
 # --- tests d’intégration ---
@@ -70,16 +66,11 @@ def test_register_and_get_strategy_by_extension() -> None:
     Expected:
     - Strategy should be registered successfully
     - Strategy instance should be returned when retrieved
-    - Counter should be incremented after retrieval
-    - Registry statistics should reflect the usage
     """
     FileStrategyRegistry.register_strategy(".json", DummyJsonStrategy)
 
     strategy = FileStrategyRegistry.get_strategy(".json")
     assert isinstance(strategy, DummyJsonStrategy)
-
-    stats = FileStrategyRegistry.get_registry_stats()
-    assert stats["counters"][".json"] == 1
 
 
 def test_register_and_get_strategy_by_filename() -> None:
@@ -90,15 +81,11 @@ def test_register_and_get_strategy_by_filename() -> None:
     - Strategy should be registered successfully
     - Extension should be extracted from file path correctly
     - Strategy instance should be returned when retrieved
-    - Counter should be incremented after retrieval
     """
     FileStrategyRegistry.register_strategy(".toml", DummyTomlStrategy)
 
     strategy = FileStrategyRegistry.get_strategy("config.toml")
     assert isinstance(strategy, DummyTomlStrategy)
-
-    stats = FileStrategyRegistry.get_registry_stats()
-    assert stats["counters"][".toml"] == 1
 
 
 def test_multiple_extensions_for_one_strategy() -> None:
@@ -108,7 +95,6 @@ def test_multiple_extensions_for_one_strategy() -> None:
     Expected:
     - Strategy should be registered for all specified extensions
     - All extensions should point to the same strategy class
-    - Each extension should have its own counter
     - Both extensions should work independently
     """
     FileStrategyRegistry.register_strategy([".json", ".jsonc"], DummyJsonStrategy)
@@ -119,29 +105,19 @@ def test_multiple_extensions_for_one_strategy() -> None:
     assert isinstance(s1, DummyJsonStrategy)
     assert isinstance(s2, DummyJsonStrategy)
 
-    stats = FileStrategyRegistry.get_registry_stats()
-    assert stats["counters"][".json"] == 1
-    assert stats["counters"][".jsonc"] == 1
 
-
-def test_skipped_files_are_tracked() -> None:
+def test_unsupported_files_return_none() -> None:
     """
-    Scenario: Track files that cannot be handled by any strategy
+    Scenario: Handle files that cannot be handled by any strategy
 
     Expected:
     - Unsupported files should return None when retrieved
-    - Skipped files should be tracked in the registry
-    - Skipped files should be accessible via get_skipped method
-    - Registry should maintain list of all skipped files
+    - Registry should remain in consistent state
     """
     FileStrategyRegistry.register_strategy(".toml", DummyTomlStrategy)
 
     result = FileStrategyRegistry.get_strategy("unknown.yaml")
     assert result is None
-
-    skipped = FileStrategyRegistry.get_skipped()
-    assert "unknown" in skipped
-    assert "unknown.yaml" in skipped["unknown"]
 
 
 def test_unregister_strategy_removes_it() -> None:
@@ -211,29 +187,6 @@ def test_register_file_strategy_decorator() -> None:
     assert isinstance(strategy, DecoratedJsonStrategy)
 
 
-def test_display_summary_runs_without_error(capsys: pytest.CaptureFixture[str]) -> None:
-    """
-    Scenario: Test display_summary method output and functionality
-
-    Expected:
-    - display_summary should run without errors
-    - Output should contain information about registered strategies
-    - Output should show usage counters for strategies
-    - Output should display skipped files information
-    - Summary should be properly formatted and readable
-    """
-    FileStrategyRegistry.register_strategy(".json", DummyJsonStrategy)
-    FileStrategyRegistry.get_strategy("file.json")  # incrémente compteur
-    FileStrategyRegistry.get_strategy("unknown.txt")  # skip
-
-    FileStrategyRegistry.display_summary()
-    captured = capsys.readouterr()
-
-    assert "Registered Strategies" in captured.out
-    assert ".json" in captured.out
-    assert "Skipped files" in captured.out
-
-
 def test_thread_safety_with_multiple_threads() -> None:
     """
     Scenario: Test thread safety with multiple concurrent threads accessing the registry
@@ -241,9 +194,7 @@ def test_thread_safety_with_multiple_threads() -> None:
     Expected:
     - Multiple threads should be able to access the registry simultaneously
     - No race conditions should occur during concurrent access
-    - Counters should accurately reflect the total number of strategy retrievals
     - All threads should complete successfully without errors
-    - Final counter value should equal the total number of operations across all threads
     """
     FileStrategyRegistry.register_strategy(".json", DummyJsonStrategy)
 
@@ -258,7 +209,3 @@ def test_thread_safety_with_multiple_threads() -> None:
         t.start()
     for t in threads:
         t.join()
-
-    # On doit avoir exactement 1000 appels (10 threads * 100 boucles)
-    stats = FileStrategyRegistry.get_registry_stats()
-    assert stats["counters"][".json"] == 1000
