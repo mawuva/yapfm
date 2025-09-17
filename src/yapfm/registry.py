@@ -1,14 +1,12 @@
 """
-Registry for file strategies with thread-safe operations and usage tracking.
+Registry for file strategies with thread-safe operations.
 
 This module provides a centralized registry for managing file strategies that can handle
-different file formats. The registry includes advanced features such as:
+different file formats. The registry includes features such as:
   - Thread-safe strategy registration and retrieval
-  - Usage counters for performance monitoring
-  - Tracking of skipped/unsupported files
   - Support for multiple file extensions per strategy
   - Automatic strategy instantiation
-  - Statistics and reporting capabilities
+  - Format validation and support checking
 
 The registry is designed to be used as a singleton with class-level methods,
 ensuring thread safety and global access to registered strategies.
@@ -26,26 +24,21 @@ Example:
     >>> # Check supported formats
     >>> formats = FileStrategyRegistry.get_supported_formats()
     >>> print(f"Supported: {formats}")
-    >>>
-    >>> # Get usage statistics
-    >>> stats = FileStrategyRegistry.get_registry_stats()
-    >>> print(f"Usage: {stats['counters']}")
 """
 
-from collections import defaultdict
-from pathlib import Path
 from threading import RLock
-from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
+from typing import Callable, Dict, List, Optional, Type, Union
+
+from regify import Registry
 
 from yapfm.strategies.base import BaseFileStrategy
-
-T = TypeVar("T")
+from yapfm.helpers import resolve_file_extension
 
 
 class FileStrategyRegistry:
-    _strategy_map: Dict[str, Type[BaseFileStrategy]] = {}
-    _counter: Dict[str, int] = defaultdict(int)
-    _skipped: Dict[str, List[str]] = defaultdict(list)
+    """Registry specialized for file strategies (singleton style)."""
+
+    _registry: Registry = Registry("file_strategies")
     _lock = RLock()
 
     @classmethod
@@ -58,12 +51,6 @@ class FileStrategyRegistry:
         Args:
             file_ext: File extension to register the strategy for.
             strategy_cls: Strategy class to register.
-
-        Raises:
-            TypeError: If the strategy does not inherit from BaseFileStrategy.
-
-        Example:
-            registry.register_strategy("toml", TomlStrategy)
         """
 
         if isinstance(file_exts, str):
@@ -71,13 +58,8 @@ class FileStrategyRegistry:
 
         with cls._lock:
             for ext in file_exts:
-                ext = ext.lower()
-
-                if not ext.startswith("."):
-                    ext = f".{ext}"
-
-                cls._strategy_map[ext] = strategy_cls
-                cls._counter.setdefault(ext, 0)
+                ext = resolve_file_extension(ext)
+                cls._registry.add(ext, strategy_cls)
 
     @classmethod
     def unregister_strategy(cls, file_ext: str) -> None:
@@ -90,15 +72,10 @@ class FileStrategyRegistry:
         Example:
             registry.unregister_strategy("toml")
         """
-        ext = file_ext.lower()
-
-        if not ext.startswith("."):
-            ext = f".{ext}"
+        ext = resolve_file_extension(file_ext)
 
         with cls._lock:
-            cls._strategy_map.pop(ext, None)
-            cls._counter.pop(ext, None)
-            cls._skipped.pop(ext, None)
+            cls._registry.unregister(ext)
 
     @classmethod
     def get_strategy(cls, file_ext_or_path: str) -> Optional[BaseFileStrategy]:
@@ -111,86 +88,33 @@ class FileStrategyRegistry:
         Returns:
             Optional[BaseFileStrategy]: The strategy for the file extension or path.
         """
-        # Handle both file paths and direct extensions
-        if file_ext_or_path.startswith("."):
-            # Direct extension like '.toml'
-            ext = file_ext_or_path.lower()
-        else:
-            # File path like 'example.toml'
-            ext = Path(file_ext_or_path).suffix.lower()
+        ext = resolve_file_extension(file_ext_or_path)
 
         with cls._lock:
-            strategy_cls = cls._strategy_map.get(ext)
-
-            if strategy_cls:
-                cls._counter[ext] += 1
-                return strategy_cls()
-            else:
-                cls._skipped["unknown"].append(file_ext_or_path)
-        return None
+            try:
+                strategy_cls = cls._registry.get(ext)
+                return strategy_cls() if strategy_cls else None
+            except KeyError:
+                return None
 
     @classmethod
     def list_strategies(cls) -> Dict[str, Type[BaseFileStrategy]]:
         """List all registered strategies."""
         with cls._lock:
-            return cls._strategy_map.copy()
-
-    @classmethod
-    def get_counters(cls) -> Dict[str, int]:
-        """Get the counters for all registered strategies."""
-        with cls._lock:
-            return dict(cls._counter)
-
-    @classmethod
-    def get_skipped(cls) -> Dict[str, List[str]]:
-        """Get the skipped files for all registered strategies"""
-        with cls._lock:
-            return dict(cls._skipped)
+            return cls._registry.list()
 
     @classmethod
     def get_supported_formats(cls) -> List[str]:
         """Get the supported formats for all registered strategies."""
         with cls._lock:
-            return list(cls._strategy_map.keys())
+            return list(cls._registry.keys())
 
     @classmethod
     def is_format_supported(cls, file_ext: str) -> bool:
         """Check if a format is supported."""
+        ext = resolve_file_extension(file_ext)
         with cls._lock:
-            return file_ext.lower() in [fmt[1:] for fmt in cls._strategy_map.keys()]
-
-    @classmethod
-    def get_registry_stats(cls) -> Dict[str, Any]:
-        """
-        Get registry statistics.
-
-        Returns:
-            Dict[str, Any]: Registry statistics including counters and skipped files
-
-        Example:
-            stats = FileStrategyRegistry.get_registry_stats()
-            # Returns: {'counters': {...}, 'skipped': {...}}
-        """
-        with cls._lock:
-            return {
-                "counters": cls.get_counters(),
-                "skipped": cls.get_skipped(),
-                "supported_formats": cls.get_supported_formats(),
-            }
-
-    @classmethod
-    def display_summary(cls) -> None:
-        """Print a styled summary of counters and skipped files."""
-        with cls._lock:
-            print("🎯 Registered Strategies & Usage Summary")
-            print("-" * 50)
-            for ext, strategy_cls in cls._strategy_map.items():
-                count = cls._counter.get(ext, 0)
-                print(f"{ext:10} -> {strategy_cls.__name__:20} | Used: {count}")
-            if cls._skipped:
-                print("\n⚠️ Skipped files:")
-                for key, files in cls._skipped.items():
-                    print(f"{key}: {len(files)} files -> {files}")
+            return ext in cls._registry.keys()
 
 
 def register_file_strategy(
