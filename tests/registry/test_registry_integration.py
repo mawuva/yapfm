@@ -187,8 +187,6 @@ def test_register_file_strategy_decorator() -> None:
     assert isinstance(strategy, DecoratedJsonStrategy)
 
 
-
-
 def test_thread_safety_with_multiple_threads() -> None:
     """
     Scenario: Test thread safety with multiple concurrent threads accessing the registry

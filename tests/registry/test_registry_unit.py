@@ -259,8 +259,6 @@ def test_is_format_supported_true_and_false() -> None:
     assert FileStrategyRegistry.is_format_supported("xml") is False
 
 
-
-
 # ============================
 # Tests du décorateur
 # ============================

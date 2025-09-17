@@ -31,8 +31,8 @@ from typing import Callable, Dict, List, Optional, Type, Union
 
 from regify import Registry
 
-from yapfm.strategies.base import BaseFileStrategy
 from yapfm.helpers import resolve_file_extension
+from yapfm.strategies.base import BaseFileStrategy
 
 
 class FileStrategyRegistry:
