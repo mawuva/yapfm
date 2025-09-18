@@ -26,6 +26,7 @@ class YAPFileManager(
         strategy: Optional[BaseFileStrategy] = None,
         *,
         auto_create: bool = False,
+        enable_context: bool = True,
         **kwargs: Any,
     ) -> None:
         """
