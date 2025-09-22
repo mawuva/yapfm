@@ -51,7 +51,11 @@ class CacheMixin:
 
         if cache is None:
             # Appel direct de KeyOperationsMixin.get_key sans cache
-            return self.get_key(dot_key, path=path, key_name=key_name, default=default)
+            from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
+
+            return KeyOperationsMixin.get_key(
+                self, dot_key, path=path, key_name=key_name, default=default
+            )
 
         cache_key = self._generate_cache_key(dot_key, path, key_name, "key")
 
@@ -60,7 +64,11 @@ class CacheMixin:
             return cache.get(cache_key)
 
         # Get value from KeyOperationsMixin
-        value = self.get_key(dot_key, path=path, key_name=key_name, default=default)
+        from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
+
+        value = KeyOperationsMixin.get_key(
+            self, dot_key, path=path, key_name=key_name, default=default
+        )
 
         # Cache the value (including None values)
         cache.set(cache_key, value)

@@ -61,6 +61,10 @@ class YAPFileManager(
         self.auto_create = auto_create
         self.document: Dict[str, Any] = {}
 
+        # Initialize file state
+        self._loaded = False
+        self._dirty = False
+
         # Store cache configuration
         self.enable_cache = enable_cache
         self.cache_size = cache_size

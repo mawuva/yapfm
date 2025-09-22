@@ -8,11 +8,6 @@ from yapfm.exceptions import FileWriteError, LoadFileError
 
 
 class FileOperationsMixin:
-    def __init__(self, **kwargs) -> None:
-        self._loaded = False
-        self._dirty = False
-        super().__init__(**kwargs)
-
     def exists(self) -> bool:
         """Check if the file exists."""
         return self.path.exists()

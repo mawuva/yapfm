@@ -51,8 +51,10 @@ class LazySectionsMixin:
             The section data or default
         """
         if not lazy or not self.enable_lazy_loading:
-            return self.get_section(
-                dot_key, path=path, key_name=key_name, default=default
+            from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
+
+            return SectionOperationsMixin.get_section(
+                self, dot_key, path=path, key_name=key_name, default=default
             )
 
         # Use lazy loading with unified cache
@@ -82,8 +84,10 @@ class LazySectionsMixin:
             update_lazy_cache: Whether to update lazy cache after setting.
         """
         # Call SectionOperationsMixin method
-        self.set_section(
-            data, dot_key, path=path, key_name=key_name, overwrite=overwrite
+        from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
+
+        SectionOperationsMixin.set_section(
+            self, data, dot_key, path=path, key_name=key_name, overwrite=overwrite
         )
 
         if update_lazy_cache and self.enable_lazy_loading:
@@ -108,7 +112,11 @@ class LazySectionsMixin:
         Returns:
             True if the section was deleted, False if it didn't exist
         """
-        result = self.delete_section(dot_key, path=path, key_name=key_name)
+        from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
+
+        result = SectionOperationsMixin.delete_section(
+            self, dot_key, path=path, key_name=key_name
+        )
 
         if result and self.enable_lazy_loading:
             # Invalidate lazy-loaded section
@@ -144,8 +152,10 @@ class LazySectionsMixin:
         if section_path not in lazy_sections:
 
             def loader():
-                return self.get_section(
-                    dot_key, path=path, key_name=key_name, default=default
+                from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
+
+                return SectionOperationsMixin.get_section(
+                    self, dot_key, path=path, key_name=key_name, default=default
                 )
 
             lazy_sections[section_path] = LazySectionLoader(

@@ -7,7 +7,7 @@ The LazySectionLoader handles on-demand loading of sections with caching.
 
 from typing import Any, Callable, Optional
 
-from yapfm.cache import SmartCache
+from .smart_cache import SmartCache
 
 
 class LazySectionLoader:
