@@ -48,7 +48,7 @@ class CacheMixin:
 
         Returns:
             The value at the specified path or default
-            
+
         Raises:
             ValueError: If neither dot_key nor (path + key_name) is provided.
         """
@@ -69,7 +69,7 @@ class CacheMixin:
         # Use a sentinel object to distinguish between cache miss and None value
         _sentinel = object()
         cached_value = cache.get(cache_key, default=_sentinel)
-        
+
         # If we got a real value (not our sentinel), return it
         if cached_value is not _sentinel:
             return cached_value

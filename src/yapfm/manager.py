@@ -84,7 +84,7 @@ class YAPFileManager(
 
         # Lazy loaders for sections only
         self._lazy_sections: Dict[str, LazySectionLoader] = {}
-        
+
         # Cache for generated keys (performance optimization)
         self._key_cache: Dict[str, str] = {}
 
@@ -93,32 +93,32 @@ class YAPFileManager(
         if self.enable_cache:
             return self.unified_cache
         return None
-    
+
     def clear_key_cache(self) -> None:
         """
         Clear the key generation cache.
-        
+
         This method clears the internal cache used for key generation,
         which can be useful for memory management or when you want to
         force regeneration of cache keys.
-        
+
         Example:
             >>> fm = YAPFileManager("config.json")
             >>> fm.get_key("database.host")  # Generates and caches key
             >>> fm.clear_key_cache()  # Clears the key cache
         """
         self._key_cache.clear()
-    
+
     def get_cache_stats(self) -> Dict[str, Any]:
         """
         Get comprehensive cache statistics.
-        
+
         Returns:
             Dictionary containing cache statistics including:
             - unified_cache: Statistics from the main cache
             - lazy_sections: Statistics from lazy loading
             - key_cache: Statistics from key generation cache
-            
+
         Example:
             >>> stats = fm.get_cache_stats()
             >>> print(f"Cache hits: {stats['unified_cache']['hits']}")
@@ -127,17 +127,17 @@ class YAPFileManager(
         stats = {
             "unified_cache": {},
             "lazy_sections": {},
-            "key_cache": {"size": len(self._key_cache)}
+            "key_cache": {"size": len(self._key_cache)},
         }
-        
+
         # Unified cache stats
         if self.unified_cache:
             stats["unified_cache"] = self.unified_cache.get_stats()
-        
+
         # Lazy sections stats
-        if hasattr(self, 'get_lazy_stats'):
+        if hasattr(self, "get_lazy_stats"):
             stats["lazy_sections"] = self.get_lazy_stats()
-        
+
         return stats
 
     def _generate_cache_key(
@@ -153,14 +153,18 @@ class YAPFileManager(
             cache_input = f"{key_type}:{dot_key}"
         elif path is not None and key_name is not None:
             path_str = ".".join(path) if path else ""
-            cache_input = f"{key_type}:{path_str}.{key_name}" if path_str else f"{key_type}:{key_name}"
+            cache_input = (
+                f"{key_type}:{path_str}.{key_name}"
+                if path_str
+                else f"{key_type}:{key_name}"
+            )
         else:
             raise ValueError("Cannot generate cache key without key parameters")
-        
+
         # Check cache first
         if cache_input in self._key_cache:
             return self._key_cache[cache_input]
-        
+
         # Generate and cache the key
         self._key_cache[cache_input] = cache_input
         return cache_input
