@@ -22,6 +22,7 @@ Welcome to the comprehensive documentation for YAPFM (Yet Another Python File Ma
 - [**Advanced Patterns**](usage_examples/advanced_patterns.md) - Complex usage scenarios
 
 ### Advanced Topics
+- [**Performance Features**](PERFORMANCE_FEATURES.md) - Caching, lazy loading, and streaming capabilities
 - [**Advanced Features**](advanced/index.md) - Proxy, mixins, and strategies
 - [**Custom Strategies**](advanced/custom_strategies.md) - Creating your own file format handlers
 - [**Performance Optimization**](advanced/performance_optimization.md) - Tips for better performance
@@ -40,9 +41,10 @@ Welcome to the comprehensive documentation for YAPFM (Yet Another Python File Ma
 
 ### By Use Case
 - **Configuration Files**: Start with [User Guide](user_guide/index.md) → [Configuration Management](usage_examples/configuration_management.md)
+- **Performance & Caching**: [Performance Features](PERFORMANCE_FEATURES.md) → [Caching & Streaming Examples](usage_examples/caching_streaming_examples.md)
 - **Multi-Format Support**: [API Reference](api/strategies.md) → [Custom Strategies](advanced/custom_strategies.md)
 - **Logging & Monitoring**: [Advanced Features](advanced/proxy_pattern.md) → [Examples](usage_examples/logging_monitoring.md)
-- **Performance**: [Advanced Features](advanced/performance_optimization.md) → [Troubleshooting](troubleshooting/performance_issues.md)
+- **Performance Optimization**: [Performance Features](PERFORMANCE_FEATURES.md) → [Troubleshooting](troubleshooting/performance_issues.md)
 
 ### By Experience Level
 - **Beginner**: [Installation](installation.md) → [Quick Start](quick_start.md) → [User Guide](user_guide/index.md)
@@ -63,6 +65,9 @@ Modular components that provide specific functionality:
 - **KeyOperationsMixin**: Key-based data access with dot notation
 - **SectionOperationsMixin**: Section-based data management
 - **ContextMixin**: Context manager support
+- **CacheMixin**: Intelligent caching with TTL, LRU eviction, and statistics
+- **LazySectionsMixin**: Lazy loading for memory-efficient section access
+- **StreamingMixin**: Streaming functionality for large files
 
 ### Proxy Pattern
 Wrapper that adds logging, metrics, and auditing to file operations without modifying the core functionality.
