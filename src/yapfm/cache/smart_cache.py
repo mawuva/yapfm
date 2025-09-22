@@ -55,14 +55,14 @@ class SmartCache:
         self._total_memory = 0
         self._last_cleanup = time.time()
 
-        if self.track_stats:
-            self._stats = {
-                "hits": 0,
-                "misses": 0,
-                "evictions": 0,
-                "expired_cleanups": 0,
-                "memory_cleanups": 0,
-            }
+        # Initialize stats regardless of track_stats setting
+        self._stats = {
+            "hits": 0,
+            "misses": 0,
+            "evictions": 0,
+            "expired_cleanups": 0,
+            "memory_cleanups": 0,
+        }
 
     def _is_expired(self, entry: CacheEntry) -> bool:
         """Check if a cache entry is expired."""

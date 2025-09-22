@@ -47,8 +47,8 @@ class LazySectionLoader:
                 self._value = self._loader_func()
                 self._loaded = True
 
-                # Cache the loaded section
-                if self._cache:
+                # Cache the loaded section (only if not None)
+                if self._cache and self._value is not None:
                     self._cache.set(self._section_path, self._value)
 
             except Exception as e:
