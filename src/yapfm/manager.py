@@ -1,5 +1,22 @@
+"""
+File Manager
+
+This module provides the YAPFileManager class, which is the main class for managing files.
+It combines all the mixins to provide a unified API for all file formats.
+"""
+
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import (
+    Any,
+    Dict,
+    ItemsView,
+    Iterator,
+    KeysView,
+    List,
+    Optional,
+    Union,
+    ValuesView,
+)
 
 from yapfm.cache import LazySectionLoader, SmartCache
 from yapfm.strategies import BaseFileStrategy
@@ -199,4 +216,92 @@ class YAPFileManager(
             raise TypeError("Data must be a dictionary")
         self.document = value
         self.mark_as_loaded()
+        self.mark_as_dirty()
+
+    # -----------------------
+    # Simplified API methods (delegating to mixins)
+    # -----------------------
+
+    def set(
+        self,
+        key: str,
+        value: Any,
+        overwrite: bool = True,
+    ) -> None:
+        """Set a value in the file using key."""
+        return self.set_value(key, value, overwrite=overwrite)
+
+    def get(
+        self,
+        key: str,
+        default: Any = None,
+    ) -> Any:
+        """Get a value from the file using key with caching."""
+        return self.get_value(key, default=default)
+
+    def has(self, key: str) -> bool:
+        """Check if a key exists in the file."""
+        return self.has_key(dot_key=key)
+
+    def delete(self, key: str) -> bool:
+        """Delete a key from the file."""
+        return self.delete_key(dot_key=key)
+
+    # -----------------------
+    # Dict-like API
+    # -----------------------
+
+    def __getitem__(self, key: str) -> Any:
+        """Get item using dict-like syntax."""
+        return self.get(key)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Set item using dict-like syntax."""
+        self.set(key, value)
+
+    def __contains__(self, key: str) -> bool:
+        """Check if key exists using dict-like syntax."""
+        return self.has(key)
+
+    def __delitem__(self, key: str) -> None:
+        """Delete item using dict-like syntax."""
+        self.delete(key)
+
+    def __len__(self) -> int:
+        """Get number of top-level keys."""
+        return len(self.data)
+
+    def __iter__(self) -> Iterator[str]:
+        """Iterate over top-level keys."""
+        return iter(self.data)
+
+    def keys(self) -> KeysView[str]:
+        """Get all top-level keys."""
+        return self.data.keys()
+
+    def values(self) -> ValuesView[Any]:
+        """Get all top-level values."""
+        return self.data.values()
+
+    def items(self) -> ItemsView[str, Any]:
+        """Get all top-level key-value pairs."""
+        return self.data.items()
+
+    def pop(self, key: str, default: Any = None) -> Any:
+        """Pop value and remove key."""
+        if self.has(key):
+            value = self.get(key)
+            self.delete(key)
+            return value
+        else:
+            return default
+
+    def update(self, other: Dict[str, Any]) -> None:
+        """Update with another dictionary."""
+        for key, value in other.items():
+            self.set(key, value)
+
+    def clear(self) -> None:
+        """Clear all data."""
+        self.data.clear()
         self.mark_as_dirty()
