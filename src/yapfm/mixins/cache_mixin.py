@@ -65,11 +65,16 @@ class CacheMixin:
 
         cache_key = self._generate_cache_key(dot_key, path, key_name, "key")
 
-        # Check if key exists in cache (distinguish between cache miss and None value)
-        if cache.has_key(cache_key):
-            return cache.get(cache_key)
+        # Try to get from cache first (this will count as hit/miss)
+        # Use a sentinel object to distinguish between cache miss and None value
+        _sentinel = object()
+        cached_value = cache.get(cache_key, default=_sentinel)
+        
+        # If we got a real value (not our sentinel), return it
+        if cached_value is not _sentinel:
+            return cached_value
 
-        # Get value from KeyOperationsMixin
+        # Get value from KeyOperationsMixin (cache miss)
         value = KeyOperationsMixin.get_key(
             self, dot_key, path=path, key_name=key_name, default=default
         )
