@@ -4,17 +4,19 @@ This guide provides comprehensive examples and real-world usage patterns for YAP
 
 ## 📚 Table of Contents
 
-1. [Basic Examples](basic_examples.md) - Simple configuration files and format handling
-2. [Configuration Management](configuration_management.md) - Application configuration managers and dynamic updates
-3. [Multi-Environment Setup](multi_environment_setup.md) - Environment-specific configurations and inheritance
-4. [Advanced Patterns](advanced_patterns.md) - Validation, caching, and hot reloading
-5. [Logging and Monitoring](logging_monitoring.md) - Configuration monitoring with proxy and metrics
-6. [Error Handling Patterns](error_handling_patterns.md) - Robust configuration loading and fallback strategies
-7. [Performance Optimization](performance_optimization.md) - Batch operations and performance improvements
-8. [Integration Examples](integration_examples.md) - Flask, Django, and other framework integrations
+1. [Caching & Streaming Examples](caching_streaming_examples.md) - Examples of intelligent caching, lazy loading, and streaming
+2. [Basic Examples](basic_examples.md) - Simple configuration files and format handling
+3. [Configuration Management](configuration_management.md) - Application configuration managers and dynamic updates
+4. [Multi-Environment Setup](multi_environment_setup.md) - Environment-specific configurations and inheritance
+5. [Advanced Patterns](advanced_patterns.md) - Validation, caching, and hot reloading
+6. [Logging and Monitoring](logging_monitoring.md) - Configuration monitoring with proxy and metrics
+7. [Error Handling Patterns](error_handling_patterns.md) - Robust configuration loading and fallback strategies
+8. [Performance Optimization](performance_optimization.md) - Batch operations and performance improvements
+9. [Integration Examples](integration_examples.md) - Flask, Django, and other framework integrations
 
 ## Quick Navigation
 
+- **Need caching and streaming examples?** Check [Caching & Streaming Examples](caching_streaming_examples.md)
 - **Getting started?** Check [Basic Examples](basic_examples.md)
 - **Need configuration management?** See [Configuration Management](configuration_management.md)
 - **Working with multiple environments?** Read [Multi-Environment Setup](multi_environment_setup.md)

@@ -71,6 +71,9 @@ proxy = FileManagerProxy(
 - **Production Applications**: Need monitoring, logging, and error handling
 - **Complex Data Structures**: Nested configurations with easy access
 - **Team Development**: Consistent API across different file formats
+- **High-Performance Applications**: Need intelligent caching and lazy loading
+- **Large File Processing**: Need streaming capabilities for big files
+- **Memory-Constrained Environments**: Need efficient memory usage
 
 **❌ Not ideal for:**
 - **Large Binary Files**: Designed for text-based configuration files
@@ -79,6 +82,7 @@ proxy = FileManagerProxy(
 
 ## ✨ Features
 
+### Core Features
 - **Multi-format Support**: JSON, TOML, and YAML files with automatic format detection
 - **Strategy Pattern**: Extensible architecture for adding new file format support
 - **Context Management**: Safe file operations with automatic loading and saving
@@ -88,6 +92,12 @@ proxy = FileManagerProxy(
 - **Type Safety**: Full type hints and protocol-based design
 - **Thread Safety**: Thread-safe strategy registry and operations
 - **Auto-creation**: Automatic file and directory creation when needed
+
+### Performance Features
+- **Intelligent Caching**: Smart caching with TTL, LRU eviction, and comprehensive statistics
+- **Lazy Loading**: Memory-efficient loading of large sections and data
+- **Streaming Support**: Process files larger than available RAM with constant memory usage
+- **Unified Architecture**: Centralized cache management and key generation optimization
 
 ## 🚀 Quick Start
 
@@ -170,6 +180,69 @@ with YAPFileManager("config.toml", auto_create=True) as fm:
 # File is automatically saved when exiting the context
 ```
 
+### Performance Features
+
+#### Intelligent Caching
+```python
+from yapfm import YAPFileManager
+
+# Enable caching for high-performance access
+fm = YAPFileManager(
+    "config.json",
+    enable_cache=True,
+    cache_size=1000,      # Maximum 1000 cached entries
+    cache_ttl=3600        # 1 hour TTL
+)
+
+# First access loads from file and caches
+host = fm.get_value("database.host")
+
+# Subsequent accesses return from cache (much faster)
+host_cached = fm.get_value("database.host")  # Returns from cache
+
+# Get cache statistics
+stats = fm.get_cache_stats()
+print(f"Cache hit rate: {stats['unified_cache']['hit_rate']:.2%}")
+```
+
+#### Lazy Loading
+```python
+# Enable lazy loading for memory efficiency
+fm = YAPFileManager(
+    "large_config.json",
+    enable_lazy_loading=True
+)
+
+# Section is not loaded until accessed
+db_section = fm.get_section("database")  # Loads only when accessed
+print(f"Database host: {db_section['host']}")
+
+# Subsequent accesses return from lazy cache
+db_section_again = fm.get_section("database")  # Returns from cache
+```
+
+#### Streaming Large Files
+```python
+# Enable streaming for large files
+fm = YAPFileManager(
+    "large_file.txt",
+    enable_streaming=True
+)
+
+# Stream file in chunks
+for chunk in fm.stream_file(chunk_size=1024*1024):  # 1MB chunks
+    process_chunk(chunk)
+
+# Stream line by line
+for line in fm.stream_lines():
+    if "ERROR" in line:
+        print(f"Error found: {line}")
+
+# Search in large files
+for match in fm.search_in_file("error", case_sensitive=False):
+    print(f"Found: {match['match']}")
+```
+
 ### Advanced Usage with Proxy
 
 ```python
@@ -197,6 +270,7 @@ with proxy:
 
 Comprehensive documentation is available in the `docs/` directory:
 
+- [**Performance Features**](docs/PERFORMANCE_FEATURES.md) - Caching, lazy loading, and streaming capabilities
 - [**User Guide**](docs/user_guide/index.md) - Step-by-step usage guide
 - [**API Reference**](docs/api/index.md) - Complete API documentation
 - [**Examples**](docs/usage_examples/index.md) - Code examples and patterns

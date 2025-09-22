@@ -51,8 +51,10 @@ nav:
     - Performance Considerations: user_guide/performance_considerations.md
     - Best Practices: user_guide/best_practices.md
     - Common Patterns: user_guide/common_patterns.md
+  - Performance Features: PERFORMANCE_FEATURES.md
   - Advanced Features:
       - Overview: advanced/index.md
+      - Caching & Performance: advanced/caching_performance.md
       - Proxy Pattern: advanced/proxy_pattern.md
       - Custom Strategies: advanced/custom_strategies.md
       - Mixins Deep Dive: advanced/mixins_deep_dive.md
@@ -63,6 +65,7 @@ nav:
       - Plugin Architecture: advanced/plugin_architecture.md
   - Examples:
       - Overview: usage_examples/index.md
+      - Caching & Streaming Examples: usage_examples/caching_streaming_examples.md
       - Basic Examples: usage_examples/basic_examples.md
       - Configuration Management: usage_examples/configuration_management.md
       - Multi-Environment Setup: usage_examples/multi_environment_setup.md

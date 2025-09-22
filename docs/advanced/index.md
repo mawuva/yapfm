@@ -4,17 +4,19 @@ This guide covers advanced features of YAPFM, including proxy patterns, custom s
 
 ## 📚 Table of Contents
 
-1. [Proxy Pattern](proxy_pattern.md) - Monitoring, logging, and auditing file operations
-2. [Custom Strategies](custom_strategies.md) - Creating custom file format strategies
-3. [Mixins Deep Dive](mixins_deep_dive.md) - Creating and using custom mixins
-4. [Performance Optimization](performance_optimization.md) - Lazy loading and memory-efficient processing
-5. [Thread Safety](thread_safety.md) - Thread-safe file manager implementations
-6. [Memory Management](memory_management.md) - Memory-efficient file manager features
-7. [Advanced Context Management](advanced_context_management.md) - Nested context managers and transactions
-8. [Plugin Architecture](plugin_architecture.md) - Extending functionality with plugins
+1. [Caching & Performance](caching_performance.md) - Intelligent caching, lazy loading, and streaming capabilities
+2. [Proxy Pattern](proxy_pattern.md) - Monitoring, logging, and auditing file operations
+3. [Custom Strategies](custom_strategies.md) - Creating custom file format strategies
+4. [Mixins Deep Dive](mixins_deep_dive.md) - Creating and using custom mixins
+5. [Performance Optimization](performance_optimization.md) - Lazy loading and memory-efficient processing
+6. [Thread Safety](thread_safety.md) - Thread-safe file manager implementations
+7. [Memory Management](memory_management.md) - Memory-efficient file manager features
+8. [Advanced Context Management](advanced_context_management.md) - Nested context managers and transactions
+9. [Plugin Architecture](plugin_architecture.md) - Extending functionality with plugins
 
 ## Quick Navigation
 
+- **Need caching and performance features?** Check [Caching & Performance](caching_performance.md)
 - **Need monitoring capabilities?** Check [Proxy Pattern](proxy_pattern.md)
 - **Want to support new file formats?** See [Custom Strategies](custom_strategies.md)
 - **Looking to extend functionality?** Read [Mixins Deep Dive](mixins_deep_dive.md)
