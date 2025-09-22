@@ -6,10 +6,12 @@ from yapfm.strategies import BaseFileStrategy
 from .exceptions import StrategyError
 from .helpers import validate_strategy
 from .mixins import (
+    CacheMixin,
     ContextMixin,
     FileOperationsMixin,
     KeyOperationsMixin,
     SectionOperationsMixin,
+    StreamingMixin,
 )
 from .registry import FileStrategyRegistry
 
@@ -19,6 +21,8 @@ class YAPFileManager(
     ContextMixin,
     KeyOperationsMixin,
     SectionOperationsMixin,
+    CacheMixin,
+    StreamingMixin,
 ):
     def __init__(
         self,
@@ -27,6 +31,11 @@ class YAPFileManager(
         *,
         auto_create: bool = False,
         enable_context: bool = True,
+        enable_cache: bool = True,
+        cache_size: int = 1000,  # default 1000 keys
+        cache_ttl: Optional[float] = 3600,  # 1 hour
+        enable_streaming: bool = False,
+        enable_lazy_loading: bool = False,
         **kwargs: Any,
     ) -> None:
         """
