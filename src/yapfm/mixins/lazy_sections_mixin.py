@@ -12,6 +12,8 @@ Note: This mixin now uses the unified cache system from CacheMixin.
 
 from typing import Any, Dict, List, Optional
 
+from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
+
 
 class LazySectionsMixin:
     """
@@ -51,8 +53,6 @@ class LazySectionsMixin:
             The section data or default
         """
         if not lazy or not self.enable_lazy_loading:
-            from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
-
             return SectionOperationsMixin.get_section(
                 self, dot_key, path=path, key_name=key_name, default=default
             )
@@ -84,8 +84,6 @@ class LazySectionsMixin:
             update_lazy_cache: Whether to update lazy cache after setting.
         """
         # Call SectionOperationsMixin method
-        from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
-
         SectionOperationsMixin.set_section(
             self, data, dot_key, path=path, key_name=key_name, overwrite=overwrite
         )
@@ -112,8 +110,6 @@ class LazySectionsMixin:
         Returns:
             True if the section was deleted, False if it didn't exist
         """
-        from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
-
         result = SectionOperationsMixin.delete_section(
             self, dot_key, path=path, key_name=key_name
         )
@@ -152,8 +148,6 @@ class LazySectionsMixin:
         if section_path not in lazy_sections:
 
             def loader():
-                from yapfm.mixins.section_operations_mixin import SectionOperationsMixin
-
                 return SectionOperationsMixin.get_section(
                     self, dot_key, path=path, key_name=key_name, default=default
                 )

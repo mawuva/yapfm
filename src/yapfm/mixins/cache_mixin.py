@@ -10,6 +10,8 @@ performance for frequently accessed keys.
 
 from typing import Any, List, Optional
 
+from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
+
 
 class CacheMixin:
     """
@@ -46,13 +48,17 @@ class CacheMixin:
 
         Returns:
             The value at the specified path or default
+            
+        Raises:
+            ValueError: If neither dot_key nor (path + key_name) is provided.
         """
+        # Validate parameters
+        if dot_key is None and (path is None or key_name is None):
+            raise ValueError("You must provide either dot_key or (path + key_name)")
         cache = self.get_cache()
 
         if cache is None:
             # Appel direct de KeyOperationsMixin.get_key sans cache
-            from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
-
             return KeyOperationsMixin.get_key(
                 self, dot_key, path=path, key_name=key_name, default=default
             )
@@ -64,8 +70,6 @@ class CacheMixin:
             return cache.get(cache_key)
 
         # Get value from KeyOperationsMixin
-        from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
-
         value = KeyOperationsMixin.get_key(
             self, dot_key, path=path, key_name=key_name, default=default
         )
