@@ -48,9 +48,13 @@ class CacheMixin:
 
         if cache is None:
             # Call KeyOperationsMixin.get_key without cache
-            return KeyOperationsMixin.get_key(self, dot_key=key, default=default)
+            return KeyOperationsMixin.get_key(
+                self, dot_key=key, path=None, key_name=None, default=default
+            )
 
-        cache_key = self._generate_cache_key(dot_key=key, key_type="key")
+        cache_key = self._generate_cache_key(
+            dot_key=key, path=None, key_name=None, key_type="key"
+        )
 
         # Try to get from cache first (this will count as hit/miss)
         # Use a sentinel object to distinguish between cache miss and None value
@@ -62,7 +66,9 @@ class CacheMixin:
             return cached_value
 
         # Get value from KeyOperationsMixin (cache miss)
-        value = KeyOperationsMixin.get_key(self, dot_key=key, default=default)
+        value = KeyOperationsMixin.get_key(
+            self, dot_key=key, path=None, key_name=None, default=default
+        )
 
         # Cache the value (including None values)
         cache.set(cache_key, value)
@@ -86,12 +92,18 @@ class CacheMixin:
             overwrite: Whether to overwrite existing values
         """
         # Write the value to the file
-        KeyOperationsMixin.set_key(self, value, dot_key=key, overwrite=overwrite)
+        KeyOperationsMixin.set_key(
+            self, value, dot_key=key, path=None, key_name=None, overwrite=overwrite
+        )
 
         cache = self.get_cache()
 
         if cache is not None:
-            cache.delete(self._generate_cache_key(dot_key=key, key_type="key"))
+            cache.delete(
+                self._generate_cache_key(
+                    dot_key=key, path=None, key_name=None, key_type="key"
+                )
+            )
 
     def clear_cache(self) -> None:
         """Clear all cached keys."""
