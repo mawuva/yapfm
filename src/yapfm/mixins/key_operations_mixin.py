@@ -74,6 +74,7 @@ class KeyOperationsMixin:
         path: Optional[List[str]] = None,
         key_name: Optional[str] = None,
         overwrite: bool = True,
+        **kwargs: Any,
     ) -> None:
         """
         Set a value in the file using dot notation.
@@ -122,6 +123,7 @@ class KeyOperationsMixin:
         path: Optional[List[str]] = None,
         key_name: Optional[str] = None,
         default: Any = None,
+        **kwargs: Any,
     ) -> Any:
         """
         Get a value from the file using dot notation.

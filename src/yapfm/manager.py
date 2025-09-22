@@ -1,6 +1,7 @@
 from pathlib import Path
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
+from yapfm.cache import LazySectionLoader, SmartCache
 from yapfm.strategies import BaseFileStrategy
 
 from .exceptions import StrategyError
@@ -10,6 +11,7 @@ from .mixins import (
     ContextMixin,
     FileOperationsMixin,
     KeyOperationsMixin,
+    LazySectionsMixin,
     SectionOperationsMixin,
     StreamingMixin,
 )
@@ -22,8 +24,11 @@ class YAPFileManager(
     KeyOperationsMixin,
     SectionOperationsMixin,
     CacheMixin,
+    LazySectionsMixin,
     StreamingMixin,
 ):
+    unified_cache: Optional[SmartCache]
+
     def __init__(
         self,
         path: Union[str, Path],
@@ -56,7 +61,55 @@ class YAPFileManager(
         self.auto_create = auto_create
         self.document: Dict[str, Any] = {}
 
+        # Store cache configuration
+        self.enable_cache = enable_cache
+        self.cache_size = cache_size
+        self.cache_ttl = cache_ttl
+        self.enable_lazy_loading = enable_lazy_loading
+
+        # Initialize unified cache system
+        self._init_unified_cache()
+
         super().__init__(**kwargs)
+
+    def _init_unified_cache(self) -> None:
+        """Initialize the unified cache system."""
+        # Unified cache for all operations
+        if self.enable_cache:
+            self.unified_cache = SmartCache(
+                max_size=self.cache_size, default_ttl=self.cache_ttl, track_stats=True
+            )
+        else:
+            self.unified_cache = None
+
+        # Lazy loaders for sections only
+        self._lazy_sections: Dict[str, LazySectionLoader] = {}
+
+    def get_cache(self) -> Optional[SmartCache]:
+        """Get the unified cache."""
+        if self.enable_cache:
+            return self.unified_cache
+        return None
+
+    def _generate_cache_key(
+        self,
+        dot_key: Optional[str],
+        path: Optional[List[str]],
+        key_name: Optional[str],
+        key_type: str = "key",
+    ) -> str:
+        """Generate a cache key from the key parameters."""
+        if dot_key is not None:
+            return f"{key_type}:{dot_key}"
+        elif path is not None and key_name is not None:
+            path_str = ".".join(path) if path else ""
+            return (
+                f"{key_type}:{path_str}.{key_name}"
+                if path_str
+                else f"{key_type}:{key_name}"
+            )
+        else:
+            raise ValueError("Cannot generate cache key without key parameters")
 
     @property
     def data(self) -> Dict[str, Any]:

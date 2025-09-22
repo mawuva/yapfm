@@ -29,6 +29,7 @@ class SectionOperationsMixin:
         path: Optional[List[str]] = None,
         key_name: Optional[str] = None,
         overwrite: bool = True,
+        **kwargs: Any,
     ) -> None:
         """
         Set an entire section in the file.
@@ -72,6 +73,7 @@ class SectionOperationsMixin:
         path: Optional[List[str]] = None,
         key_name: Optional[str] = None,
         default: Any = None,
+        **kwargs: Any,
     ) -> Any:
         """
         Get an entire section from the file.
