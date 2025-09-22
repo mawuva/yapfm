@@ -8,6 +8,8 @@ from yapfm.exceptions import FileWriteError, LoadFileError
 
 
 class FileOperationsMixin:
+    """Mixin for file operations."""
+
     def __init__(self, **kwargs) -> None:
         self._loaded = False
         self._dirty = False

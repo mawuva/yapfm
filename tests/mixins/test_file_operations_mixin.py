@@ -2,6 +2,8 @@
 Unit tests for FileOperationsMixin.
 """
 
+# mypy: ignore-errors
+
 import tempfile
 from pathlib import Path
 from typing import Any
