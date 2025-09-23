@@ -305,3 +305,130 @@ class YAPFileManager(
         """Clear all data."""
         self.data.clear()
         self.mark_as_dirty()
+
+    # -----------------------
+    # Batch operations
+    # -----------------------
+    def set_multiple(self, items: Dict[str, Any], overwrite: bool = True) -> None:
+        """
+        Set multiple key-value pairs efficiently.
+
+        Args:
+            items: Dictionary of key-value pairs to set.
+            overwrite: Whether to overwrite existing values.
+
+        Example:
+            >>> fm.set_multiple({
+            ...     "database.host": "localhost",
+            ...     "database.port": 5432,
+            ...     "logging.level": "INFO"
+            ... })
+
+        Raises:
+            ValueError: If any key fails to be set.
+        """
+        if not items:
+            return
+
+        # Track failed operations for better error reporting
+        failed_keys = []
+        for key, value in items.items():
+            try:
+                self.set(key, value, overwrite)
+            except Exception as e:
+                failed_keys.append((key, str(e)))
+
+        if failed_keys:
+            raise ValueError(f"Failed to set keys: {failed_keys}")
+
+    def get_multiple(
+        self,
+        keys: List[str],
+        default: Any = None,
+        defaults: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """
+        Get multiple values efficiently.
+
+        Args:
+            keys: List of keys to get.
+            default: Default value for missing keys.
+            defaults: Optional dictionary with specific default values per key.
+
+        Returns:
+            Dictionary with key-value pairs.
+
+        Example:
+            >>> values = fm.get_multiple(["database.host", "database.port"])
+            >>> values = fm.get_multiple(
+            ...     ["database.host", "database.port"],
+            ...     defaults={"database.host": "localhost", "database.port": 5432}
+            ... )
+        """
+        if not keys:
+            return {}
+
+        result = {}
+        for key in keys:
+            key_default = defaults.get(key, default) if defaults else default
+            result[key] = self.get(key, key_default)
+        return result
+
+    def delete_multiple(self, keys: List[str]) -> int:
+        """
+        Delete multiple keys efficiently.
+
+        Args:
+            keys: List of keys to delete.
+
+        Returns:
+            Number of keys deleted.
+
+        Example:
+            >>> deleted_count = fm.delete_multiple(["database.host", "database.port"])
+
+        Raises:
+            ValueError: If keys is not a list or contains invalid keys.
+        """
+        if not isinstance(keys, list):
+            raise ValueError("Keys must be a list")
+
+        if not keys:
+            return 0
+
+        deleted = 0
+        for key in keys:
+            if not isinstance(key, str):
+                raise ValueError(f"All keys must be strings, got: {type(key)}")
+            if self.delete(key):
+                deleted += 1
+        return deleted
+
+    def has_multiple(self, keys: List[str]) -> Dict[str, bool]:
+        """
+        Check existence of multiple keys efficiently.
+
+        Args:
+            keys: List of keys to check.
+
+        Returns:
+            Dictionary with key-existence pairs.
+
+        Example:
+            >>> exists = fm.has_multiple(["database.host", "database.port"])
+
+        Raises:
+            ValueError: If keys is not a list or contains invalid keys.
+        """
+        if not isinstance(keys, list):
+            raise ValueError("Keys must be a list")
+
+        if not keys:
+            return {}
+
+        result = {}
+        for key in keys:
+            if not isinstance(key, str):
+                raise ValueError(f"All keys must be strings, got: {type(key)}")
+            result[key] = self.has(key)
+        return result
