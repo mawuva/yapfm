@@ -24,14 +24,21 @@ from yapfm.strategies import BaseFileStrategy
 from .exceptions import StrategyError
 from .helpers import validate_strategy
 from .mixins import (
+    AnalysisMixin,
     CacheMixin,
+    CleanupMixin,
+    CloneMixin,
     ContextMixin,
+    ExportMixin,
     FileOperationsMixin,
     KeyOperationsMixin,
     LazySectionsMixin,
     MultiFileMixin,
+    SearchMixin,
     SectionOperationsMixin,
+    SecurityMixin,
     StreamingMixin,
+    TransformMixin,
 )
 from .registry import FileStrategyRegistry
 
@@ -45,6 +52,13 @@ class YAPFileManager(
     LazySectionsMixin,
     MultiFileMixin,
     StreamingMixin,
+    SearchMixin,
+    CloneMixin,
+    AnalysisMixin,
+    TransformMixin,
+    CleanupMixin,
+    SecurityMixin,
+    ExportMixin,
 ):
     unified_cache: Optional[SmartCache]
 
@@ -231,6 +245,7 @@ class YAPFileManager(
         overwrite: bool = True,
     ) -> None:
         """Set a value in the file using key."""
+        self.check_frozen()
         return self.set_value(key, value, overwrite=overwrite)
 
     def get(
@@ -247,6 +262,7 @@ class YAPFileManager(
 
     def delete(self, key: str) -> bool:
         """Delete a key from the file."""
+        self.check_frozen()
         return self.delete_key(dot_key=key)
 
     # -----------------------
@@ -259,6 +275,7 @@ class YAPFileManager(
 
     def __setitem__(self, key: str, value: Any) -> None:
         """Set item using dict-like syntax."""
+        self.check_frozen()
         self.set(key, value)
 
     def __contains__(self, key: str) -> bool:
@@ -267,6 +284,7 @@ class YAPFileManager(
 
     def __delitem__(self, key: str) -> None:
         """Delete item using dict-like syntax."""
+        self.check_frozen()
         self.delete(key)
 
     def __len__(self) -> int:
@@ -291,6 +309,7 @@ class YAPFileManager(
 
     def pop(self, key: str, default: Any = None) -> Any:
         """Pop value and remove key."""
+        self.check_frozen()
         if self.has(key):
             value = self.get(key)
             self.delete(key)
@@ -300,11 +319,13 @@ class YAPFileManager(
 
     def update(self, other: Dict[str, Any]) -> None:
         """Update with another dictionary."""
+        self.check_frozen()
         for key, value in other.items():
             self.set(key, value)
 
     def clear(self) -> None:
         """Clear all data."""
+        self.check_frozen()
         self.data.clear()
         self.mark_as_dirty()
 
@@ -329,6 +350,7 @@ class YAPFileManager(
         Raises:
             ValueError: If any key fails to be set.
         """
+        self.check_frozen()
         if not items:
             return
 
@@ -392,6 +414,7 @@ class YAPFileManager(
         Raises:
             ValueError: If keys is not a list or contains invalid keys.
         """
+        self.check_frozen()
         if not isinstance(keys, list):
             raise ValueError("Keys must be a list")
 
