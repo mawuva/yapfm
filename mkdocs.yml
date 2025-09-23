@@ -81,23 +81,23 @@ nav:
           - Strategies: api/strategies.md
           - Merge Strategies: api/merge_strategies.md
           - Mixins:
-          - Overview: api/mixins/index.md
-          - File Operations: api/mixins/file_operations_mixin.md
-          - Key Operations: api/mixins/key_operations_mixin.md
-          - Section Operations: api/mixins/section_operations_mixin.md
-          - Context Management: api/mixins/context_mixin.md
-          - Batch Operations: api/mixins/batch_operations_mixin.md
-          - Caching: api/mixins/cache_mixin.md
-          - Lazy Sections: api/mixins/lazy_sections_mixin.md
-          - Streaming: api/mixins/streaming_mixin.md
-          - Analysis: api/mixins/analysis_mixin.md
-          - Search: api/mixins/search_mixin.md
-          - Cleanup: api/mixins/cleanup_mixin.md
-          - Clone: api/mixins/clone_mixin.md
-          - Export: api/mixins/export_mixin.md
-          - Multi-File: api/mixins/multi_file_mixin.md
-          - Security: api/mixins/security_mixin.md
-          - Transform: api/mixins/transform_mixin.md
+              - Overview: api/mixins/index.md
+              - File Operations: api/mixins/file_operations_mixin.md
+              - Key Operations: api/mixins/key_operations_mixin.md
+              - Section Operations: api/mixins/section_operations_mixin.md
+              - Context Management: api/mixins/context_mixin.md
+              - Batch Operations: api/mixins/batch_operations_mixin.md
+              - Caching: api/mixins/cache_mixin.md
+              - Lazy Sections: api/mixins/lazy_sections_mixin.md
+              - Streaming: api/mixins/streaming_mixin.md
+              - Analysis: api/mixins/analysis_mixin.md
+              - Search: api/mixins/search_mixin.md
+              - Cleanup: api/mixins/cleanup_mixin.md
+              - Clone: api/mixins/clone_mixin.md
+              - Export: api/mixins/export_mixin.md
+              - Multi-File: api/mixins/multi_file_mixin.md
+              - Security: api/mixins/security_mixin.md
+              - Transform: api/mixins/transform_mixin.md
       - Registry: api/registry.md
       - Proxy: api/proxy.md
       - Exceptions: api/exceptions.md
