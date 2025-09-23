@@ -20,7 +20,7 @@
 - Revise CacheMixin tests for improved clarity and functionality
 - Update CacheMixin methods to include additional parameters for improved key management
 
-## v0.3.0 (2025-01-XX)
+## v0.3.0 (2025-09-22)
 
 ### 🚀 Major Features: Caching & Performance
 
