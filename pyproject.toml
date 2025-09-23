@@ -34,7 +34,7 @@ mkdocs-material = "^9.6.19"
 name = "cz_conventional_commits"
 version = "0.3.0"
 tag_format = "v$version"
-update_changelog_on_bump = false
+update_changelog_on_bump = true
 changelog_file = "docs/CHANGELOG.md"
 version_files = [
     "pyproject.toml:version",
