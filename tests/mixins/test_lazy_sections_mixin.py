@@ -178,7 +178,14 @@ class TestLazySectionsMixin:
     """Test cases for LazySectionsMixin class."""
 
     def test_lazy_sections_mixin_initialization(self):
-        """Test LazySectionsMixin initialization."""
+        """
+        Scenario: Initialize LazySectionsMixin
+
+        Expected:
+        - Should enable lazy loading by default
+        - Should initialize unified cache
+        - Should create lazy sections dictionary
+        """
         manager = MockFileManager()
 
         assert manager.enable_lazy_loading is True

@@ -100,7 +100,14 @@ class TestCacheMixin:
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     def test_get_value_with_cache_enabled(self) -> None:
-        """Test get_value with cache enabled."""
+        """
+        Scenario: Get value with cache enabled
+
+        Expected:
+        - Should load from document on first call
+        - Should use cache on subsequent calls
+        - Should not call get_key multiple times
+        """
         # Create mock file manager with cache
         fm = MockFileManager(self.test_file, document=self.test_data)
 
@@ -122,7 +129,14 @@ class TestCacheMixin:
             mock_get_key.assert_not_called()
 
     def test_get_value_with_cache_disabled(self) -> None:
-        """Test get_value with cache disabled."""
+        """
+        Scenario: Get value with cache disabled
+
+        Expected:
+        - Should always load from document
+        - Should not use cache
+        - Should call get_key on every call
+        """
         # Create mock file manager without cache
         fm = MockFileManager(
             self.test_file, document=self.test_data, enable_cache=False
