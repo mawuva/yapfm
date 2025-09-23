@@ -1,3 +1,25 @@
+## v0.4.0 (2025-09-23)
+
+### Feat
+
+- Introduce new mixins for enhanced functionality in YAPFileManager
+- Add method to infer file format from extension
+- Add new data transformation and traversal utilities
+- Add MultiFileMixin for enhanced multi-file operations in YAPFileManager
+- Implement multi-file operations module with loading and merging capabilities
+- Introduce merge strategies for file management
+- Add batch operations to YAPFileManager for enhanced key management
+- Enhance YAPFileManager and CacheMixin with simplified API and improved key management
+
+### Fix
+
+- Improve immutability in ReplaceMergeStrategy by using deepcopy
+
+### Refactor
+
+- Revise CacheMixin tests for improved clarity and functionality
+- Update CacheMixin methods to include additional parameters for improved key management
+
 ## v0.3.0 (2025-01-XX)
 
 ### 🚀 Major Features: Caching & Performance
