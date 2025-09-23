@@ -22,6 +22,7 @@ Example:
     >>> # Result: {"c": 3, "d": 4}
 """
 
+import copy
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
@@ -70,8 +71,8 @@ class ReplaceMergeStrategy(BaseMergeStrategy):
         if not loaded_files:
             return {}
 
-        # Return the last file's data
-        return loaded_files[-1][1].copy()
+        # Return the last file's data (deep copy to preserve immutability)
+        return copy.deepcopy(loaded_files[-1][1])
 
     def get_name(self) -> str:
         """Get the name of this strategy."""
