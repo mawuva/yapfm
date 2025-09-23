@@ -6,16 +6,18 @@ Complete API documentation for YAPFM, including all classes, methods, and their 
 
 1. [Core Classes](core_classes.md) - Main classes and their constructors
 2. [Strategies](strategies.md) - File format handling strategies
-3. [Mixins](mixins/index.md) - Mixin classes providing functionality
-4. [Registry](registry.md) - Strategy registry and management
-5. [Proxy](proxy.md) - Proxy wrapper for monitoring and auditing
-6. [Exceptions](exceptions.md) - Exception classes and error handling
-7. [Helpers](helpers.md) - Utility functions and helpers
+3. [Merge Strategies](merge_strategies.md) - Multi-file merge strategies
+4. [Mixins](mixins/index.md) - Mixin classes providing functionality
+5. [Registry](registry.md) - Strategy registry and management
+6. [Proxy](proxy.md) - Proxy wrapper for monitoring and auditing
+7. [Exceptions](exceptions.md) - Exception classes and error handling
+8. [Helpers](helpers.md) - Utility functions and helpers
 
 ## Quick Navigation
 
 - **Need to understand the main classes?** Check [Core Classes](core_classes.md)
 - **Working with different file formats?** See [Strategies](strategies.md)
+- **Merging multiple files?** See [Merge Strategies](merge_strategies.md)
 - **Looking for specific functionality?** Browse [Mixins](mixins/index.md)
 - **Want to register custom strategies?** Read [Registry](registry.md)
 - **Need monitoring capabilities?** Go to [Proxy](proxy.md)

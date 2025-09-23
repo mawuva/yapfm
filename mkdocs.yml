@@ -67,6 +67,7 @@ nav:
       - Overview: usage_examples/index.md
       - Caching & Streaming Examples: usage_examples/caching_streaming_examples.md
       - Basic Examples: usage_examples/basic_examples.md
+      - Unified API Examples: usage_examples/unified_api_examples.md
       - Configuration Management: usage_examples/configuration_management.md
       - Multi-Environment Setup: usage_examples/multi_environment_setup.md
       - Advanced Patterns: usage_examples/advanced_patterns.md
@@ -74,11 +75,12 @@ nav:
       - Error Handling Patterns: usage_examples/error_handling_patterns.md
       - Performance Optimization: usage_examples/performance_optimization.md
       - Integration Examples: usage_examples/integration_examples.md
-  - API Reference:
-      - Overview: api/index.md
-      - Core Classes: api/core_classes.md
-      - Strategies: api/strategies.md
-      - Mixins:
+      - API Reference:
+          - Overview: api/index.md
+          - Core Classes: api/core_classes.md
+          - Strategies: api/strategies.md
+          - Merge Strategies: api/merge_strategies.md
+          - Mixins:
           - Overview: api/mixins/index.md
           - File Operations: api/mixins/file_operations_mixin.md
           - Key Operations: api/mixins/key_operations_mixin.md
