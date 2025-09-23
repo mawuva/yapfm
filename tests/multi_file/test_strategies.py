@@ -16,7 +16,14 @@ class TestMergeStrategy:
     """Test cases for MergeStrategy enum."""
 
     def test_enum_values(self):
-        """Test that all expected enum values are present."""
+        """
+        Scenario: Test that all expected enum values are present
+
+        Expected:
+        - Should contain all expected strategy values
+        - Should have correct number of enum members
+        - Should include all required strategy types
+        """
         expected_values = [
             "deep",
             "namespace",
@@ -33,7 +40,14 @@ class TestMergeStrategy:
             assert expected in actual_values
 
     def test_enum_members(self):
-        """Test that all enum members are accessible."""
+        """
+        Scenario: Test that all enum members are accessible
+
+        Expected:
+        - Should provide access to all enum members
+        - Should have correct values for each member
+        - Should maintain consistent member names
+        """
         assert MergeStrategy.DEEP.value == "deep"
         assert MergeStrategy.NAMESPACE.value == "namespace"
         assert MergeStrategy.PRIORITY.value == "priority"
@@ -42,7 +56,14 @@ class TestMergeStrategy:
         assert MergeStrategy.CONDITIONAL.value == "conditional"
 
     def test_from_string_valid(self):
-        """Test from_string with valid strategy names."""
+        """
+        Scenario: Test from_string with valid strategy names
+
+        Expected:
+        - Should convert valid strings to enum members
+        - Should handle case variations correctly
+        - Should return correct enum for each valid string
+        """
         assert MergeStrategy.from_string("deep") == MergeStrategy.DEEP
         assert MergeStrategy.from_string("DEEP") == MergeStrategy.DEEP
         assert MergeStrategy.from_string("Deep") == MergeStrategy.DEEP
@@ -56,7 +77,14 @@ class TestMergeStrategy:
         assert MergeStrategy.from_string("conditional") == MergeStrategy.CONDITIONAL
 
     def test_from_string_invalid(self):
-        """Test from_string with invalid strategy names."""
+        """
+        Scenario: Test from_string with invalid strategy names
+
+        Expected:
+        - Should raise ValueError for invalid names
+        - Should handle empty strings correctly
+        - Should reject non-existent strategy names
+        """
         with pytest.raises(ValueError, match="Invalid merge strategy"):
             MergeStrategy.from_string("invalid")
 
@@ -70,7 +98,14 @@ class TestMergeStrategy:
             MergeStrategy.from_string("123")
 
     def test_from_string_case_insensitive(self):
-        """Test that from_string is case insensitive."""
+        """
+        Scenario: Test that from_string is case insensitive
+
+        Expected:
+        - Should handle uppercase strings correctly
+        - Should handle mixed case strings correctly
+        - Should handle lowercase strings correctly
+        """
         assert MergeStrategy.from_string("DEEP") == MergeStrategy.DEEP
         assert MergeStrategy.from_string("Deep") == MergeStrategy.DEEP
         assert MergeStrategy.from_string("deep") == MergeStrategy.DEEP
@@ -80,7 +115,14 @@ class TestMergeStrategy:
         assert MergeStrategy.from_string("namespace") == MergeStrategy.NAMESPACE
 
     def test_get_all_values(self):
-        """Test get_all_values method."""
+        """
+        Scenario: Test get_all_values method
+
+        Expected:
+        - Should return list of all enum values
+        - Should contain correct number of values
+        - Should return all values as strings
+        """
         all_values = MergeStrategy.get_all_values()
 
         assert isinstance(all_values, list)
@@ -103,7 +145,14 @@ class TestMergeStrategy:
             assert isinstance(value, str)
 
     def test_get_all_values_immutable(self):
-        """Test that get_all_values returns a new list each time."""
+        """
+        Scenario: Test that get_all_values returns a new list each time
+
+        Expected:
+        - Should return new list instance each time
+        - Should maintain same content across calls
+        - Should prevent external modification
+        """
         values1 = MergeStrategy.get_all_values()
         values2 = MergeStrategy.get_all_values()
 
@@ -111,7 +160,14 @@ class TestMergeStrategy:
         assert values1 is not values2  # Different objects
 
     def test_is_valid_true(self):
-        """Test is_valid with valid strategy names."""
+        """
+        Scenario: Test is_valid with valid strategy names
+
+        Expected:
+        - Should return True for valid strategy names
+        - Should handle case variations correctly
+        - Should validate all supported strategies
+        """
         assert MergeStrategy.is_valid("deep") is True
         assert MergeStrategy.is_valid("DEEP") is True
         assert MergeStrategy.is_valid("Deep") is True
@@ -125,7 +181,14 @@ class TestMergeStrategy:
         assert MergeStrategy.is_valid("conditional") is True
 
     def test_is_valid_false(self):
-        """Test is_valid with invalid strategy names."""
+        """
+        Scenario: Test is_valid with invalid strategy names
+
+        Expected:
+        - Should return False for invalid strategy names
+        - Should handle empty strings correctly
+        - Should reject non-existent strategies
+        """
         assert MergeStrategy.is_valid("invalid") is False
         assert MergeStrategy.is_valid("") is False
         assert MergeStrategy.is_valid("deep_merge") is False
@@ -134,7 +197,14 @@ class TestMergeStrategy:
         assert MergeStrategy.is_valid("True") is False
 
     def test_is_valid_case_insensitive(self):
-        """Test that is_valid is case insensitive."""
+        """
+        Scenario: Test that is_valid is case insensitive
+
+        Expected:
+        - Should handle uppercase strings correctly
+        - Should handle mixed case strings correctly
+        - Should handle lowercase strings correctly
+        """
         assert MergeStrategy.is_valid("DEEP") is True
         assert MergeStrategy.is_valid("Deep") is True
         assert MergeStrategy.is_valid("deep") is True
@@ -144,7 +214,14 @@ class TestMergeStrategy:
         assert MergeStrategy.is_valid("namespace") is True
 
     def test_enum_comparison(self):
-        """Test enum member comparison."""
+        """
+        Scenario: Test enum member comparison
+
+        Expected:
+        - Should compare equal members as equal
+        - Should compare different members as not equal
+        - Should handle string value comparisons correctly
+        """
         assert MergeStrategy.DEEP == MergeStrategy.DEEP
         assert MergeStrategy.DEEP != MergeStrategy.NAMESPACE
 
@@ -153,7 +230,14 @@ class TestMergeStrategy:
         assert MergeStrategy.DEEP.value != "namespace"
 
     def test_enum_iteration(self):
-        """Test iterating over enum members."""
+        """
+        Scenario: Test iterating over enum members
+
+        Expected:
+        - Should iterate over all enum members
+        - Should include all expected members
+        - Should maintain correct member count
+        """
         members = list(MergeStrategy)
 
         assert len(members) == 6
@@ -165,24 +249,52 @@ class TestMergeStrategy:
         assert MergeStrategy.CONDITIONAL in members
 
     def test_enum_membership(self):
-        """Test membership testing."""
+        """
+        Scenario: Test membership testing
+
+        Expected:
+        - Should identify valid members correctly
+        - Should reject invalid members
+        - Should handle value-based membership testing
+        """
         assert "deep" in [member.value for member in MergeStrategy]
         assert "namespace" in [member.value for member in MergeStrategy]
         assert "invalid" not in [member.value for member in MergeStrategy]
 
     def test_enum_string_representation(self):
-        """Test string representation of enum members."""
+        """
+        Scenario: Test string representation of enum members
+
+        Expected:
+        - Should return correct string values
+        - Should maintain consistent string format
+        - Should handle all enum members correctly
+        """
         assert str(MergeStrategy.DEEP) == "deep"
         assert str(MergeStrategy.NAMESPACE) == "namespace"
         assert str(MergeStrategy.PRIORITY) == "priority"
 
     def test_enum_repr(self):
-        """Test repr of enum members."""
+        """
+        Scenario: Test repr of enum members
+
+        Expected:
+        - Should return descriptive repr strings
+        - Should include class name in repr
+        - Should be consistent across all members
+        """
         assert repr(MergeStrategy.DEEP) == "MergeStrategy.DEEP"
         assert repr(MergeStrategy.NAMESPACE) == "MergeStrategy.NAMESPACE"
 
     def test_enum_hash(self):
-        """Test that enum members are hashable."""
+        """
+        Scenario: Test that enum members are hashable
+
+        Expected:
+        - Should be usable as dictionary keys
+        - Should maintain hash consistency
+        - Should support hash-based operations
+        """
         # This is important for using enum members as dictionary keys
         strategy_dict = {
             MergeStrategy.DEEP: "Deep merge strategy",
@@ -193,7 +305,14 @@ class TestMergeStrategy:
         assert strategy_dict[MergeStrategy.NAMESPACE] == "Namespace merge strategy"
 
     def test_enum_equality_with_strings(self):
-        """Test equality comparison with strings."""
+        """
+        Scenario: Test equality comparison with strings
+
+        Expected:
+        - Should not equal string values directly
+        - Should equal their own string values via .value
+        - Should maintain proper equality semantics
+        """
         # Enum members should not be equal to their string values
         assert MergeStrategy.DEEP != "deep"
         assert MergeStrategy.DEEP.value == "deep"
@@ -202,7 +321,14 @@ class TestMergeStrategy:
         assert MergeStrategy.DEEP == MergeStrategy.DEEP
 
     def test_enum_ordering(self):
-        """Test that enum members can be ordered."""
+        """
+        Scenario: Test that enum members can be ordered
+
+        Expected:
+        - Should support sorting by value
+        - Should maintain consistent ordering
+        - Should handle alphabetical ordering correctly
+        """
         strategies = [MergeStrategy.APPEND, MergeStrategy.DEEP, MergeStrategy.NAMESPACE]
         sorted_strategies = sorted(strategies, key=lambda x: x.value)
 
@@ -212,7 +338,14 @@ class TestMergeStrategy:
         assert sorted_strategies[2] == MergeStrategy.NAMESPACE
 
     def test_enum_immutability(self):
-        """Test that enum members are immutable."""
+        """
+        Scenario: Test that enum members are immutable
+
+        Expected:
+        - Should prevent modification of enum values
+        - Should raise AttributeError on modification attempts
+        - Should maintain original values after modification attempts
+        """
         # This test ensures that enum members cannot be modified
         original_value = MergeStrategy.DEEP.value
 
@@ -226,7 +359,14 @@ class TestMergeStrategy:
         assert MergeStrategy.DEEP.value == original_value
 
     def test_enum_type_annotation(self):
-        """Test that enum can be used in type annotations."""
+        """
+        Scenario: Test that enum can be used in type annotations
+
+        Expected:
+        - Should work in function parameter type hints
+        - Should maintain type safety
+        - Should support type checking
+        """
 
         def process_strategy(strategy: MergeStrategy) -> str:
             return strategy.value
@@ -235,7 +375,14 @@ class TestMergeStrategy:
         assert process_strategy(MergeStrategy.NAMESPACE) == "namespace"
 
     def test_enum_in_union_types(self):
-        """Test that enum can be used in union types."""
+        """
+        Scenario: Test that enum can be used in union types
+
+        Expected:
+        - Should work in Union type annotations
+        - Should support type checking with unions
+        - Should handle both enum and string types
+        """
         from typing import Union
 
         def process_strategy_or_string(strategy: Union[MergeStrategy, str]) -> str:

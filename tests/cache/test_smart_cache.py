@@ -17,7 +17,14 @@ class TestSmartCache:
     """Test cases for SmartCache class."""
 
     def test_smart_cache_initialization(self):
-        """Test SmartCache initialization with default parameters."""
+        """
+        Scenario: Initialize SmartCache with default parameters
+
+        Expected:
+        - Should create SmartCache instance with default values
+        - Should have correct default configuration
+        - Should initialize with empty cache
+        """
         cache = SmartCache()
 
         assert cache.max_size == 1000
@@ -29,7 +36,14 @@ class TestSmartCache:
         assert cache._total_memory == 0
 
     def test_smart_cache_initialization_custom_params(self):
-        """Test SmartCache initialization with custom parameters."""
+        """
+        Scenario: Initialize SmartCache with custom parameters
+
+        Expected:
+        - Should create SmartCache with custom configuration
+        - Should respect all custom parameter values
+        - Should maintain custom settings correctly
+        """
         cache = SmartCache(
             max_size=500,
             max_memory_mb=50.0,
@@ -45,7 +59,15 @@ class TestSmartCache:
         assert cache.track_stats is False
 
     def test_smart_cache_basic_operations(self):
-        """Test basic cache operations (set, get, has_key, delete)."""
+        """
+        Scenario: Perform basic cache operations
+
+        Expected:
+        - Should set and retrieve values correctly
+        - Should check key existence properly
+        - Should delete keys successfully
+        - Should handle nonexistent keys gracefully
+        """
         cache = SmartCache()
 
         # Test set and get
@@ -65,7 +87,14 @@ class TestSmartCache:
         assert cache.delete("nonexistent") is False
 
     def test_smart_cache_ttl_functionality(self):
-        """Test TTL (Time-To-Live) functionality."""
+        """
+        Scenario: Test TTL (Time-To-Live) functionality
+
+        Expected:
+        - Should expire entries after TTL period
+        - Should return None for expired entries
+        - Should handle TTL timing correctly
+        """
         cache = SmartCache(default_ttl=0.1)  # 100ms TTL
 
         # Set value with TTL
@@ -78,7 +107,14 @@ class TestSmartCache:
         assert cache.has_key("key1") is False
 
     def test_smart_cache_custom_ttl(self):
-        """Test custom TTL per entry."""
+        """
+        Scenario: Test custom TTL per entry
+
+        Expected:
+        - Should allow custom TTL per entry
+        - Should use default TTL when not specified
+        - Should handle mixed TTL scenarios correctly
+        """
         cache = SmartCache(default_ttl=3600.0)  # 1 hour default
 
         # Set with custom TTL
@@ -94,7 +130,14 @@ class TestSmartCache:
         assert cache.get("key2") == "value2"  # Still valid
 
     def test_smart_cache_lru_eviction(self):
-        """Test LRU (Least Recently Used) eviction policy."""
+        """
+        Scenario: Test LRU (Least Recently Used) eviction policy
+
+        Expected:
+        - Should evict least recently used entries when full
+        - Should maintain access order correctly
+        - Should preserve most recently used entries
+        """
         cache = SmartCache(max_size=3)
 
         # Fill cache to capacity
@@ -117,7 +160,14 @@ class TestSmartCache:
         assert cache.has_key("key4") is True
 
     def test_smart_cache_memory_eviction(self):
-        """Test memory-based eviction."""
+        """
+        Scenario: Test memory-based eviction
+
+        Expected:
+        - Should evict entries when memory limit is exceeded
+        - Should respect memory constraints
+        - Should handle large data entries properly
+        """
         cache = SmartCache(max_memory_mb=0.001)  # 1KB limit
 
         # Add large value
@@ -128,7 +178,14 @@ class TestSmartCache:
         assert cache.get("large") is None
 
     def test_smart_cache_size_estimation(self):
-        """Test size estimation functionality."""
+        """
+        Scenario: Test size estimation functionality
+
+        Expected:
+        - Should estimate size for different data types
+        - Should return positive size values
+        - Should handle various data structures
+        """
         cache = SmartCache()
 
         # Test with different data types
@@ -143,7 +200,14 @@ class TestSmartCache:
             assert entry.size > 0
 
     def test_smart_cache_cleanup_functionality(self):
-        """Test automatic cleanup of expired entries."""
+        """
+        Scenario: Test automatic cleanup of expired entries
+
+        Expected:
+        - Should automatically clean up expired entries
+        - Should respect cleanup interval timing
+        - Should remove expired entries from cache
+        """
         cache = SmartCache(cleanup_interval=0.1)  # 100ms cleanup interval
 
         # Set value with short TTL
@@ -161,7 +225,14 @@ class TestSmartCache:
         assert "key1" not in cache._cache
 
     def test_smart_cache_statistics(self):
-        """Test cache statistics tracking."""
+        """
+        Scenario: Test cache statistics tracking
+
+        Expected:
+        - Should track hits and misses correctly
+        - Should calculate hit rate properly
+        - Should maintain accurate cache size
+        """
         cache = SmartCache(track_stats=True)
 
         # Initial stats
@@ -182,7 +253,14 @@ class TestSmartCache:
         assert stats["hit_rate"] == 0.5
 
     def test_smart_cache_no_stats_tracking(self):
-        """Test cache without statistics tracking."""
+        """
+        Scenario: Test cache without statistics tracking
+
+        Expected:
+        - Should not track statistics when disabled
+        - Should return zero stats when tracking is off
+        - Should perform operations without stat overhead
+        """
         cache = SmartCache(track_stats=False)
 
         cache.set("key1", "value1")
@@ -194,7 +272,14 @@ class TestSmartCache:
         assert stats["misses"] == 0
 
     def test_smart_cache_pattern_invalidation(self):
-        """Test pattern-based invalidation."""
+        """
+        Scenario: Test pattern-based invalidation
+
+        Expected:
+        - Should invalidate keys matching pattern
+        - Should return count of invalidated keys
+        - Should preserve non-matching keys
+        """
         cache = SmartCache()
 
         # Add multiple keys
@@ -213,7 +298,14 @@ class TestSmartCache:
         assert cache.has_key("config:port") is True
 
     def test_smart_cache_clear(self):
-        """Test cache clearing."""
+        """
+        Scenario: Test cache clearing
+
+        Expected:
+        - Should remove all entries from cache
+        - Should reset memory usage to zero
+        - Should maintain cache configuration
+        """
         cache = SmartCache()
 
         # Add some data
@@ -229,7 +321,14 @@ class TestSmartCache:
         assert cache._total_memory == 0
 
     def test_smart_cache_thread_safety(self):
-        """Test thread safety of cache operations."""
+        """
+        Scenario: Test thread safety of cache operations
+
+        Expected:
+        - Should handle concurrent access safely
+        - Should maintain data consistency
+        - Should not cause race conditions
+        """
         cache = SmartCache()
         results = []
 
@@ -257,7 +356,14 @@ class TestSmartCache:
             assert actual_value == expected_value
 
     def test_smart_cache_access_count_tracking(self):
-        """Test access count tracking."""
+        """
+        Scenario: Test access count tracking
+
+        Expected:
+        - Should track number of accesses per key
+        - Should increment count on each access
+        - Should maintain accurate access statistics
+        """
         cache = SmartCache()
 
         cache.set("key1", "value1")
@@ -271,7 +377,14 @@ class TestSmartCache:
         assert entry.access_count == 3
 
     def test_smart_cache_last_access_tracking(self):
-        """Test last access time tracking."""
+        """
+        Scenario: Test last access time tracking
+
+        Expected:
+        - Should track last access time for each key
+        - Should update timestamp on each access
+        - Should maintain accurate timing information
+        """
         cache = SmartCache()
 
         cache.set("key1", "value1")
@@ -285,7 +398,14 @@ class TestSmartCache:
         assert entry.last_access > initial_time
 
     def test_smart_cache_replace_existing_key(self):
-        """Test replacing existing key."""
+        """
+        Scenario: Test replacing existing key
+
+        Expected:
+        - Should replace value for existing key
+        - Should maintain single entry per key
+        - Should update value correctly
+        """
         cache = SmartCache()
 
         # Set initial value
@@ -300,7 +420,14 @@ class TestSmartCache:
         assert len(cache._cache) == 1
 
     def test_smart_cache_memory_usage_calculation(self):
-        """Test memory usage calculation."""
+        """
+        Scenario: Test memory usage calculation
+
+        Expected:
+        - Should calculate memory usage correctly
+        - Should track total memory consumption
+        - Should provide accurate memory statistics
+        """
         cache = SmartCache()
 
         # Add some data
@@ -312,7 +439,14 @@ class TestSmartCache:
         assert stats["max_memory_mb"] == 100.0
 
     def test_smart_cache_edge_cases(self):
-        """Test edge cases and error conditions."""
+        """
+        Scenario: Test edge cases and error conditions
+
+        Expected:
+        - Should handle empty string keys
+        - Should handle None values
+        - Should handle very long keys
+        """
         cache = SmartCache()
 
         # Test with empty string key
@@ -329,7 +463,14 @@ class TestSmartCache:
         assert cache.get(long_key) == "long_key_value"
 
     def test_smart_cache_eviction_stats(self):
-        """Test eviction statistics."""
+        """
+        Scenario: Test eviction statistics
+
+        Expected:
+        - Should track number of evictions
+        - Should increment eviction count when cache is full
+        - Should maintain accurate eviction statistics
+        """
         cache = SmartCache(max_size=2)
 
         # Fill cache and trigger evictions
@@ -341,7 +482,14 @@ class TestSmartCache:
         assert stats["evictions"] >= 1
 
     def test_smart_cache_expired_cleanup_stats(self):
-        """Test expired cleanup statistics."""
+        """
+        Scenario: Test expired cleanup statistics
+
+        Expected:
+        - Should track number of expired cleanups
+        - Should increment cleanup count when expired entries are removed
+        - Should maintain accurate cleanup statistics
+        """
         cache = SmartCache(cleanup_interval=0.1)
 
         # Set value with short TTL
@@ -355,7 +503,14 @@ class TestSmartCache:
         assert stats["expired_cleanups"] >= 1
 
     def test_smart_cache_with_custom_size(self):
-        """Test cache with custom size estimation."""
+        """
+        Scenario: Test cache with custom size estimation
+
+        Expected:
+        - Should accept custom size values
+        - Should use custom size instead of estimation
+        - Should respect custom size in memory calculations
+        """
         cache = SmartCache()
 
         # Set with custom size
@@ -365,7 +520,14 @@ class TestSmartCache:
         assert entry.size == 2048
 
     def test_smart_cache_hit_rate_calculation(self):
-        """Test hit rate calculation."""
+        """
+        Scenario: Test hit rate calculation
+
+        Expected:
+        - Should calculate hit rate as hits/(hits+misses)
+        - Should return 0.0 when no requests made
+        - Should provide accurate hit rate statistics
+        """
         cache = SmartCache()
 
         # No requests yet
