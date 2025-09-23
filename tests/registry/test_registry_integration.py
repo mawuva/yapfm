@@ -4,6 +4,8 @@ Registry integration tests.
 This module contains tests for the FileStrategyRegistry class.
 """
 
+# mypy: ignore-errors
+
 import threading
 from pathlib import Path
 from typing import Any, Generator

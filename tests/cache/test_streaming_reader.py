@@ -28,7 +28,15 @@ class TestStreamingFileReader:
             return Path(f.name)
 
     def test_streaming_reader_initialization(self):
-        """Test StreamingFileReader initialization."""
+        """
+        Scenario: Initialize StreamingFileReader with default parameters
+
+        Expected:
+        - Should create reader with correct file path
+        - Should use default chunk and buffer sizes
+        - Should initialize with correct encoding
+        - Should set initial state correctly
+        """
         file_path = self.create_test_file("test content")
 
         try:
@@ -45,7 +53,15 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_initialization_custom_params(self):
-        """Test StreamingFileReader initialization with custom parameters."""
+        """
+        Scenario: Initialize StreamingFileReader with custom parameters
+
+        Expected:
+        - Should use custom chunk size
+        - Should use custom buffer size
+        - Should use custom encoding
+        - Should maintain custom configuration
+        """
         file_path = self.create_test_file("test content")
 
         try:
@@ -60,14 +76,28 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_nonexistent_file(self):
-        """Test StreamingFileReader with nonexistent file."""
+        """
+        Scenario: Test StreamingFileReader with nonexistent file
+
+        Expected:
+        - Should handle nonexistent file gracefully
+        - Should set total size to zero
+        - Should not crash on initialization
+        """
         file_path = Path("nonexistent_file.txt")
         reader = StreamingFileReader(file_path)
 
         assert reader._total_size == 0
 
     def test_streaming_reader_context_manager(self):
-        """Test StreamingFileReader as context manager."""
+        """
+        Scenario: Test StreamingFileReader as context manager
+
+        Expected:
+        - Should open file handle in context
+        - Should close file handle after context
+        - Should maintain proper resource management
+        """
         file_path = self.create_test_file("test content")
 
         try:
@@ -81,7 +111,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_open_close(self):
-        """Test manual open and close operations."""
+        """
+        Scenario: Test manual open and close operations
+
+        Expected:
+        - Should start with closed file handle
+        - Should open file handle when open() called
+        - Should close file handle when close() called
+        """
         file_path = self.create_test_file("test content")
 
         try:
@@ -101,7 +138,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_read_chunk(self):
-        """Test reading chunks from file."""
+        """
+        Scenario: Test reading chunks from file
+
+        Expected:
+        - Should read file in specified chunk sizes
+        - Should return None when end of file reached
+        - Should preserve all content across chunks
+        """
         content = "Hello, World! This is a test file with some content."
         file_path = self.create_test_file(content)
 
@@ -130,7 +174,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_read_chunks_generator(self):
-        """Test read_chunks generator."""
+        """
+        Scenario: Test read_chunks generator
+
+        Expected:
+        - Should yield chunks as generator
+        - Should produce multiple chunks for large content
+        - Should preserve all content across chunks
+        """
         content = "Line 1\nLine 2\nLine 3\n"
         file_path = self.create_test_file(content)
 
@@ -147,7 +198,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_read_lines(self):
-        """Test reading lines from file."""
+        """
+        Scenario: Test reading lines from file
+
+        Expected:
+        - Should read file line by line
+        - Should handle line endings correctly
+        - Should preserve line structure
+        """
         content = "Line 1\nLine 2\nLine 3\n"
         file_path = self.create_test_file(content)
 
@@ -162,7 +220,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_seek_tell(self):
-        """Test seek and tell operations."""
+        """
+        Scenario: Test seek and tell operations
+
+        Expected:
+        - Should track current position correctly
+        - Should allow seeking to specific positions
+        - Should maintain position after operations
+        """
         content = "0123456789"
         file_path = self.create_test_file(content)
 
@@ -189,7 +254,15 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_progress(self):
-        """Test progress calculation."""
+        """
+        Scenario: Test progress calculation
+
+        Expected:
+        - Should calculate progress as percentage
+        - Should return 0.0 at start
+        - Should return 1.0 at end
+        - Should provide accurate progress values
+        """
         content = "x" * 1000  # 1000 characters
         file_path = self.create_test_file(content)
 
@@ -215,7 +288,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_get_size(self):
-        """Test getting file size."""
+        """
+        Scenario: Test getting file size
+
+        Expected:
+        - Should return correct file size
+        - Should match actual file size in bytes
+        - Should be available before opening file
+        """
         content = "test content"
         file_path = self.create_test_file(content)
 
@@ -229,7 +309,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_process_chunks(self):
-        """Test processing chunks with custom function."""
+        """
+        Scenario: Test processing chunks with custom function
+
+        Expected:
+        - Should apply custom function to each chunk
+        - Should return processed results
+        - Should handle all chunks in file
+        """
         content = "Hello\nWorld\nTest\n"
         file_path = self.create_test_file(content)
 
@@ -249,7 +336,14 @@ class TestStreamingFileReader:
             file_path.unlink()
 
     def test_streaming_reader_process_chunks_with_progress_callback(self):
-        """Test processing chunks with progress callback."""
+        """
+        Scenario: Test processing chunks with progress callback
+
+        Expected:
+        - Should call progress callback during processing
+        - Should provide accurate progress values
+        - Should process all chunks correctly
+        """
         content = "x" * 100
         file_path = self.create_test_file(content)
 

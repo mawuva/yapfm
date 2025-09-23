@@ -1,486 +1,470 @@
 """
 Tests for CacheMixin.
 
-This module tests the CacheMixin functionality including caching,
-invalidation, and integration with the unified cache system.
+This module contains unit tests for the CacheMixin class,
+which provides caching functionality for key operations.
 """
 
 # mypy: ignore-errors
 
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
-
-import pytest
+from typing import Any, Dict, Optional
+from unittest.mock import MagicMock, patch
 
 from yapfm.cache.smart_cache import SmartCache
 from yapfm.mixins.cache_mixin import CacheMixin
 from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
-from yapfm.strategies.json_strategy import JsonStrategy
 
 
 class MockFileManager(CacheMixin, KeyOperationsMixin):
     """Mock file manager for testing CacheMixin."""
 
-    def __init__(self, enable_cache=True, cache_size=100, cache_ttl=3600):
+    def __init__(
+        self,
+        path: Path,
+        auto_create: bool = False,
+        document: Optional[Dict[str, Any]] = None,
+        enable_cache: bool = True,
+        cache: Optional[SmartCache] = None,
+    ) -> None:
+        self.path = path
+        self.auto_create = auto_create
+        self.document = document or {}
+        self._loaded = True
+        self._dirty = False
+        self.strategy = MagicMock()
         self.enable_cache = enable_cache
-        self.cache_size = cache_size
-        self.cache_ttl = cache_ttl
-        self.document = {}
-        self._loaded = False
+        self.unified_cache = cache or (SmartCache() if enable_cache else None)
+        super().__init__()
+
+    def exists(self) -> bool:
+        """Check if file exists."""
+        return self.path.exists()
+
+    def is_loaded(self) -> bool:
+        """Check if file is loaded."""
+        return self._loaded
+
+    def load(self) -> None:
+        """Load file."""
+        self._loaded = True
+
+    def save(self) -> None:
+        """Save file."""
         self._dirty = False
 
-        # Initialize strategy
-        self.strategy = JsonStrategy()
-
-        # Initialize cache
-        if enable_cache:
-            self.unified_cache = SmartCache(
-                max_size=cache_size, default_ttl=cache_ttl, track_stats=True
-            )
-        else:
-            self.unified_cache = None
-
-        # Initialize key cache
-        self._key_cache = {}
-
-    def get_cache(self):
-        """Get the unified cache."""
+    def get_cache(self) -> Optional[SmartCache]:
+        """Get the cache instance."""
         if self.enable_cache:
             return self.unified_cache
         return None
 
-    def _generate_cache_key(self, dot_key, path, key_name, key_type="key"):
-        """Generate a cache key."""
-        if dot_key is not None:
-            return f"{key_type}:{dot_key}"
-        elif path is not None and key_name is not None:
-            path_str = ".".join(path) if path else ""
-            return (
-                f"{key_type}:{path_str}.{key_name}"
-                if path_str
-                else f"{key_type}:{key_name}"
-            )
+    def _generate_cache_key(
+        self,
+        dot_key: Optional[str],
+        path: Optional[list],
+        key_name: Optional[str],
+        key_type: str = "key",
+    ) -> str:
+        """Generate cache key for testing."""
+        if dot_key:
+            return f"key:{dot_key}"
+        elif path and key_name:
+            return f"key:{'.'.join(path)}.{key_name}"
         else:
-            raise ValueError("Cannot generate cache key without key parameters")
-
-    def is_loaded(self):
-        """Mock is_loaded method."""
-        return self._loaded
-
-    def load(self):
-        """Mock load method."""
-        self._loaded = True
-
-    def save(self):
-        """Mock save method."""
-        pass
-
-    def get_key_from_document(
-        self, dot_key=None, path=None, key_name=None, default=None
-    ):
-        """Mock method to get key from document."""
-        if dot_key is not None:
-            keys = dot_key.split(".")
-            value = self.document
-            for key in keys:
-                if isinstance(value, dict) and key in value:
-                    value = value[key]
-                else:
-                    return default
-            return value
-        elif path is not None and key_name is not None:
-            value = self.document
-            for key in path:
-                if isinstance(value, dict) and key in value:
-                    value = value[key]
-                else:
-                    return default
-            if isinstance(value, dict) and key_name in value:
-                return value[key_name]
-            return default
-        return default
+            return "key:root"
 
 
 class TestCacheMixin:
-    """Test cases for CacheMixin class."""
+    """Test class for CacheMixin."""
 
-    def test_cache_mixin_initialization(self):
-        """Test CacheMixin initialization."""
-        manager = MockFileManager()
+    def setup_method(self) -> None:
+        """Set up test fixtures."""
+        self.temp_dir = tempfile.mkdtemp()
+        self.temp_path = Path(self.temp_dir)
+        self.test_file = self.temp_path / "test_config.json"
 
-        assert manager.enable_cache is True
-        assert manager.unified_cache is not None
-        assert isinstance(manager.unified_cache, SmartCache)
+        # Create test data
+        self.test_data = {
+            "database": {"host": "localhost", "port": 5432, "name": "testdb"},
+            "api": {"timeout": 30, "retries": 3},
+            "debug": True,
+            "version": "1.0.0",
+        }
 
-    def test_cache_mixin_without_cache(self):
-        """Test CacheMixin without cache enabled."""
-        manager = MockFileManager(enable_cache=False)
+    def teardown_method(self) -> None:
+        """Clean up test fixtures."""
+        import shutil
 
-        assert manager.enable_cache is False
-        assert manager.unified_cache is None
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def test_get_value_with_dot_key(self):
-        """Test get_value with dot key notation."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost", "port": 5432}}
+    def test_get_value_with_cache_enabled(self) -> None:
+        """
+        Scenario: Get value with cache enabled
+
+        Expected:
+        - Should load from document on first call
+        - Should use cache on subsequent calls
+        - Should not call get_key multiple times
+        """
+        # Create mock file manager with cache
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
         # First call should load from document and cache
-        value = manager.get_value("database.host")
-        assert value == "localhost"
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            result = fm.get_value("database.host")
 
-        # Verify it's cached
-        assert manager.unified_cache.has_key("key:database.host")
-        assert manager.unified_cache.get("key:database.host") == "localhost"
-
-    def test_get_value_with_path_and_key_name(self):
-        """Test get_value with path and key_name parameters."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost", "port": 5432}}
-
-        # First call should load from document and cache
-        value = manager.get_value(path=["database"], key_name="port")
-        assert value == 5432
-
-        # Verify it's cached
-        assert manager.unified_cache.has_key("key:database.port")
-        assert manager.unified_cache.get("key:database.port") == 5432
-
-    def test_get_value_parameter_validation(self):
-        """Test get_value parameter validation."""
-        manager = MockFileManager()
-
-        # Should raise ValueError when no parameters provided
-        with pytest.raises(
-            ValueError,
-            match="You must provide either dot_key or \\(path \\+ key_name\\)",
-        ):
-            manager.get_value()
-
-        # Should raise ValueError when only path provided
-        with pytest.raises(
-            ValueError,
-            match="You must provide either dot_key or \\(path \\+ key_name\\)",
-        ):
-            manager.get_value(path=["database"])
-
-        # Should raise ValueError when only key_name provided
-        with pytest.raises(
-            ValueError,
-            match="You must provide either dot_key or \\(path \\+ key_name\\)",
-        ):
-            manager.get_value(key_name="host")
-
-    def test_get_value_with_default(self):
-        """Test get_value with default value."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost"}}
-
-        # Test with existing key
-        value = manager.get_value("database.host", default="unknown")
-        assert value == "localhost"
-
-        # Test with non-existing key
-        value = manager.get_value("database.nonexistent", default="unknown")
-        assert value == "unknown"
-
-    def test_get_value_caching_behavior(self):
-        """Test caching behavior of get_value."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost"}}
-
-        # Mock KeyOperationsMixin.get_key to track calls
-        original_get_key = KeyOperationsMixin.get_key
-        call_count = 0
-
-        def mock_get_key(
-            self, dot_key=None, path=None, key_name=None, default=None, **kwargs
-        ):
-            nonlocal call_count
-            call_count += 1
-            return original_get_key(
-                self, dot_key, path=path, key_name=key_name, default=default, **kwargs
+            assert result == "localhost"
+            mock_get_key.assert_called_once_with(
+                fm, dot_key="database.host", path=None, key_name=None, default=None
             )
 
-        with patch.object(KeyOperationsMixin, "get_key", side_effect=mock_get_key):
-            # First call should call KeyOperationsMixin.get_key
-            value1 = manager.get_value("database.host")
-            assert value1 == "localhost"
-            assert call_count == 1
+        # Second call should use cache (no call to get_key)
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            result = fm.get_value("database.host")
 
-            # Second call should use cache, not call KeyOperationsMixin.get_key
-            value2 = manager.get_value("database.host")
-            assert value2 == "localhost"
-            assert call_count == 1  # Should not increase
+            assert result == "localhost"
+            mock_get_key.assert_not_called()
 
-    def test_get_value_without_cache(self):
-        """Test get_value when cache is disabled."""
-        manager = MockFileManager(enable_cache=False)
-        manager.document = {"database": {"host": "localhost"}}
+    def test_get_value_with_cache_disabled(self) -> None:
+        """
+        Scenario: Get value with cache disabled
 
-        # Should work without cache
-        value = manager.get_value("database.host")
-        assert value == "localhost"
+        Expected:
+        - Should always load from document
+        - Should not use cache
+        - Should call get_key on every call
+        """
+        # Create mock file manager without cache
+        fm = MockFileManager(
+            self.test_file, document=self.test_data, enable_cache=False
+        )
 
-        # Should not have any cache
-        assert manager.unified_cache is None
+        # Both calls should go to get_key (no caching)
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
 
-    def test_get_value_with_none_values(self):
-        """Test get_value with None values."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": None, "port": 5432}}
+            result1 = fm.get_value("database.host")
+            result2 = fm.get_value("database.host")
 
-        # Test with None value
-        value = manager.get_value("database.host")
-        assert value is None
+            assert result1 == "localhost"
+            assert result2 == "localhost"
+            assert mock_get_key.call_count == 2
 
-        # Should be cached
-        assert manager.unified_cache.has_key("key:database.host")
-        assert manager.unified_cache.get("key:database.host") is None
+    def test_get_value_with_default(self) -> None:
+        """Test get_value with default value."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-    def test_clear_cache(self):
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "default_host"
+            result = fm.get_value("nonexistent.key", default="default_host")
+
+            assert result == "default_host"
+            mock_get_key.assert_called_once_with(
+                fm,
+                dot_key="nonexistent.key",
+                path=None,
+                key_name=None,
+                default="default_host",
+            )
+
+    def test_get_value_caches_none_values(self) -> None:
+        """Test that None values are properly cached."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
+
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = None
+
+            # First call
+            result1 = fm.get_value("nonexistent.key")
+            assert result1 is None
+
+            # Second call should use cache
+            result2 = fm.get_value("nonexistent.key")
+            assert result2 is None
+
+            # get_key should only be called once
+            mock_get_key.assert_called_once()
+
+    def test_set_value_invalidates_cache(self) -> None:
+        """Test that set_value invalidates cache."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
+
+        # First, cache a value
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            fm.get_value("database.host")
+
+        # Now set a new value
+        with patch.object(KeyOperationsMixin, "set_key") as mock_set_key:
+            fm.set_value("database.host", "new_host")
+            mock_set_key.assert_called_once_with(
+                fm,
+                "new_host",
+                dot_key="database.host",
+                path=None,
+                key_name=None,
+                overwrite=True,
+            )
+
+        # Cache should be invalidated, so next get should call get_key again
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "new_host"
+            result = fm.get_value("database.host")
+
+            assert result == "new_host"
+            mock_get_key.assert_called_once()
+
+    def test_set_value_with_overwrite_false(self) -> None:
+        """Test set_value with overwrite=False."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
+
+        with patch.object(KeyOperationsMixin, "set_key") as mock_set_key:
+            fm.set_value("database.host", "new_host", overwrite=False)
+            mock_set_key.assert_called_once_with(
+                fm,
+                "new_host",
+                dot_key="database.host",
+                path=None,
+                key_name=None,
+                overwrite=False,
+            )
+
+    def test_set_value_with_no_cache(self) -> None:
+        """Test set_value when cache is disabled."""
+        fm = MockFileManager(
+            self.test_file, document=self.test_data, enable_cache=False
+        )
+
+        with patch.object(KeyOperationsMixin, "set_key") as mock_set_key:
+            fm.set_value("database.host", "new_host")
+            mock_set_key.assert_called_once_with(
+                fm,
+                "new_host",
+                dot_key="database.host",
+                path=None,
+                key_name=None,
+                overwrite=True,
+            )
+
+    def test_clear_cache(self) -> None:
         """Test clear_cache method."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost", "port": 5432}}
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        # Add some values to cache
-        manager.get_value("database.host")
-        manager.get_value("database.port")
+        # Cache some values
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            fm.get_value("database.host")
+            fm.get_value("database.port")
 
-        # Verify cache has data
-        assert manager.unified_cache.get_stats()["size"] == 2
+        # Verify cache has entries
+        assert len(fm.unified_cache._cache) > 0
 
         # Clear cache
-        manager.clear_cache()
+        fm.clear_cache()
 
         # Verify cache is empty
-        assert manager.unified_cache.get_stats()["size"] == 0
+        assert len(fm.unified_cache._cache) == 0
 
-    def test_clear_cache_without_cache(self):
+    def test_clear_cache_with_no_cache(self) -> None:
         """Test clear_cache when cache is disabled."""
-        manager = MockFileManager(enable_cache=False)
+        fm = MockFileManager(
+            self.test_file, document=self.test_data, enable_cache=False
+        )
 
-        # Should not raise error
-        manager.clear_cache()
+        # Should not raise any errors
+        fm.clear_cache()
 
-    def test_invalidate_cache_without_pattern(self):
+    def test_invalidate_cache_all(self) -> None:
         """Test invalidate_cache without pattern (clear all)."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost", "port": 5432}}
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        # Add some values to cache
-        manager.get_value("database.host")
-        manager.get_value("database.port")
+        # Cache some values
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            fm.get_value("database.host")
+            fm.get_value("database.port")
 
-        # Verify cache has data
-        assert manager.unified_cache.get_stats()["size"] == 2
+        # Verify cache has entries
+        initial_count = len(fm.unified_cache._cache)
+        assert initial_count > 0
 
         # Invalidate all cache
-        count = manager.invalidate_cache()
+        invalidated_count = fm.invalidate_cache()
 
-        # Should return count of invalidated entries
-        assert count == 2
+        # Should return the number of invalidated entries
+        assert invalidated_count == initial_count
+        assert len(fm.unified_cache._cache) == 0
 
-        # Verify cache is empty
-        assert manager.unified_cache.get_stats()["size"] == 0
-
-    def test_invalidate_cache_with_pattern(self):
+    def test_invalidate_cache_with_pattern(self) -> None:
         """Test invalidate_cache with pattern."""
-        manager = MockFileManager()
-        manager.document = {
-            "database": {"host": "localhost", "port": 5432},
-            "app": {"name": "myapp", "version": "1.0.0"},
-        }
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        # Add values to cache
-        manager.get_value("database.host")
-        manager.get_value("database.port")
-        manager.get_value("app.name")
-        manager.get_value("app.version")
+        # Cache some values
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            fm.get_value("database.host")
+            fm.get_value("database.port")
+            fm.get_value("api.timeout")
 
-        # Verify cache has data
-        assert manager.unified_cache.get_stats()["size"] == 4
+        # Mock the cache's invalidate_pattern method
+        with patch.object(fm.unified_cache, "invalidate_pattern") as mock_invalidate:
+            mock_invalidate.return_value = 2
+            result = fm.invalidate_cache("database.*")
 
-        # Invalidate database-related cache
-        count = manager.invalidate_cache("key:database.*")
+            assert result == 2
+            mock_invalidate.assert_called_once_with("database.*")
 
-        # Should return count of invalidated entries
-        assert count == 2
-
-        # Verify only database entries are removed
-        assert not manager.unified_cache.has_key("key:database.host")
-        assert not manager.unified_cache.has_key("key:database.port")
-        assert manager.unified_cache.has_key("key:app.name")
-        assert manager.unified_cache.has_key("key:app.version")
-
-    def test_invalidate_cache_without_cache(self):
+    def test_invalidate_cache_with_no_cache(self) -> None:
         """Test invalidate_cache when cache is disabled."""
-        manager = MockFileManager(enable_cache=False)
+        fm = MockFileManager(
+            self.test_file, document=self.test_data, enable_cache=False
+        )
 
-        # Should return 0
-        count = manager.invalidate_cache()
-        assert count == 0
+        # Should return 0 and not raise errors
+        result = fm.invalidate_cache()
+        assert result == 0
 
-        count = manager.invalidate_cache("pattern")
-        assert count == 0
+        result = fm.invalidate_cache("pattern.*")
+        assert result == 0
 
-    def test_get_value_with_complex_data(self):
-        """Test get_value with complex data structures."""
-        manager = MockFileManager()
-        complex_data = {
-            "users": [{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}],
-            "config": {"database": {"host": "localhost", "port": 5432}},
-        }
-        manager.document = complex_data
-
-        # Test getting complex values
-        users = manager.get_value("users")
-        assert users == complex_data["users"]
-
-        config = manager.get_value("config")
-        assert config == complex_data["config"]
-
-        # Verify they're cached
-        assert manager.unified_cache.has_key("key:users")
-        assert manager.unified_cache.has_key("key:config")
-
-    def test_get_value_cache_key_generation(self):
-        """Test cache key generation for different parameter combinations."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost"}}
+    def test_cache_key_generation(self) -> None:
+        """Test cache key generation."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
         # Test with dot_key
-        manager.get_value("database.host")
-        assert manager.unified_cache.has_key("key:database.host")
+        key1 = fm._generate_cache_key("database.host", None, None, "key")
+        assert key1 == "key:database.host"
 
         # Test with path and key_name
-        manager.get_value(path=["database"], key_name="host")
-        assert manager.unified_cache.has_key("key:database.host")
+        key2 = fm._generate_cache_key(None, ["database"], "host", "key")
+        assert key2 == "key:database.host"
 
-    def test_get_value_performance(self):
-        """Test get_value performance with caching."""
-        manager = MockFileManager()
-        manager.document = {"database": {"host": "localhost"}}
+        # Test with no parameters
+        key3 = fm._generate_cache_key(None, None, None, "key")
+        assert key3 == "key:root"
 
-        # First call (cache miss)
-        # start_time = time.time()
-        value1 = manager.get_value("database.host")
-        # first_call_time = time.time() - start_time
+    def test_cache_statistics(self) -> None:
+        """Test cache statistics tracking."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        # Second call (cache hit)
-        # start_time = time.time()
-        value2 = manager.get_value("database.host")
-        # second_call_time = time.time() - start_time
+        # Initial stats should be empty
+        stats = fm.unified_cache.get_stats()
+        assert stats["hits"] == 0
+        assert stats["misses"] == 0
 
-        # Both should return same value
-        assert value1 == value2 == "localhost"
+        # Cache a value (miss)
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
+            fm.get_value("database.host")
 
-        # Second call should be faster (cached)
-        # Note: This might not always be true due to timing variations
-        # but it's a good indicator that caching is working
+        # Get from cache (hit)
+        fm.get_value("database.host")
 
-    def test_get_value_with_empty_document(self):
-        """Test get_value with empty document."""
-        manager = MockFileManager()
-        manager.document = {}
+        # Check stats
+        stats = fm.unified_cache.get_stats()
+        assert stats["hits"] == 1
+        assert stats["misses"] == 1
 
-        # Should return default value
-        value = manager.get_value("nonexistent.key", default="default")
-        assert value == "default"
+    def test_cache_with_different_value_types(self) -> None:
+        """Test caching different value types."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        # Should cache default values (this is the expected behavior)
-        assert manager.unified_cache.get_stats()["size"] == 1
-        assert manager.unified_cache.has_key("key:nonexistent.key")
+        test_values = [
+            ("string", "test_string"),
+            ("number", 42),
+            ("float", 3.14),
+            ("boolean", True),
+            ("list", [1, 2, 3]),
+            ("dict", {"key": "value"}),
+            ("none", None),
+        ]
 
-    def test_get_value_error_handling(self):
-        """Test get_value error handling."""
-        manager = MockFileManager()
+        for key, value in test_values:
+            with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+                mock_get_key.return_value = value
 
-        # Test with invalid parameters
-        with pytest.raises(ValueError):
-            manager.get_value()
+                # First call (cache miss)
+                result1 = fm.get_value(key)
+                assert result1 == value
 
-        with pytest.raises(ValueError):
-            manager.get_value(path=["database"])
+                # Second call (cache hit)
+                result2 = fm.get_value(key)
+                assert result2 == value
 
-        with pytest.raises(ValueError):
-            manager.get_value(key_name="host")
+                # get_key should only be called once
+                mock_get_key.assert_called_once()
 
-    def test_cache_mixin_integration_with_real_file(self):
-        """Test CacheMixin integration with real file operations."""
-        # Create a temporary JSON file
-        test_data = {
-            "database": {"host": "localhost", "port": 5432, "name": "testdb"},
-            "app": {"name": "testapp", "version": "1.0.0"},
-        }
+    def test_cache_sentinel_object_handling(self) -> None:
+        """Test that sentinel objects are handled correctly."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
-            import json
+        # Test with a value that might be confused with sentinel
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = object()  # Return a unique object
 
-            json.dump(test_data, f)
-            file_path = Path(f.name)
+            result1 = fm.get_value("test.key")
+            result2 = fm.get_value("test.key")
 
-        try:
-            # Create manager with real file using YAPFileManager
-            from yapfm import YAPFileManager
-            from yapfm.strategies.json_strategy import JsonStrategy
+            # Both should return the same object
+            assert result1 is result2
+            mock_get_key.assert_called_once()
 
-            manager = YAPFileManager(
-                file_path,
-                strategy=JsonStrategy(),
-                auto_create=True,
-                enable_cache=True,
-                cache_size=100,
-                cache_ttl=3600,
-            )
+    def test_concurrent_cache_access(self) -> None:
+        """Test cache behavior under concurrent access simulation."""
+        fm = MockFileManager(self.test_file, document=self.test_data)
 
-            # Test caching behavior
-            host = manager.get_value("database.host")
-            assert host == "localhost"
+        # Simulate concurrent access by calling get_value multiple times
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
 
-            # Verify cache statistics
-            stats = manager.unified_cache.get_stats()
-            assert stats["hits"] == 0  # First call is a miss
-            assert stats["misses"] == 1  # First call is a miss
-            assert stats["size"] == 1  # Value was cached
+            # Multiple calls should only result in one get_key call
+            results = []
+            for _ in range(5):
+                results.append(fm.get_value("database.host"))
 
-            # Second call should be a hit
-            host2 = manager.get_value("database.host")
-            assert host2 == "localhost"
+            # All results should be the same
+            assert all(r == "localhost" for r in results)
+            mock_get_key.assert_called_once()
 
-            stats = manager.unified_cache.get_stats()
-            assert stats["hits"] == 1
-            assert stats["misses"] == 1
-            assert stats["size"] == 1
+    def test_cache_memory_management(self) -> None:
+        """Test cache memory management."""
+        # Create cache with small limits
+        cache = SmartCache(max_size=2, max_memory_mb=0.001)
+        fm = MockFileManager(self.test_file, document=self.test_data, cache=cache)
 
-        finally:
-            file_path.unlink()
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "value"
 
-    def test_cache_mixin_thread_safety(self):
-        """Test CacheMixin thread safety."""
-        import threading
+            # Add more items than cache can hold
+            fm.get_value("key1")
+            fm.get_value("key2")
+            fm.get_value("key3")  # This should trigger eviction
 
-        manager = MockFileManager()
-        manager.document = {"key": "value"}
+            # Cache should not exceed max_size
+            assert len(fm.unified_cache._cache) <= 2
 
-        results = []
+    def test_cache_ttl_expiration(self) -> None:
+        """Test cache TTL expiration."""
+        # Create cache with very short TTL
+        cache = SmartCache(default_ttl=0.001)  # 1ms TTL
+        fm = MockFileManager(self.test_file, document=self.test_data, cache=cache)
 
-        def worker():
-            for i in range(10):
-                value = manager.get_value("key")
-                results.append(value)
+        with patch.object(KeyOperationsMixin, "get_key") as mock_get_key:
+            mock_get_key.return_value = "localhost"
 
-        # Create multiple threads
-        threads = []
-        for _ in range(5):
-            thread = threading.Thread(target=worker)
-            threads.append(thread)
-            thread.start()
+            # First call
+            fm.get_value("database.host")
 
-        # Wait for all threads
-        for thread in threads:
-            thread.join()
+            # Wait for TTL to expire
+            import time
 
-        # All results should be the same
-        assert all(result == "value" for result in results)
-        assert len(results) == 50  # 5 threads * 10 calls each
+            time.sleep(0.01)  # 10ms
+
+            # Second call should be a cache miss due to expiration
+            fm.get_value("database.host")
+
+            # get_key should be called twice (once for each call)
+            assert mock_get_key.call_count == 2

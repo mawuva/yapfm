@@ -26,6 +26,7 @@ Example:
     >>> print(f"Supported: {formats}")
 """
 
+from pathlib import Path
 from threading import RLock
 from typing import Callable, Dict, List, Optional, Type, Union
 
@@ -115,6 +116,36 @@ class FileStrategyRegistry:
         ext = resolve_file_extension(file_ext)
         with cls._lock:
             return ext in cls._registry.keys()
+
+    @classmethod
+    def infer_format_from_extension(cls, file_path: Union[str, Path]) -> str:
+        """
+        Infer format from file extension.
+
+        Args:
+            file_path: File path to infer format from
+
+        Returns:
+            Format name (e.g., 'json', 'yaml', 'toml')
+
+        Raises:
+            ValueError: If format cannot be inferred from extension
+
+        Example:
+            >>> FileStrategyRegistry.infer_format_from_extension("config.json")
+            'json'
+            >>> FileStrategyRegistry.infer_format_from_extension("data.yaml")
+            'yaml'
+        """
+        ext = resolve_file_extension(str(file_path))
+        if ext == ".json":
+            return "json"
+        elif ext in [".yml", ".yaml"]:
+            return "yaml"
+        elif ext == ".toml":
+            return "toml"
+        else:
+            raise ValueError(f"Cannot infer format from extension: {ext}")
 
 
 def register_file_strategy(

@@ -1,0 +1,29 @@
+[33m9ba0cd7[m feat: Introduce new mixins for enhanced functionality in YAPFileManager
+[33m58b3acb[m feat: Add method to infer file format from extension
+[33m5c399f1[m feat: Add new data transformation and traversal utilities
+[33me01c3ec[m feat: Add MultiFileMixin for enhanced multi-file operations in YAPFileManager
+[33m8a6b466[m feat: Implement multi-file operations module with loading and merging capabilities
+[33m9c62305[m feat: Introduce merge strategies for file management
+[33m10759d5[m feat: Add batch operations to YAPFileManager for enhanced key management
+[33mfa92838[m feat: Enhance YAPFileManager and CacheMixin with simplified API and improved key management
+[33mb8f6579[m[33m ([m[1;31morigin/cache-feature[m[33m, [m[1;32mcache-feature[m[33m)[m docs: Add performance features including caching, lazy loading, and streaming capabilities
+[33m8a06106[m feat: Enhance caching and lazy loading functionality
+[33mbebab14[m feat: Enhance caching capabilities in YAPFileManager and mixins
+[33mcfddc24[m feat: Initialize file state in YAPFileManager and update import paths
+[33m866bb49[m feat: Implement lazy loading and unified caching in YAPFileManager
+[33m253b9e9[m feat: Add streaming and caching functionality to YAPFileManager
+[33mc9eb779[m feat: Introduce caching system for YAPFileManager
+[33m6b6d5f0[m feat: Enhance file strategy registry with regify integration and utility function
+[33ma913020[m chore: Update GitHub Actions workflow for documentation deployment
+[33ma0ed5ea[m docs: Revise documentation structure and enhance content
+[33mfc204a5[m docs: Remove comparison table from README.md to streamline content
+[33m85b6879[m feat: Introduce open_file helper function for simplified file management
+[33maaf97f2[m docs: Expand documentation and add advanced features for YAPFM
+[33m4f632d8[m feat: Enhance YAPFileManager with key and section operations mixins
+[33m5d5f45b[m feat: Introduce ContextMixin for enhanced context management in YAPFileManager
+[33mcee9feb[m feat: Enhance YAPFM with mixins and file operations
+[33m0395261[m feat: Implement FileManagerProxy for enhanced file management
+[33mebee977[m feat: Add validation utilities for file strategies
+[33m4c3a09e[m feat: Introduce file management strategies and error handling
+[33m20cec91[m feat: Implement file management and strategy registry system - Introduce YAPFileManager class for managing file paths and strategies - Add FileStrategyRegistry for thread-safe strategy registration and usage tracking - Define BaseFileStrategy protocol for file handling strategies - Create initial structure for various file strategies
+[33m34a8cc7[m docs: Enhance README with installation, usage, and features sections - Add installation instructions for pip and poetry - Include basic usage example and highlight key features of the library

@@ -11,7 +11,12 @@ across different file formats and strategies. It includes:
   - Convenience functions for common operations
 """
 
-from .dict_utils import deep_merge, navigate_dict_like
+from .dict_utils import (
+    deep_merge,
+    navigate_dict_like,
+    transform_data_in_place,
+    traverse_data_structure,
+)
 from .io import load_file, load_file_with_stream, save_file, save_file_with_stream
 from .toml_merger import merge_toml
 from .utils import join_dot_key, open_file, resolve_file_extension, split_dot_key
@@ -25,6 +30,8 @@ __all__ = [
     "save_file_with_stream",
     # Dict utilities
     "navigate_dict_like",
+    "traverse_data_structure",
+    "transform_data_in_place",
     "deep_merge",
     # TOML utilities
     "merge_toml",

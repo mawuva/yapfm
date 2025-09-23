@@ -8,7 +8,7 @@ performance for frequently accessed keys.
 
 # mypy: ignore-errors
 
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from yapfm.mixins.key_operations_mixin import KeyOperationsMixin
 
@@ -31,39 +31,30 @@ class CacheMixin:
 
     def get_value(
         self,
-        dot_key: Optional[str] = None,
-        *,
-        path: Optional[List[str]] = None,
-        key_name: Optional[str] = None,
+        key: str = None,
         default: Any = None,
     ) -> Any:
         """
-        Get a value from the file using dot notation with caching.
+        Get a value from the file using key with caching.
 
         Args:
-            dot_key: The dot-separated key.
-            path: The path to the key.
-            key_name: The name of the key.
+            key: The key.
             default: The default value if the key is not found.
 
         Returns:
-            The value at the specified path or default
-
-        Raises:
-            ValueError: If neither dot_key nor (path + key_name) is provided.
+            The value at the specified key or default
         """
-        # Validate parameters
-        if dot_key is None and (path is None or key_name is None):
-            raise ValueError("You must provide either dot_key or (path + key_name)")
         cache = self.get_cache()
 
         if cache is None:
-            # Appel direct de KeyOperationsMixin.get_key sans cache
+            # Call KeyOperationsMixin.get_key without cache
             return KeyOperationsMixin.get_key(
-                self, dot_key, path=path, key_name=key_name, default=default
+                self, dot_key=key, path=None, key_name=None, default=default
             )
 
-        cache_key = self._generate_cache_key(dot_key, path, key_name, "key")
+        cache_key = self._generate_cache_key(
+            dot_key=key, path=None, key_name=None, key_type="key"
+        )
 
         # Try to get from cache first (this will count as hit/miss)
         # Use a sentinel object to distinguish between cache miss and None value
@@ -76,13 +67,43 @@ class CacheMixin:
 
         # Get value from KeyOperationsMixin (cache miss)
         value = KeyOperationsMixin.get_key(
-            self, dot_key, path=path, key_name=key_name, default=default
+            self, dot_key=key, path=None, key_name=None, default=default
         )
 
         # Cache the value (including None values)
         cache.set(cache_key, value)
 
         return value
+
+    def set_value(
+        self,
+        key: str,
+        value: Any,
+        overwrite: bool = True,
+    ) -> None:
+        """
+        Set a value in the file using key.
+
+        The cache will be automatically updated on the next get_value() call.
+
+        Args:
+            key: The key to set
+            value: The value to set
+            overwrite: Whether to overwrite existing values
+        """
+        # Write the value to the file
+        KeyOperationsMixin.set_key(
+            self, value, dot_key=key, path=None, key_name=None, overwrite=overwrite
+        )
+
+        cache = self.get_cache()
+
+        if cache is not None:
+            cache.delete(
+                self._generate_cache_key(
+                    dot_key=key, path=None, key_name=None, key_type="key"
+                )
+            )
 
     def clear_cache(self) -> None:
         """Clear all cached keys."""
