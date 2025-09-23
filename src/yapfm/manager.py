@@ -29,6 +29,7 @@ from .mixins import (
     FileOperationsMixin,
     KeyOperationsMixin,
     LazySectionsMixin,
+    MultiFileMixin,
     SectionOperationsMixin,
     StreamingMixin,
 )
@@ -42,6 +43,7 @@ class YAPFileManager(
     SectionOperationsMixin,
     CacheMixin,
     LazySectionsMixin,
+    MultiFileMixin,
     StreamingMixin,
 ):
     unified_cache: Optional[SmartCache]
