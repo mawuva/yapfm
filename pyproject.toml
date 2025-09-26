@@ -1,6 +1,6 @@
 [project]
 name = "yapfm"
-version = "0.4.0"
+version = "0.5.0"
 description = "Yet Another Python File Manager"
 authors = [
     {name = "Ephraim Seddor",email = "seddorephraim7@gmail.com"}
@@ -32,7 +32,7 @@ mkdocs-material = "^9.6.19"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.4.0"
+version = "0.5.0"
 tag_format = "v$version"
 update_changelog_on_bump = true
 changelog_file = "docs/CHANGELOG.md"

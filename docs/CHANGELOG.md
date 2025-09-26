@@ -1,3 +1,9 @@
+## v0.5.0 (2025-09-26)
+
+### Refactor
+
+- Update import statement from regify to regman in registry.py
+
 ## v0.4.0 (2025-09-23)
 
 ### Feat
