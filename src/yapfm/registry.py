@@ -30,7 +30,7 @@ from pathlib import Path
 from threading import RLock
 from typing import Callable, Dict, List, Optional, Type, Union
 
-from regify import Registry
+from regman import Registry
 
 from yapfm.helpers import resolve_file_extension
 from yapfm.strategies.base import BaseFileStrategy
